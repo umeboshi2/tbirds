@@ -4,7 +4,7 @@ Marionette = require 'backbone.marionette'
 marked = require 'marked'
 
 MainViews = require './views'
-Util = require 'apputil'
+Util = require './apputil'
 
 MainChannel = Backbone.Radio.channel 'global'
 ResourceChannel = Backbone.Radio.channel 'resources'
