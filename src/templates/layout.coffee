@@ -17,8 +17,9 @@ _MainLayoutTemplate = tc.renderable (container) ->
     tc.div '.row', ->
       tc.div '.col-md-10', ->
         tc.div '#messages'
+    tc.div '.row', ->
       tc.div '#main-content.col-md-9'
-      tc.div '#right-slot.col-md-3.right-column'
+      tc.div '#sidebar.col-md-3.right-column'
   tc.div '#footer'
   tc.div '#modal'
 
