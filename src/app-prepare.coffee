@@ -1,11 +1,6 @@
 Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 
-#Models = require './models'
-
-Views = require './views'
-
-
 { BootstrapModalRegion
   SlideDownRegion } = require './regions'
 
