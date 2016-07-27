@@ -10,18 +10,18 @@ require './messages'
 Views = require './views'
 
 
-prepare_app = require 'app-prepare'
-
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
-DocChannel = Backbone.Radio.channel 'static-documents'
 
-initialize_page = (app, root_doc) ->
+initialize_page = (app) ->
   regions = MainChannel.request 'main:app:regions'
   appmodel = MainChannel.request 'main:app:appmodel'
   # create layout view
-  layout = new Views.MainPageLayout
+  layout_opts = {}
+  if appmodel.has 'layout_template'
+    layout_opts.template = appmodel.get 'layout_template'
+  layout = new Views.MainPageLayout layout_opts
   # set the main layout view to create and show
   # the navbar when it is shown.  This assures us
   # that the $el is present in the DOM. 
