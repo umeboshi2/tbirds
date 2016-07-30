@@ -3,7 +3,7 @@ _ = require 'underscore'
 tc = require 'teacup'
 
 { navbar_collapse_button
-  dropdown_toggle } = require 'bootstrap-teacup-templates/coffee/buttons'
+  dropdown_toggle } = require './buttons'
   
 { frontdoor_url
   editor_url } = require './common'

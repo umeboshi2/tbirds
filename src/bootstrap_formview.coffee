@@ -1,4 +1,4 @@
-FormView = require 'marionette-form-view'
+FormView = require './formview'
 
 class BootstrapFormView extends FormView
   valid: (view, attr, selector) =>
