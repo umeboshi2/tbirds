@@ -1,5 +1,3 @@
-$ = require 'jquery'
-_ = require 'underscore'
 tc = require 'teacup'
 
 # Main Templates must use teacup.
@@ -7,7 +5,7 @@ tc = require 'teacup'
 # and accept a layout model as an argument.
 
 ########################################
-# Templates
+# Misc Templates
 ########################################
 message_box = tc.renderable (msg) ->
   lvl = msg.level
@@ -28,8 +26,10 @@ message_box_dismissable = tc.renderable (msg) ->
       tc.raw '&times;'
     tc.text msg.content
 
+ace_editor_div = tc.renderable () ->
+  tc.div '#ace-editor', style:'position:relative;width:100%;height:40em;'
 ########################################
 module.exports =
   message_box: message_box
   message_box_dismissable: message_box_dismissable
-  
+  ace_editor_div: ace_editor_div

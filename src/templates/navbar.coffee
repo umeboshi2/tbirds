@@ -1,5 +1,3 @@
-$ = require 'jquery'
-_ = require 'underscore'
 tc = require 'teacup'
 
 
@@ -15,8 +13,27 @@ tc = require 'teacup'
 # and accept a layout model as an argument.
 
 ########################################
-# Templates
+# NavBar Templates
 ########################################
+
+BootstrapNavBarTemplate = tc.renderable (appmodel) ->
+  tc.div '.container', ->
+    tc.div '#navbar-brand.navbar-header', ->
+      tc.button '.navbar-toggle', type:'button', 'data-toggle':'collapse',
+      'data-target':'.navbar-collapse', ->
+        tc.span '.sr-only', 'Toggle Navigation'
+        tc.span '.icon-bar'
+        tc.span '.icon-bar'
+        tc.span '.icon-bar'
+      tc.a '.navbar-brand', href:appmodel.brand.url, appmodel.brand.name
+    tc.div '.navbar-collapse.collapse', ->
+      tc.ul '#app-navbar.nav.navbar-nav', ->
+        for applet in appmodel.applets
+          tc.li appname:applet.appname, ->
+            tc.a href:applet.url, applet.name
+      tc.ul '#main-menu.nav.navbar-nav.navbar-left'
+      tc.ul '#user-menu.nav.navbar-nav.navbar-right'
+
 # FIXME -- no search form with action 
 nav_pt_search = tc.renderable (appmodel) ->
   tc.form '#form-search.navbar-form.navbar-right', role:'search',
@@ -62,3 +79,4 @@ nav_pt = tc.renderable (appmodel) ->
 module.exports =
   nav_pt_search: nav_pt_search
   nav_pt: nav_pt
+  BootstrapNavBarTemplate: BootstrapNavBarTemplate
