@@ -22,7 +22,7 @@
     "backbone.radio": "^1.0.5",
     "backbone.validation": "^0.7.1",
     "bootstrap-teacup-templates": "umeboshi2/bootstrap-teacup-templates",
-    "jquery": "^3.1.0",
+    "jquery": "^2.1.4",
     "marked": "^0.3.5",
     "teacup": "^2.0.0",
     "underscore": "^1.8.3"
