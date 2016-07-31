@@ -47,18 +47,13 @@ nav_pt_search = tc.renderable (appmodel) ->
       tc.raw '&#8594'
       
 nav_pt_content = tc.renderable (appmodel) ->
-  tc.div '.container-fluid', ->
+  tc.div ".#{appmodel.container or 'container'}", ->
     tc.div '.navbar-header', ->
       navbar_collapse_button 'navbar-view-collapse'
       tc.a '.navbar-brand', href:'#', appmodel.brand.name
     tc.div '#navbar-view-collapse.collapse.navbar-collapse', ->
       tc.ul '.nav.navbar-nav', ->
-        # FIXME
-        #console.log '_navitems', _navitems
-        #console.log 'applets', doc.applets, doc
         for iname, item of appmodel.applets
-          #item = _navitems[iname]
-          #console.log "navitem", item, item.path
           isactive = ""
           if item.inside
             isactive = ".active"
@@ -70,7 +65,7 @@ nav_pt_content = tc.renderable (appmodel) ->
 
 nav_pt = tc.renderable (appmodel) ->
   #tc.nav '#navbar-view.navbar.navbar-static-top.navbar-inverse',
-  tc.nav '#navbar-view.navbar.navbar-static-top',
+  tc.nav '#navbar-view.navbar.navbar-static-top.navbar-default',
   xmlns:'http://www.w3.org/1999/xhtml', 'xml:lang':'en',
   role:'navigation', ->
     nav_pt_content appmodel
