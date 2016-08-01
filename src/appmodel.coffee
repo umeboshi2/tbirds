@@ -9,6 +9,7 @@ class BaseAppModel extends Backbone.Model
     brand:
       name: 'Brand'
       url: '/'
+    container: 'container'
     # FIXME frontdoor_app has to be statically required in
     # application.coffee
     frontdoor_app: 'frontdoor'
