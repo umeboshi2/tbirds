@@ -26,9 +26,6 @@ app_documents = new DocumentCollection
 ResourceChannel.reply 'ls-documents', ->
   app_documents
 
-if __DEV__
-  window.app_documents = app_documents
-
 ResourceChannel.reply 'get-ls-document', (name) ->
   app_documents.get name
 
@@ -49,12 +46,7 @@ ResourceChannel.reply 'new-ls-document', (name, title, content) ->
   
 
 ResourceChannel.reply 'add-ls-document', (name, title, content) ->
-  if __DEV__
-    console.log "create document #{name}"
   doc = make_new_doc name, title, content
-  if __DEV__
-    console.log "Created doc", doc
-    window.created_doc = doc
   app_documents.add doc
   app_documents.save()
   doc

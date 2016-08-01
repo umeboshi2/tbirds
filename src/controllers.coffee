@@ -7,7 +7,6 @@ MainViews = require './views'
 Util = require './apputil'
 
 MainChannel = Backbone.Radio.channel 'global'
-ResourceChannel = Backbone.Radio.channel 'resources'
 
 class BaseController extends Backbone.Marionette.Object
   init_page: () ->
@@ -25,14 +24,6 @@ class MainController extends BaseController
     content = @_get_region 'content'
     content.show view
 
-  _set_resource: (resource) ->
-    if resource == null
-      id = ""
-    else
-      id = "/#{resource}"
-    @root_doc = ResourceChannel.request 'get-document', id
-    #@root_doc.id = id
-
   _make_editbar: ->
     #data = @root_doc.get 'data'
     #user = data.relationships.meta.current_user
@@ -41,7 +32,6 @@ class MainController extends BaseController
     user = null
     # should have better way to check user?
     if user and 'title' of user
-      #window.editbar = editbar
       view = new MainViews.EditBarView
         model: @root_doc
       editbar.show view
