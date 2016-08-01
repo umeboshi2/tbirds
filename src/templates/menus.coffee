@@ -7,7 +7,7 @@ tc = require 'teacup'
 # Menu Templates
 ########################################
 user_menu = tc.renderable (user) ->
-  name = user.username
+  name = user.name
   tc.ul '#user-menu.ctx-menu.nav.navbar-nav', ->
     tc.li '.dropdown', ->
       tc.a '.dropdown-toggle', 'data-toggle':'dropdown', ->

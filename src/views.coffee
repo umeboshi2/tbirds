@@ -6,6 +6,7 @@ NavTemplates = require './templates/navbar'
 EditorBarTemplates = require './templates/editorbar'
 LayoutTemplates = require './templates/layout'
 MiscTemplates = require './templates/misc'
+MenuTemplates = require './templates/menus'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -15,7 +16,6 @@ class MainPageLayout extends Backbone.Marionette.LayoutView
 
 class BootstrapNavBarView extends Backbone.Marionette.LayoutView
   template: NavTemplates.nav_pt
-  window.NavTemplates = NavTemplates
   regions:
     #navbarview: '#navbar-view'
     usermenu: '#user-menu'
@@ -28,7 +28,7 @@ class EditBarView extends Backbone.Marionette.LayoutView
   template: EditorBarTemplates.editor_bar_pt
 
 class UserMenuView extends Backbone.Marionette.ItemView
-  template: MiscTemplates.user_menu
+  template: MenuTemplates.user_menu
 
 class MessageView extends Backbone.Marionette.ItemView
   template:MiscTemplates.message_box
