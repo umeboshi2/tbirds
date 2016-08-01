@@ -50,7 +50,7 @@ nav_pt_content = tc.renderable (appmodel) ->
   tc.div ".#{appmodel.container or 'container'}", ->
     tc.div '.navbar-header', ->
       navbar_collapse_button 'navbar-view-collapse'
-      tc.a '.navbar-brand', href:'#', appmodel.brand.name
+      tc.a '.navbar-brand', href:appmodel.brand.url, appmodel.brand.name
     tc.div '#navbar-view-collapse.collapse.navbar-collapse', ->
       tc.ul '.nav.navbar-nav', ->
         for iname, item of appmodel.applets
