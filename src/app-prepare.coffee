@@ -47,9 +47,10 @@ prepare_app = (app, appmodel) ->
     frontdoor = appmodel.get 'frontdoor_app'
     MainChannel.request "applet:#{frontdoor}:route"
     for applet in appmodel.get 'applets'
-      signal = "applet:#{applet.appname}:route"
-      #console.log "create signal #{signal}"
-      MainChannel.request signal
+      if applet?.appname
+        signal = "applet:#{applet.appname}:route"
+        #console.log "create signal #{signal}"
+        MainChannel.request signal
     # build main page layout
     MainChannel.request 'mainpage:init', appmodel
     # start the approutes
