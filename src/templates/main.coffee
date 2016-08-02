@@ -1,14 +1,14 @@
-forms = require "./forms"
-menus = require "./menus"
-layouts = require "./layouts"
-navbars = require "./navbar"
 buttons = require "./buttons"
+forms = require "./forms"
+layouts = require "./layout"
+menus = require "./menus"
 misc = require './misc'
+navbars = require "./navbar"
 module.exports =
-  forms: forms
-  menus: menus
-  layouts: layouts
-  navbars: navbars
   buttons: buttons
+  forms: forms
+  layouts: layouts
+  menus: menus
   misc: misc
+  navbars: navbars
   

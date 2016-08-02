@@ -1,6 +1,3 @@
-$ = require 'jquery'
-_ = require 'underscore'
-Backbone = require 'backbone'
 tc = require 'teacup'
 
 
@@ -8,8 +5,8 @@ tc = require 'teacup'
 # Button Templates
 ########################################
 spanbutton = tc.component (selector, attrs, renderContents) ->
-  #console.log selector, attrs, renderContents
   tc.span "#{selector}.btn.btn-default.btn-xs", renderContents
+
 divbutton = tc.component (selector, attrs, renderContents) ->
   tc.div "#{selector}.btn.btn-default.btn-xs", renderContents
 

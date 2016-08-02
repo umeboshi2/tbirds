@@ -1,15 +1,29 @@
-$ = require 'jquery'
-_ = require 'underscore'
 tc = require 'teacup'
 
 
-# Main Templates must use teacup.
-# The template must be a teacup.renderable, 
-# and accept a layout model as an argument.
+########################################
+# Layout Templates
+########################################
+BootstrapLayoutTemplate = tc.renderable () ->
+  tc.div '#main-navbar.navbar.navbar-default.navbar-fixed-top',
+  role:'navigation'
+  tc.div '.container-fluid', ->
+    tc.div '.row', ->
+      tc.div '#sidebar.col-sm-2'
+      tc.div '#main-content.col-sm-9'
+  tc.div '#footer'
+  tc.div '#modal'
 
-########################################
-# Templates
-########################################
+BootstrapNoGridLayoutTemplate = tc.renderable () ->
+  tc.div '#main-navbar.navbar.navbar-default.navbar-fixed-top',
+  role:'navigation'
+  #div '#header.listview-header'
+  tc.div '.main-layout', ->
+    tc.div '#sidebar'
+    tc.div '#main-content'
+  tc.div '#footer'
+  tc.div '#modal'
+
 _MainLayoutTemplate = tc.renderable (container) ->
   tc.div '#navbar-view-container'
   #tc.div '#editor-bar-container'
@@ -40,6 +54,8 @@ MainContentTemplate = tc.renderable (doc) ->
 
 ########################################
 module.exports =
+  BootstrapLayoutTemplate: BootstrapLayoutTemplate
+  BootstrapNoGridLayoutTemplate: BootstrapNoGridLayoutTemplate
   MainLayoutTemplate: MainLayoutTemplate
   MainFluidLayoutTemplate: MainFluidLayoutTemplate
   MainContentTemplate: MainContentTemplate

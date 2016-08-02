@@ -1,9 +1,5 @@
 tc = require 'teacup'
 
-# Main Templates must use teacup.
-# The template must be a teacup.renderable, 
-# and accept a layout model as an argument.
-
 ########################################
 # Misc Templates
 ########################################

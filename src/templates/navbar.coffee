@@ -3,14 +3,6 @@ tc = require 'teacup'
 
 { navbar_collapse_button
   dropdown_toggle } = require './buttons'
-  
-  
-# { frontdoor_url } = require './common'
-
-
-# Main Templates must use teacup.
-# The template must be a teacup.renderable, 
-# and accept a layout model as an argument.
 
 ########################################
 # NavBar Templates

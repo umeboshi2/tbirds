@@ -1,6 +1,3 @@
-$ = require 'jquery'
-_ = require 'underscore'
-
 tc = require 'teacup'
 
 ########################################
