@@ -45,13 +45,9 @@ nav_pt_content = tc.renderable (appmodel) ->
       tc.a '.navbar-brand', href:appmodel.brand.url, appmodel.brand.name
     tc.div '#navbar-view-collapse.collapse.navbar-collapse', ->
       tc.ul '.nav.navbar-nav', ->
-        for iname, item of appmodel.applets
-          isactive = ""
-          if item.inside
-            isactive = ".active"
-          tc.li isactive, ->
-            tc.a href:item.url,
-            title:item.name, item.name
+        for applet in appmodel.applets
+          tc.li appname:applet.appname, ->
+            tc.a href:applet.url, applet.name
       tc.ul '#user-menu.nav.navbar-nav.navbar-right'
       tc.div '#form-search-container'
 
