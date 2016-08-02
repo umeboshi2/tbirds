@@ -34,7 +34,9 @@ make_json_post = (url, data, type='POST') ->
 
 navbar_set_active = (path) ->
   path_top = path.split('/')[0]
-  for li in $('#app-navbar li')
+  # FIXME this should be attached to view or
+  # be a behavior
+  for li in $('#navbar-view li')
     liq = $ li
     liq.removeClass('active')
     if path_top == liq.attr('appname')
