@@ -3,7 +3,6 @@ Marionette = require 'backbone.marionette'
 
 
 NavTemplates = require './templates/navbar'
-EditorBarTemplates = require './templates/editorbar'
 LayoutTemplates = require './templates/layout'
 MiscTemplates = require './templates/misc'
 MenuTemplates = require './templates/menus'
@@ -23,9 +22,6 @@ class BootstrapNavBarView extends Backbone.Marionette.LayoutView
 
 class MainSearchFormView extends Backbone.Marionette.ItemView
   template: NavTemplates.nav_pt_search
-
-class EditBarView extends Backbone.Marionette.LayoutView
-  template: EditorBarTemplates.editor_bar_pt
 
 class UserMenuView extends Backbone.Marionette.ItemView
   template: MenuTemplates.user_menu
@@ -50,7 +46,6 @@ class MessagesView extends Backbone.Marionette.CollectionView
 module.exports =
   MainPageLayout: MainPageLayout
   MainSearchFormView: MainSearchFormView
-  EditBarView: EditBarView
   BootstrapNavBarView: BootstrapNavBarView
   UserMenuView: UserMenuView
   MessagesView: MessagesView
