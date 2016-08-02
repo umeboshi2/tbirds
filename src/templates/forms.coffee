@@ -9,12 +9,16 @@ form_group_input_div = tc.renderable (data) ->
     tc.label '.control-label',
       for:data.input_id
       data.label
+    selector = "##{data.input_id}.form-control"
+    atts = data.input_attributes 
+    input_type = tc.input
     if data?.input_type
       input_type = tc[data.input_type]
+      input_type selector, atts, ->
+        tc.text data?.content
     else
-      input_type = tc.input
-    input_type "##{data.input_id}.form-control", data.input_attributes
-
+      input_type selector, atts
+    
 login_form = tc.renderable (user) ->
   tc.form
     role:'form'
