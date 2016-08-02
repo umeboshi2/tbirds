@@ -26,7 +26,11 @@ initialize_page = (app) ->
   # the navbar when it is shown.  This assures us
   # that the $el is present in the DOM. 
   layout.on 'show', =>
-    navbar = new Views.BootstrapNavBarView
+    if appmodel?.navbar_viewclass
+      nbclass = appmodel.navbar_viewclass
+    else
+      nbclass = Views.BootstrapNavBarView
+    navbar = new nbclass
       model: appmodel
     navbar_region = regions.get 'navbar'
     navbar_region.show navbar
@@ -34,6 +38,8 @@ initialize_page = (app) ->
       collection: MessageChannel.request 'messages'
     messages_region = regions.get 'messages'
     messages_region.show messages
+  if __DEV__
+    app.layout = layout
   # Show the main layout
   mainview = regions.get 'mainview'
   mainview.show layout
