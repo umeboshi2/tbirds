@@ -2,6 +2,8 @@ $ = require 'jquery'
 _ = require 'underscore'
 Backbone = require 'backbone'
 
+
+
 #https://github.com/goodeggs/teacup-camel-to-kebab
 camel_to_kebab = (str) ->
   str.replace(/([A-Z])/g, ($1) -> "-#{$1.toLowerCase()}")
@@ -31,6 +33,19 @@ make_json_post_settings = (url, data, type='POST') ->
 make_json_post = (url, data, type='POST') ->
   settings = make_json_post_settings url, data, type
   $.ajax settings
+
+# These are handlers to retrieve the colors
+# from the navbars, and are used to create
+# the default color for the fullcalendar
+# events.
+navbar_color_handlers = (channel, selector) ->
+  channel.reply 'get-navbar-color', ->
+    navbar = $ selector
+    navbar.css 'color'
+  channel.reply 'get-navbar-bg-color', ->
+    navbar = $ selector
+    navbar.css 'background-color'
+    
 
 navbar_set_active = (path) ->
   path_top = path.split('/')[0]
@@ -83,6 +98,7 @@ module.exports =
   make_field_input_ui: make_field_input_ui
   make_json_post_settings: make_json_post_settings
   make_json_post: make_json_post
+  navbar_color_handlers: navbar_color_handlers
   navbar_set_active: navbar_set_active
   navigate_to_url: navigate_to_url
   random_choice: random_choice
