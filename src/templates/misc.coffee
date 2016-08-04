@@ -10,6 +10,8 @@ message_box = tc.renderable (msg) ->
   tc.div ".alert.alert-#{lvl}", ->
     tc.button '.close', type:'button', 'aria-hidden': true, ->
       tc.raw '&times;'
+    if msg.icon
+      tc.span ".glyphicon.glyphicon-#{msg.icon}"
     tc.text msg.content
     
 message_box_dismissable = tc.renderable (msg) ->
@@ -23,7 +25,7 @@ message_box_dismissable = tc.renderable (msg) ->
     tc.text msg.content
 
 ace_editor_div = tc.renderable () ->
-  tc.div '#ace-editor', style:'position:relative;width:100%;height:40em;'
+  tc.div '#ace-editor', style:'position:relative;width:100%;height:24em;'
 ########################################
 module.exports =
   message_box: message_box

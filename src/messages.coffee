@@ -14,19 +14,21 @@ main_message_collection = new BaseMessageCollection
 MessageChannel.reply 'messages', ->
   main_message_collection
 
-display_message = (msg, level) ->
+display_message = (msg, level, icon=false) ->
   message = new BaseMessage
     content: msg
     level: level
+    icon: icon
   main_message_collection.add message
   
-MessageChannel.reply 'display-message', (msg, lvl='info') =>
-  display_message msg, lvl
+MessageChannel.reply 'display-message', (msg, lvl='info', icon=false) =>
+  console.warn 'icon', icon
+  display_message msg, lvl, icon
 
 for level in ['success', 'info', 'warning', 'danger', 'brand']
   do (level) ->
-    MessageChannel.reply level, (msg) =>
-      display_message msg, level
+    MessageChannel.reply level, (msg, icon=false) =>
+      display_message msg, level, icon
       
 
 MessageChannel.reply 'delete-message', (model) =>
