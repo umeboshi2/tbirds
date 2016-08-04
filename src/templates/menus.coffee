@@ -19,7 +19,7 @@ user_menu = tc.renderable (user) ->
             tc.a href:'/login', 'login'
         else
           tc.li ->
-            tc.a href:'/app/user', 'User Page'
+            tc.a href:'#profile', 'Profile Page'
           # we need a "get user info" from server
           # to populate this menu with 'admin' link
           # FIXME use "?." to help here
