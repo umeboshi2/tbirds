@@ -16,7 +16,7 @@ user_menu = tc.renderable (user) ->
       tc.ul '.dropdown-menu', ->
         if name == undefined
           tc.li ->
-            tc.a href:'/login', 'login'
+            tc.a href:'#frontdoor/login', 'login'
         else
           tc.li ->
             tc.a href:'#profile', 'Profile Page'
@@ -30,6 +30,9 @@ user_menu = tc.renderable (user) ->
               for g in groups
                 if g.name == 'admin'
                   admin = true
+          # FIXME I don't like using username
+          if user.name is 'admin'
+            admin = true
           if admin
             tc.li ->
               href = '/admin'

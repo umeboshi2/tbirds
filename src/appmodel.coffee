@@ -6,6 +6,7 @@ Backbone = require 'backbone'
 
 class BaseAppModel extends Backbone.Model
   defaults:
+    apiRoot: '/api/dev'
     brand:
       name: 'Brand'
       url: '/'
@@ -14,6 +15,7 @@ class BaseAppModel extends Backbone.Model
     # application.coffee
     frontdoor_app: 'frontdoor'
     hasUser: false
+    needUser: false
     frontdoor_sidebar:
       [
         {

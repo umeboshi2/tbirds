@@ -46,6 +46,9 @@ prepare_app = (app, appmodel) ->
     # build routes first
     frontdoor = appmodel.get 'frontdoor_app'
     MainChannel.request "applet:#{frontdoor}:route"
+    hasUser = appmodel.get 'hasUser'
+    if hasUser
+      MainChannel.request "applet:userprofile:route"
     for applet in appmodel.get 'applets'
       if applet?.appname
         signal = "applet:#{applet.appname}:route"
