@@ -24,6 +24,17 @@ class MainController extends BaseController
     content = @_get_region 'content'
     content.show view
 
+  _empty_sidebar: ->
+    sidebar = @_get_region 'sidebar'
+    sidebar.empty()
+    sidebar
+        
+  _make_sidebar: ->
+    sidebar = @_empty_sidebar
+    view = new @sidebarclass
+      model: @sidebar_model
+    sidebar.show view
+    
   _make_editbar: ->
     #data = @root_doc.get 'data'
     #user = data.relationships.meta.current_user
