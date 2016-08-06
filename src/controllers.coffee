@@ -49,7 +49,23 @@ class MainController extends BaseController
     else
       editbar.empty()
 
+  _show_view: (vclass, model) ->
+    view = new vclass
+      model: model
+    @_show_content view
 
+  _load_view: (vclass, model, objname) ->
+    if model.isEmpty()
+      response = model.fetch()
+      response.done =>
+        @_show_view vclass, model
+      response.fail =>
+        msg = "Failed to load #{objname} data."
+        MessageChannel.request 'danger', msg
+    else
+      @_show_view vclass, model
+      
+    
 module.exports =
   BaseController: BaseController
   MainController: MainController
