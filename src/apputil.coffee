@@ -11,6 +11,21 @@ camel_to_kebab = (str) ->
 capitalize = (str) ->
   str.charAt(0).toUpperCase() + str.slice(1)
 
+create_model = (collection, options) ->
+  model = collection.create()
+  for key, value of options
+    model.set key, value
+  collection.add model
+  collection.save()
+
+get_model = (collection, id) ->
+  model = collection.get id
+  if model is undefined
+    new collection.model
+      id: id
+  else
+    model
+  
 handle_newlines = (str) ->
   console.warn "handle_newlines being replaced by newline_2_br"
   str.replace(/(?:\r\n|\r|\n)/g, '<br />')
@@ -94,6 +109,8 @@ string_endswith = (searchString, position) ->
 module.exports =
   camel_to_kebab: camel_to_kebab
   capitalize: capitalize
+  create_model: create_model
+  get_model: get_model
   handle_newlines: handle_newlines
   make_field_input_ui: make_field_input_ui
   make_json_post_settings: make_json_post_settings
