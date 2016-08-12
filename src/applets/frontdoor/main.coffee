@@ -1,4 +1,4 @@
-BootStrapAppRouter = require '../bootstrap_router'
+BootStrapAppRouter = require '../../bootstrap_router'
 
 Controller = require './controller'
 

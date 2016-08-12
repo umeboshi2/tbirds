@@ -1,8 +1,8 @@
 Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 
-{ MainController } = require '../controllers'
-{ login_form } = require '../templates/forms'
+{ MainController } = require '../../controllers'
+{ login_form } = require '../../templates/forms'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
