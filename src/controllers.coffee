@@ -40,7 +40,9 @@ class MainController extends BaseController
     @_show_content view
 
   _load_view: (vclass, model, objname) ->
-    if model.isEmpty()
+    # FIXME
+    # presume "id" is only attribute there if length is 1
+    if model.isEmpty() or Object.keys(model.attributes).length is 1
       response = model.fetch()
       response.done =>
         @_show_view vclass, model
