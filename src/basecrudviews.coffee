@@ -4,6 +4,7 @@ tc = require 'teacup'
 
 { navigate_to_url } = require './apputil'
 { show_modal } = require './regions'
+{ modal_close_button } = require './templates/buttons'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
