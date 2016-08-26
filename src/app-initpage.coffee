@@ -41,7 +41,7 @@ initialize_page = (app) ->
   if __DEV__
     app.layout = layout
   # Show the main layout
-  mainview = regions.get 'mainview'
-  mainview.show layout
+  root = regions.get 'root'
+  root.show layout
 
 module.exports = initialize_page

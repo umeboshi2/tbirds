@@ -48,7 +48,7 @@ example_applet_menu_entry =
   url: '/this/is/used/if/applets/is/empty/for/plain/link'
 
 appregions = 
-  mainview: 'body'
+  root: 'body'
   navbar: '#navbar-view-container'
   editbar: '#editor-bar-container'
   sidebar: '#sidebar'
