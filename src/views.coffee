@@ -13,6 +13,12 @@ MessageChannel = Backbone.Radio.channel 'messages'
 class MainPageLayout extends Backbone.Marionette.LayoutView
   template: LayoutTemplates.MainFluidLayoutTemplate
 
+class DefaultAppletLayout extends Backbone.Marionette.LayoutView
+  template: LayoutTemplates.make_sidebar_template()
+  regions:
+    sidebar: '#sidebar'
+    content: '#main-content'
+  
 class BootstrapNavBarView extends Backbone.Marionette.LayoutView
   template: NavTemplates.nav_pt
   regions:
@@ -45,6 +51,7 @@ class MessagesView extends Backbone.Marionette.CollectionView
   
 module.exports =
   MainPageLayout: MainPageLayout
+  DefaultAppletLayout: DefaultAppletLayout
   MainSearchFormView: MainSearchFormView
   BootstrapNavBarView: BootstrapNavBarView
   UserMenuView: UserMenuView

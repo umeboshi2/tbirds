@@ -50,12 +50,10 @@ example_applet_menu_entry =
 appregions = 
   root: 'body'
   navbar: '#navbar-view-container'
-  editbar: '#editor-bar-container'
-  sidebar: '#sidebar'
-  content: '#main-content'
   messages: '#messages'
   footer: '#footer'
   modal: '#modal'
+  applet: '#applet-content'
   # this region is on navbar-view
   # depends on #navbar-view-container
   usermenu: '#user-menu'

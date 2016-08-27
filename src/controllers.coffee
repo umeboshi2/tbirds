@@ -16,8 +16,33 @@ class BaseController extends Backbone.Marionette.Object
   navbar_set_active: Util.navbar_set_active
 
 class MainController extends BaseController
+  layoutClass: MainViews.DefaultAppletLayout
+  _get_applet: ->
+    MainChannel.request 'main:app:get-region', 'applet'
+    
+  setup_layout: ->
+    @layout = new @layoutClass
+    #console.log "created layout", @layout
+    applet = @_get_applet()
+    if applet.hasView()
+      #console.log "applet has view"
+      applet.empty()
+    applet.show @layout
+
+  # use this method to create a layout only if
+  # needed, making routing withing the applet
+  # more efficient.
+  setup_layout_if_needed: ->
+    if @layout is undefined
+      #console.log 'layout is undefined'
+      @setup_layout()
+    else if @layout.isDestroyed
+      #console.log 'layout is destroyed ------>', @layout
+      @setup_layout()
+    
+  
   _get_region: (region) ->
-    MainChannel.request 'main:app:get-region', region
+    @layout.getRegion region
 
   _show_content: (view) ->
     content = @_get_region 'content'
