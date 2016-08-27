@@ -26,8 +26,10 @@ initialize_page = (app) ->
   # the navbar when it is shown.  This assures us
   # that the $el is present in the DOM. 
   layout.on 'show', =>
-    if appmodel?.navbar_viewclass
-      nbclass = appmodel.navbar_viewclass
+    if appmodel.has 'navbar_viewclass'
+      if __DEV__
+        console.log "using custom navbar_viewclass"
+      nbclass = appmodel.get 'navbar_viewclass'
     else
       nbclass = Views.BootstrapNavBarView
     navbar = new nbclass
