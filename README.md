@@ -18,6 +18,51 @@ on another applet's channel should be "required" after that other
 applet in the main app file.** 
 
 
+### Global Radio Channel
+
+#### Replies
+
+- **main:app:object**
+
+	- returns the marionette app object
+	
+	- set in agate when creating app
+  
+- **mainpage:init** 
+
+	- signature (appmodel) ->
+	
+	- renders main page layout and child views
+	
+	- triggers **mainpage:displayed** event
+	
+	- set handler in application
+	
+- **applet:{*appname*}:route**
+
+	- initializes approute and controller for applet
+	
+- **main:app:get-region**
+
+	- retrieve a region from the root layout
+	
+	- this will be either removed or renamed to make it known 
+	  that only root layout regions can be retrived through this
+	  request
+
+- **main:app:appmodel**
+
+	- returns the appmodel
+	
+	- set handler in application
+
+#### Events
+
+- **mainpage:displayed** 
+
+	- use this to render child views
+	
+	- set handler in application
 
 ### The Entry File
 
@@ -151,3 +196,6 @@ told to *show* the layout view, starting the entire page view sequence.
 ### Applets
 
 
+
+# this is 1.3G look at this laterx
+git@github.com:David20321/FTJ.git
