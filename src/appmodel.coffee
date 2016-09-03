@@ -10,26 +10,38 @@ class BaseAppModel extends Backbone.Model
     brand:
       name: 'Brand'
       url: '/'
-    container: 'container'
     # FIXME frontdoor_app has to be statically required in
     # application.coffee
     frontdoor_app: 'frontdoor'
+    userprofile_app: 'userprofile'
     hasUser: false
     needUser: false
-    frontdoor_sidebar:
-      [
-        {
-          name: 'Home'
-          url: '/'
-        }
-      ]
+    
     applets: []
     # applet_menus is a property that provides the ability
     # to organize the applets in dropdown menus on the
     # navbar.
     applet_menus: []
+
+    # this is the region for the main view
+    appRegion: 'body'
+
+    # this is for a custom root view class
+    # it should have these regions:
+    # navbar, messages, modal, and applet
+    appView: null
+
+    # this is for a custom navbar view class
+    navbarView: null
+
+    # FIXME, I'm still using this for the navbar
+    # but not for main layout.
+    container: 'container'
+    
+    # FIXME regions and routes are not used
     regions: {}
     routes: []
+
 
 
 example_applet_menu_entry =
@@ -47,24 +59,10 @@ example_applet_menu_entry =
   # a simple navbar link.
   url: '/this/is/used/if/applets/is/empty/for/plain/link'
 
-appregions = 
-  root: 'body'
-  navbar: '#navbar-view-container'
-  messages: '#messages'
-  footer: '#footer'
-  modal: '#modal'
-  applet: '#applet-content'
-  # this region is on navbar-view
-  # depends on #navbar-view-container
-  usermenu: '#user-menu'
-  search: '#form-search-container'
 
 class DefaultAppModel extends BaseAppModel
-  regions: appregions
-  
 
 module.exports =
   BaseAppModel: BaseAppModel
   DefaultAppModel: DefaultAppModel
-  appregions: appregions
   

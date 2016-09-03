@@ -45,6 +45,7 @@ class MainController extends BaseController
     @layout.getRegion region
 
   _show_content: (view) ->
+    console.warn "_show_content is deprecated"
     content = @_get_region 'content'
     content.show view
 
@@ -54,6 +55,7 @@ class MainController extends BaseController
     sidebar
         
   _make_sidebar: ->
+    console.warn "_make_sidebar is deprecated"
     sidebar = @_empty_sidebar()
     view = new @sidebarclass
       model: @sidebar_model
