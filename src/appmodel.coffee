@@ -60,9 +60,5 @@ example_applet_menu_entry =
   url: '/this/is/used/if/applets/is/empty/for/plain/link'
 
 
-class DefaultAppModel extends BaseAppModel
-
-module.exports =
-  BaseAppModel: BaseAppModel
-  DefaultAppModel: DefaultAppModel
+module.exports = BaseAppModel
   
