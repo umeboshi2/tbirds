@@ -5,12 +5,11 @@ MainChannel = Backbone.Radio.channel 'global'
 
 
 class SlideDownRegion extends Backbone.Marionette.Region
-  slide_speed: 'fast'
   attachHtml: (view) ->
+    speed = if @slide_speed then @slide_speed else 'fast'
     @$el.hide()
     @$el.html view.el
-    @$el.slideDown @slide_speed
-    
+    @$el.slideDown speed
 
 class BootstrapModalRegion extends Backbone.Marionette.Region
   el: '#modal'
