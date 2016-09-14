@@ -24,6 +24,10 @@ make_dbchannel = (channel, objname, modelClass, collectionClass) ->
     create_model collection options
   channel.reply "get-#{objname}", (id) ->
     get_model collection, id
+  channel.reply "#{objname}-modelClass", ->
+    modelClass
+  channel.reply "#{objname}-collectionClass", ->
+    collectionClass
     
 
 module.exports =
