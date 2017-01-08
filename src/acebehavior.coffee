@@ -33,7 +33,8 @@ class HasAceEditor extends Backbone.Marionette.Behavior
     # set editor.$blockScrolling = Infinity to disable this message
     @view.editor.$blockScrolling = Infinity
     @view.editor.setTheme @options.editorTheme
-    @setEditorMode @view.model.get 'doctype'
+    if @view.model.has 'doctype'
+      @setEditorMode @view.model.get 'doctype'
     if @view?.afterDomRefresh
       @view.afterDomRefresh()
     
