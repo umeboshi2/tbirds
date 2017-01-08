@@ -18,6 +18,14 @@ create_model = (collection, options) ->
   collection.add model
   collection.save()
 
+create_new_approuter = (channel, Router, Controller) ->
+  controller = new Controller
+  channel.reply 'main-controller', ->
+    controller
+  router = new Router
+    controller: controller
+  router
+  
 get_model = (collection, id) ->
   model = collection.get id
   if model is undefined
@@ -110,6 +118,7 @@ module.exports =
   camel_to_kebab: camel_to_kebab
   capitalize: capitalize
   create_model: create_model
+  create_new_approuter: create_new_approuter
   get_model: get_model
   handle_newlines: handle_newlines
   make_field_input_ui: make_field_input_ui
