@@ -3,7 +3,7 @@ Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 marked = require 'marked'
 
-MainViews = require './views'
+{ DefaultAppletLayout } = require './views/layout'
 Util = require './apputil'
 
 MainChannel = Backbone.Radio.channel 'global'
@@ -16,7 +16,7 @@ class BaseController extends Backbone.Marionette.Object
   navbar_set_active: Util.navbar_set_active
 
 class MainController extends BaseController
-  layoutClass: MainViews.DefaultAppletLayout
+  layoutClass: DefaultAppletLayout
   _get_applet: ->
     app = MainChannel.request 'main:app:object'
     app.getView().getRegion 'applet'
@@ -65,7 +65,7 @@ class MainController extends BaseController
   _show_view: (vclass, model) ->
     view = new vclass
       model: model
-    @_show_content view
+    @layout.showChildView 'content', view
 
   _load_view: (vclass, model, objname) ->
     # FIXME

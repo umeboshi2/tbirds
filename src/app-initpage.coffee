@@ -5,9 +5,9 @@ require 'bootstrap'
 
 require './messages'
 
-Views = require './views'
-
-
+{ MainPageLayout } = require './views/layout'
+{ BootstrapNavBarView } = require './views/navbar'
+MessagesView = require './views/messages'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -19,7 +19,7 @@ initialize_page = (app) ->
   if appmodel.has 'appView'
     AppView = appmodel.get 'appView'
   else
-    AppView = Views.MainPageLayout
+    AppView = MainPageLayout
     
   layout_opts = {}
   if appmodel.has 'layout_template'
@@ -41,11 +41,11 @@ initialize_page = (app) ->
         console.log "using custom navbar_viewclass"
       nbclass = appmodel.get 'navbarView'
     else
-      nbclass = Views.BootstrapNavBarView
+      nbclass = BootstrapNavBarView
     navbar = new nbclass
       model: appmodel
     layout.showChildView 'navbar', navbar
-    messages = new Views.MessagesView
+    messages = new MessagesView
       collection: MessageChannel.request 'messages'
     layout.showChildView 'messages', messages
   
