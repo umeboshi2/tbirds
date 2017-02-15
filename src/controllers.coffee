@@ -1,7 +1,6 @@
 $ = require 'jquery'
 Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
-marked = require 'marked'
 
 { DefaultAppletLayout } = require './views/layout'
 Util = require './apputil'
