@@ -1,7 +1,7 @@
 Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 
-MiscTemplates = require './templates/misc'
+MiscTemplates = require '../templates/misc'
 
 MessageChannel = Backbone.Radio.channel 'messages'
 
