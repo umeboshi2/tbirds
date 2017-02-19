@@ -106,6 +106,9 @@ scroll_top_fast = ()  ->
 scroll_top_fast_jquery = ()  ->
   $('html, body').animate {scrollTop: 0}, 'fast'
 
+# use polyfill for String.endsWith if needed
+#if not String.prototype?.endsWith
+#  String.prototype.endsWith = string_endswith
 string_endswith = (searchString, position) ->
   subjectString = @toString()
   if typeof position != 'number' or !isFinite(position) or Math.floor(position) != position or position > subjectString.length
@@ -113,6 +116,15 @@ string_endswith = (searchString, position) ->
   position -= searchString.length
   lastIndex = subjectString.indexOf(searchString, position)
   lastIndex != -1 and lastIndex == position
+
+string_startswith = (searchString, position) ->
+  position = position or 0
+  return @substr(position, searchString, position) == searchString
+  
+#if !String::startsWith
+#  String::startsWith = (searchString, position) ->
+#    position = position or 0
+#    @substr(position, searchString.length) == searchString
 
 module.exports =
   camel_to_kebab: camel_to_kebab
@@ -132,6 +144,7 @@ module.exports =
   scroll_top_fast: scroll_top_fast
   scroll_top_fast_jquery: scroll_top_fast_jquery
   string_endswith: string_endswith
+  string_startswith: string_startswith
   
 
 
