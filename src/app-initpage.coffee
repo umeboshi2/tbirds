@@ -33,7 +33,6 @@ initialize_page = (app) ->
     # 
     # This is used to get regions in the root layout
     MainChannel.reply 'main:app:get-region', (region) ->
-      console.warn "Don't use this anymore->", 'main:app:get-region', region
       app.getView().getRegion(region)
       
     if appmodel.has 'navbarView'
