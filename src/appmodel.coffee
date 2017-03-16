@@ -1,6 +1,3 @@
-$ = require 'jquery'
-jQuery = require 'jquery'
-_ = require 'underscore'
 Backbone = require 'backbone'
 
 

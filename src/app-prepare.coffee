@@ -9,7 +9,10 @@ create_app = (appmodel) ->
     region: appmodel.get 'appRegion'
     onStart: ->
       # build routes
+      # start the approutes
       # applets need to be required before app.start()
+      # the 'frontdoor_app' should handle the '' <blank>
+      # route for the initial page.
       frontdoor = appmodel.get 'frontdoor_app'
       MainChannel.request "applet:#{frontdoor}:route"
       hasUser = appmodel.get 'hasUser'
@@ -23,9 +26,6 @@ create_app = (appmodel) ->
           MainChannel.request signal
       # build main page layout
       MainChannel.request 'mainpage:init', appmodel
-      # start the approutes
-      # the 'frontdoor_app' should handle the '' <blank>
-      # route for the initial page.
       Backbone.history.start() unless Backbone.history.started
       
   
