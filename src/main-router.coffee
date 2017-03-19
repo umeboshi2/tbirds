@@ -1,13 +1,29 @@
 Marionette = require 'backbone.marionette'
 
-BootStrapAppRouter = require 'agate/src/bootstrap_router'
-
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
 
+# FIXME
 # applets/appname/main needs to be resolvable
-# by using webpacke resolve alias
-# 
+# by using webpack resolve alias
+
+# Object to contain registered applets
+# Using this prevents a loop when a approute
+# is requested but not matched in an AppRouter
+# Unless the AppRouter has a match for the requested
+# approute, the main router will try to load the
+# AppRouter again, causing a loop.
+registered_apps = {}
+
+# FIXME
+# This isn't being used currently.  This is here
+# when the code develops to the point of being
+# able to remove unused child apps to save memory.
+MainChannel.reply 'main:applet:unregister', (appname) ->
+  delete registered_apps[appname]
+
+MainChannel.reply 'main:applet:register', (appname) ->
+  registered_apps[appname] = true
 
 class RequireController extends Marionette.Object
   _route_applet: (applet) ->
@@ -15,18 +31,19 @@ class RequireController extends Marionette.Object
 
   loadFrontDoor: ->
     config = MainChannel.request 'main:app:config'
-    applet = config?.frontdoorApplet or 'frontdoor'
-    handler = System.import "applets/#{applet}/main"
-    console.log "system.import", applet
+    appname = config?.frontdoorApplet or 'frontdoor'
+    handler = System.import "applets/#{appname}/main"
+    if __DEV__
+      console.log "Frontdoor system.import", appname
     handler.then (Applet) =>
-      console.log "Applet", Applet
       applet = new Applet
-      #MainChannel.request "applet:#{applet}:route"
-      console.log "Starting frontdoor applet"
+      MainChannel.request 'main:applet:register', appname
       applet.start()
       Backbone.history.start() unless Backbone.history.started
-      console.log "History Started"
-    
+      if __DEV__
+        hash = window.location.hash
+        console.log "History Started at", hash
+      
   _handle_route: (appname, suffix) ->
     if __DEV__
       console.log "_handle_route", appname, suffix
@@ -37,35 +54,52 @@ class RequireController extends Marionette.Object
     if appname in Object.keys config.appletRoutes
       appname = config.appletRoutes[appname]
       console.log "Using defined appletRoute", appname
+    if appname in Object.keys registered_apps
+      throw new Error "Unhandled applet path ##{appname}/#{suffix}"
     handler = System.import "applets/#{appname}/main"
     if __DEV__
       console.log "system.import", appname
     handler.then (Applet) =>
-      #console.log "Applet #{appname}", Applet
       applet = new Applet
-      #console.log "Starting applet #{appname}"
+      MainChannel.request 'main:applet:register', appname
       applet.start()
       Backbone.history.loadUrl()
-    .catch ->
-      MessageChannel.request 'warning', "Bad route #{appname}!!"
+    .catch (err) ->
+      if err.message.startsWith 'Cannot find module'
+        MessageChannel.request 'warning', "Bad route #{appname}, #{suffix}!!"
+      # catch this here for initial page load with invalid
+      # subpath
+      else if err.message.startsWith 'Unhandled applet'
+        MessageChannel.request 'warning', err.message
+      else
+        throw err
       
   routeApplet: (applet, href) ->
-    @_handle_route applet, href
-
-class Router extends Marionette.AppRouter
+    try
+      @_handle_route applet, href
+    catch err
+      if err.message.startsWith 'Unhandled applet'
+        MessageChannel.request 'warning', err.message
+        
+class MainRouter extends Marionette.AppRouter
   appRoutes:
-    ':applet/*': 'routeApplet'
+    ':applet' : 'routeApplet'
+    ':applet/*path': 'routeApplet'
 
   onRoute: (name, path, args) ->
     if __DEV__
       console.log "MainRouter.onRoute", name, path, args
     
-MainChannel.reply 'app:main:route', () ->
+MainChannel.reply 'main:app:route', () ->
   controller = new RequireController
-  router = new Router
+  router = new MainRouter
     controller: controller
   MainChannel.reply 'main-controller', ->
     controller
   MainChannel.reply 'main-router', ->
     router
     
+module.exports =
+  RequireController: RequireController
+  MainRouter: MainRouter
+  
