@@ -23,6 +23,7 @@ class TopApp extends Toolkit.App
       navbarApp = @addChildApp 'navbar',
         AppClass: NavbarApp
         startWithParent: true
+        appConfig: appConfig
         ,
         parentApp: @
         

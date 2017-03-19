@@ -199,9 +199,18 @@ class BootstrapNavBarView extends Marionette.View
 
 class NavbarApp extends Toolkit.App
   onBeforeStart: ->
+    console.log 'NavbarApp options', @options
+    appConfig = @options.appConfig
     region = @options.parentApp.getView().getRegion 'navbar'
     @setRegion region
-
+    if appConfig.hasUser
+      userMenuApp = @addChildApp 'user-menu',
+        AppClass: appConfig.userMenuApp
+        startWithParent: true
+        appConfig: appConfig
+        ,
+        parentApp: @
+        
   onStart: ->
     # build main page layout
     @initPage()

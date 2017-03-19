@@ -22,10 +22,23 @@ module.exports =
   # applet to be used for frontdoor
   # 
   frontdoorApplet: 'frontdoor'
+
+  # Does the application have a user?
+  # If this is true, a userMenuApp must be set
+  # to a toolkit App
+  hasUser: false
+
+  # If there is a user, provide a user menu app
+  userMenuApp: undefined
+  
   # if needLogin is true, frontdoorApplet should
   # provide a #frontdoor/login route which will
   # be displayed by default
   needLogin: false
+
+  # the url for login
+  loginUrl: '/#frontdoor/login'
+  guestUserName: 'Guest'
   
   # navbar entries is an array of objects
   navbarEntries: []
