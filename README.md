@@ -1,7 +1,51 @@
-# agate
-coffeescript modules
+# tbirds
+JS and coffeescript modules
 
-## Application Structure
+##  Introduction
+
+Tbirds is a collection of helper modules to more easily create 
+a frontend single page app using [marionette](http://marionettejs.com/), 
+[bootstrap v3](http://getbootstrap.com/).  Tbirds makes use of 
+[marionette.toolkit](http://roundingwellos.github.io/marionette.toolkit/) 
+to help manage the app components.  These modules are meant to be 
+used with [webpack](https://webpack.js.org/).  In theory, many of 
+these modules can be also used with [browserify](http://browserify.org/), 
+however the (optional) 
+[main-router](https://github.com/umeboshi2/tbirds/blob/master/src/main-router.coffee) 
+depends on webpack's dynamic import, to help with code splitting.
+
+**The concept is still being designed and modified.  Please consider 
+this mostly alpha quality code.**
+
+## Purpose
+
+Tbirds consists of a simple set of modules to help build different 
+frontends with differing requirements and concerns.  The goal of the 
+project is to provide separable modules in a "pick and choose" manner 
+to help build a frontend.  With this in mind, effort has been made to 
+create an environment where many components are optional and can be 
+specified in an "AppConfig" object.
+
+For example, many apps use a "navbar", usually at the top of the 
+page.  However, if you are creating an app to be run in another 
+site's ```<iframe>```, you probably won't need a navbar.  Hence, 
+the navbar is made optional in the "AppConfig."  If the app has 
+a backend that requires, or makes use of, an authenticated user, 
+this can also be specified in the "AppConfig". (Currently, the 
+user menu view is tied to the navbar, so at the moment, the 
+optional user requires the navbar to be present.  This probably 
+won't be changed until the need arises, but feel free to make 
+this happen if you need such functionality.)
+
+
+
+
+
+
+
+## Application Structure (outdated)
+
+
 
 The structure is to run a multi page website as a collection 
 of single page applications.  The webserver will provide an empty 
