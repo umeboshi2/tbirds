@@ -196,6 +196,3 @@ told to *show* the layout view, starting the entire page view sequence.
 ### Applets
 
 
-
-# this is 1.3G look at this laterx
-git@github.com:David20321/FTJ.git
