@@ -39,7 +39,7 @@ this happen if you need such functionality.)
 
 ## Applets and Child apps
 
-A disctintion is made between these similar terms.  The world is 
+A distinction is made between these similar terms.  The world is 
 still young and the word "applet" is not very clearly 
 [defined](https://en.wikipedia.org/wiki/Applet).  In tbirds, a 
 child app correspons to a 
