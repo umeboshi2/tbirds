@@ -37,6 +37,27 @@ optional user requires the navbar to be present.  This probably
 won't be changed until the need arises, but feel free to make 
 this happen if you need such functionality.)
 
+## Applets and Child apps
+
+A disctintion is made between these similar terms.  The world is 
+still young and the word "applet" is not very clearly 
+[defined](https://en.wikipedia.org/wiki/Applet).  In tbirds, a 
+child app correspons to a 
+[Toolkit Child App](https://github.com/RoundingWellOS/marionette.toolkit/blob/master/docs/mixins/child-apps.md), which merely means it belongs to 
+a [parent app](https://github.com/RoundingWellOS/marionette.toolkit/blob/master/docs/app.md).  An **applet** is also a **child app**, that uses 
+a marionette [AppRouter](http://marionettejs.com/docs/master/marionette.approuter.html).  The applet concept is to help organize the frontend into 
+a collection of components, each in charge of a specific set of 
+functionality.
+
+When using the [main-router](https://github.com/umeboshi2/tbirds/blob/master/src/main-router.coffee), the applets are geared to be loaded upon demand 
+by matching the route and loading the corresponding applet.  The purpose 
+of this feature is to eventually provide that certain applets the ability 
+to be maintained separately in their own code repositories.  The longterm 
+goal is to be able to include an applet in the project by a simple 
+```npm install --save-dev applet-foobar```, allowing the same applet to 
+be reused in a variety of frontend apps.
+
+
 ## Default AppConfig
 
 ```coffee
@@ -94,9 +115,52 @@ module.exports =
     
 ```
 
+## Presumptions
+
+Tbirds presumes that the project is using both bootstrap and 
+font-awesome for the page style and icons.
+
+## Application Structure (current)
+
+The main application object is the [TopApp](https://github.com/umeboshi2/tbirds/blob/master/src/top-app.coffee), which is the main container for 
+all the child apps and applets.  Currently, the "TopApp" contains two 
+optional child apps, "messages", and "navbar".
 
 
 
+## Backbone.Radio
+
+The 'global' channel is used to help manage the app.
+
+- requests (The first three must be set or requested by the 
+  developer in the entry file before calling ```app.start()```)
+
+	- 'main:app:object' -> returns the "TopApp" object. *This must be 
+	  set by the developer in the entry file creating the app.*
+
+	- 'main:app:config' -> returns the "AppConfig" object. *This must be 
+	  set by the developer in the entry file creating the app.*
+	
+	- 'main:app:route' -> registers the "main-router".  *This must be 
+	  requested by the developer in the entry file after creating 
+	  the app.*
+	  
+	- 'main-router' -> returns the main dispatch router.
+	
+	- 'main-controller' -> returns the RequireController used by the 
+	  "main-router".
+	  
+	- 'main:applet:register' (appname) -> registers the applet with 
+	the application.  This tells the dispatcher that the routes for 
+	the AppRouter have already been registered, so it will refrain 
+	from attempting to load the applet.  This is called upon the 
+	loading of the applet by the **RequireController**.
+	
+	- 'main:applet:unregister' (applet) -> this is a placeholder 
+	to remove an applet from the application.  This is not being 
+	used currently, but is reserved in anticipation of the 
+	potential to unload an applet to conserve memory in a large 
+	application.
 
 ## Application Structure (outdated)
 
