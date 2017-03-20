@@ -1,5 +1,4 @@
 module.exports = [
-  'underscore'
   'backbone'
   'backbone.marionette'
   'backbone.radio'
@@ -7,4 +6,5 @@ module.exports = [
   'marionette.toolkit'
   'jquery'
   'teacup'
+  'underscore'
   ]
