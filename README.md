@@ -135,32 +135,34 @@ The 'global' channel is used to help manage the app.
 - requests (The first three must be set or requested by the 
   developer in the entry file before calling ```app.start()```)
 
-	- 'main:app:object' -> returns the "TopApp" object. *This must be 
+	- ```'main:app:object'``` -> returns the "TopApp" object. *This must be 
 	  set by the developer in the entry file creating the app.*
 
-	- 'main:app:config' -> returns the "AppConfig" object. *This must be 
+	- ```'main:app:config'``` -> returns the "AppConfig" object. *This must be 
 	  set by the developer in the entry file creating the app.*
 	
-	- 'main:app:route' -> registers the "main-router".  *This must be 
+	- ```'main:app:route'``` -> registers the "main-router".  *This must be 
 	  requested by the developer in the entry file after creating 
 	  the app.*
 	  
-	- 'main-router' -> returns the main dispatch router.
+	- ```'main-router'``` -> returns the main dispatch router.
 	
-	- 'main-controller' -> returns the RequireController used by the 
+	- ```'main-controller'``` -> returns the RequireController used by the 
 	  "main-router".
 	  
-	- 'main:applet:register' (appname) -> registers the applet with 
+	- ```'main:applet:register'``` (appname) -> registers the applet with 
 	the application.  This tells the dispatcher that the routes for 
 	the AppRouter have already been registered, so it will refrain 
 	from attempting to load the applet.  This is called upon the 
 	loading of the applet by the **RequireController**.
 	
-	- 'main:applet:unregister' (applet) -> this is a placeholder 
+	- ```'main:applet:unregister'``` (applet) -> this is a placeholder 
 	to remove an applet from the application.  This is not being 
 	used currently, but is reserved in anticipation of the 
 	potential to unload an applet to conserve memory in a large 
 	application.
+	
+
 
 ## Application Structure (outdated)
 
