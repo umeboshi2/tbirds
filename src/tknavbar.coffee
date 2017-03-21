@@ -185,9 +185,7 @@ class BootstrapNavBarView extends Marionette.View
     @navigateOnClickEntry view, event
     
   navigateOnClickEntry: (cview, event) ->
-    console.log "Brand clicked"
     target = event.target
-    console.log "Target", target
     # look at href and go there maybe?
     href = $(target).attr 'href'
     if href.split('/')[0] == ''
@@ -199,7 +197,6 @@ class BootstrapNavBarView extends Marionette.View
 
 class NavbarApp extends Toolkit.App
   onBeforeStart: ->
-    console.log 'NavbarApp options', @options
     appConfig = @options.appConfig
     region = @options.parentApp.getView().getRegion 'navbar'
     @setRegion region
