@@ -3,16 +3,19 @@ Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 
 { DefaultAppletLayout } = require './views/layout'
-Util = require './apputil'
+
+{ navbar_set_active } = require './util'
+navigate_to_url = require './util/navigate-to-url'
+scroll_top_fast = require './util/scroll-top-fast'
 
 MainChannel = Backbone.Radio.channel 'global'
 
 class BaseController extends Backbone.Marionette.Object
   init_page: () ->
     # do nothing
-  scroll_top: Util.scroll_top_fast
-  navigate_to_url: Util.navigate_to_url
-  navbar_set_active: Util.navbar_set_active
+  scroll_top: scroll_top_fast
+  navigate_to_url: navigate_to_url
+  navbar_set_active: navbar_set_active
 
 class MainController extends BaseController
   layoutClass: DefaultAppletLayout

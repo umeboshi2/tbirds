@@ -7,7 +7,7 @@ marked = require 'marked'
 
 
 
-{ capitalize } = require '../apputil'
+capitalize = require '../util/capitalize'
 
 # Main Templates must use teacup.
 # The template must be a teacup.renderable, 

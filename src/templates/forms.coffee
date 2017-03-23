@@ -1,6 +1,6 @@
 tc = require 'teacup'
 
-{ capitalize } = require '../apputil'
+capitalize = require '../util/capitalize'
 
 
 ########################################

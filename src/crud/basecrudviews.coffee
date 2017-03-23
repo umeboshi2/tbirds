@@ -2,7 +2,7 @@ Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 tc = require 'teacup'
 
-{ navigate_to_url } = require '../apputil'
+navigate_to_url = require '../util/navigate-to-url'
 require '../regions/bsmodal'
 { modal_close_button } = require '../templates/buttons'
 

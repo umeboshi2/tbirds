@@ -125,8 +125,8 @@ string_startswith = (searchString, position) ->
 #  String::startsWith = (searchString, position) ->
 #    position = position or 0
 #    @substr(position, searchString.length) == searchString
-
-module.exports =
+Oldmodule = {}
+Oldmodule.exports =
   camel_to_kebab: camel_to_kebab
   capitalize: capitalize
   create_model: create_model
@@ -147,7 +147,9 @@ module.exports =
   string_startswith: string_startswith
   
 
-
+console.warn "Don't use apputil"
+Util = require './util'
+module.exports = Util
 
 
 

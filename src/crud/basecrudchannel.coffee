@@ -1,8 +1,20 @@
 Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 
-{ create_model
-  get_model } = require '../apputil'
+create_model = (collection, options) ->
+  model = collection.create()
+  for key, value of options
+    model.set key, value
+  collection.add model
+  collection.save()
+
+get_model = (collection, id) ->
+  model = collection.get id
+  if model is undefined
+    new collection.model
+      id: id
+  else
+    model
 
 make_dbclasses = (objname, url) ->
   modelClass = class DbModel extends Backbone.Model
