@@ -81,7 +81,7 @@ class RequireController extends Marionette.Object
       if err.message.startsWith 'Unhandled applet'
         MessageChannel.request 'warning', err.message
         
-class MainRouter extends Marionette.AppRouter
+class AppletRouter extends Marionette.AppRouter
   appRoutes:
     ':applet' : 'routeApplet'
     ':applet/*path': 'routeApplet'
@@ -92,7 +92,7 @@ class MainRouter extends Marionette.AppRouter
     
 MainChannel.reply 'main:app:route', () ->
   controller = new RequireController
-  router = new MainRouter
+  router = new AppletRouter
     controller: controller
   MainChannel.reply 'main-controller', ->
     controller
@@ -101,5 +101,6 @@ MainChannel.reply 'main:app:route', () ->
     
 module.exports =
   RequireController: RequireController
-  MainRouter: MainRouter
+  AppletRouter: AppletRouter
+
   

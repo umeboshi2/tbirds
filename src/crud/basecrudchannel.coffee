@@ -2,7 +2,7 @@ Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 
 { create_model
-  get_model } = require './apputil'
+  get_model } = require '../apputil'
 
 make_dbclasses = (objname, url) ->
   modelClass = class DbModel extends Backbone.Model

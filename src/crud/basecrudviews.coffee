@@ -2,9 +2,9 @@ Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 tc = require 'teacup'
 
-{ navigate_to_url } = require './apputil'
-{ show_modal } = require './regions'
-{ modal_close_button } = require './templates/buttons'
+{ navigate_to_url } = require '../apputil'
+require '../regions/bsmodal'
+{ modal_close_button } = require '../templates/buttons'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -64,7 +64,8 @@ class BaseItemView extends Backbone.Marionette.View
     if __DEV__
       console.log 'modal view', view
     show_modal view, true
-
+    MainChannel.request 'main:app:show-modal', view, {backdrop:true}
+    
 
 class BaseListView extends Backbone.Marionette.CompositeView
   childViewContainer: "##{@item_type}-container"

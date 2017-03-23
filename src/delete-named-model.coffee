@@ -2,7 +2,6 @@ Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 tc = require 'teacup'
 
-{ show_modal } = require './regions'
 { modal_close_button } = require './templates/buttons'
 
 MainChannel = Backbone.Radio.channel 'global'
