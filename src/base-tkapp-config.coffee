@@ -17,7 +17,7 @@ module.exports =
   useNavbar: true
   # this is the brand entry for the navbar
   brand:
-    label: 'Tk-Test'
+    label: 'TBirds'
     url: '#'
   # applet to be used for frontdoor
   # 
