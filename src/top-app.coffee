@@ -5,21 +5,44 @@ tc = require 'teacup'
 
 MessagesApp = require './tkmessages'
 NavbarApp = require './tknavbar'
-  
+MainPageLayout = require './tklayout'
+
+MainChannel = Backbone.Radio.channel 'global'
+
+class TkAppState extends Backbone.Model
+  defaults:
+    startHistory: true
+    appConfig: {}
+    
 MainChannel = Backbone.Radio.channel 'global'
 class TopApp extends Toolkit.App
+  StateModel: TkAppState
+  options:
+    appConfig: {}
   onBeforeStart: ->
     appConfig = @options.appConfig
+    MainChannel.reply 'main:app:object', =>
+      @
+    MainChannel.reply 'main:app:config', ->
+      appConfig
+    MainChannel.reply 
     # FIXME - test for region class
-    @setRegion new Marionette.Region el: appConfig.appRegion
-    #console.log "TopApp region set to", @getRegion()
-    if appConfig.useMessages
+    @setRegion new Marionette.Region el: appConfig?.appRegion or 'body'
+    # setup messages
+    useMessages = true
+    if appConfig.useMessages? and appConfig.useMessages is false
+      useMessages = false
+    if useMessages
       messagesApp = @addChildApp 'messages',
         AppClass: MessagesApp
         startWithParent: true
         ,
         parentApp: @
-    if appConfig.useNavbar
+    # setup navbar
+    useNavbar = true
+    if appConfig.useNavbar? and appConfig.useNavbar is false
+      useNavbar = false
+    if useNavbar
       navbarApp = @addChildApp 'navbar',
         AppClass: NavbarApp
         startWithParent: true
@@ -29,7 +52,7 @@ class TopApp extends Toolkit.App
         
   initPage: ->
     appConfig = @options.appConfig
-    AppLayout = appConfig.layout
+    AppLayout = appConfig?.layout or MainPageLayout
     layoutOpts = appConfig.layoutOptions
     layout = new AppLayout appConfig.layoutOptions
     @showView layout    
