@@ -9,7 +9,10 @@ class TkApplet extends Toolkit.App
     controller.applet = @
     @router = new @Router
       controller: controller
-
+    if @?.appRoutes
+      appRoutes = @appRoutes?() or @appRoutes
+      Object.keys(appRoutes).forEach (r) =>
+        @router.appRoute r, appRoutes[r]
   onStop: ->
     console.log "Stopping TkApplet", @.isRunning()
     
