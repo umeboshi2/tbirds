@@ -1,5 +1,4 @@
 $ = require 'jquery'
-_ = require 'underscore'
 Backbone = require 'backbone'
 
 create_new_approuter = (channel, Router, Controller) ->
@@ -22,7 +21,6 @@ navbar_color_handlers = (channel, selector) ->
     navbar = $ selector
     navbar.css 'background-color'
     
-
 navbar_set_active = (path) ->
   path_top = path.split('/')[0]
   # FIXME this should be attached to view or
@@ -32,13 +30,6 @@ navbar_set_active = (path) ->
     liq.removeClass('active')
     if path_top == liq.attr('appname')
       liq.addClass('active')
-
-navigate_to_url = (url) ->
-  if url.split('/')[0] == ''
-    window.location = url
-  else
-    r = new Backbone.Router
-    r.navigate url, trigger:true
 
 #if !String::startsWith
 #  String::startsWith = (searchString, position) ->
