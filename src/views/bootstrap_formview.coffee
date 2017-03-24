@@ -1,15 +1,3 @@
-FormView = require './formview'
-
-class BootstrapFormView extends FormView
-  valid: (view, attr, selector) =>
-    @$("[data-validation=#{attr}]").parent()
-      .removeClass('has-error')
-      .addClass('has-success')
-
-  invalid: (view, attr, error, selector) =>
-    @failure(@model)
-    @$("[data-validation=#{attr}]").parent()
-      .removeClass('has-success')
-      .addClass('has-error')
-
-module.exports = BootstrapFormView
+BSFormView = require './bsformview'
+console.warn "use bsformview instead of bootstrap_formview"
+module.exports = BSFormView

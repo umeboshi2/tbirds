@@ -1,11 +1,7 @@
 $ = require 'jquery'
-Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 
-MainChannel = Backbone.Radio.channel 'global'
-
-
-class SlideDownRegion extends Backbone.Marionette.Region
+class SlideDownRegion extends Marionette.Region
   attachHtml: (view) ->
     speed = if @slide_speed then @slide_speed else 'fast'
     @$el.hide()

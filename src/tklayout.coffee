@@ -1,21 +1,7 @@
 Marionette = require 'backbone.marionette'
-Toolkit = require 'marionette.toolkit'
 tc = require 'teacup'
 
-class BootstrapModalRegion extends Marionette.Region
-  el: '#modal'
-  backdrop: false
-  
-  getEl: (selector) ->
-    $el = $ selector
-    $el.attr 'class', 'modal'
-    $el
-    
-  show: (view) ->
-    super view
-    @$el.modal
-      backdrop: @backdrop
-    @$el.modal 'show'
+ModalRegion = require './regions/bsmodal'
 
 class MainPageLayout extends Marionette.View
   template: tc.renderable () -> 
@@ -25,13 +11,13 @@ class MainPageLayout extends Marionette.View
         tc.div '.col-sm-10.col-sm-offset-1', ->
           tc.div '#messages'
       tc.div '#applet-content.row'
-    tc.div '#footer'
+      tc.div '#footer.row'
     tc.div '#modal'
 
   regions:
     messages: '#messages'
     navbar: '#navbar-view-container'
-    modal: BootstrapModalRegion
+    modal: ModalRegion
     applet: '#applet-content'
     footer: '#footer'
     
