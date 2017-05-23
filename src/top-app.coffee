@@ -25,7 +25,6 @@ class TopApp extends Toolkit.App
       @
     MainChannel.reply 'main:app:config', ->
       appConfig
-    MainChannel.reply 
     # FIXME - test for region class
     @setRegion new Marionette.Region el: appConfig?.appRegion or 'body'
     # setup messages
@@ -55,7 +54,7 @@ class TopApp extends Toolkit.App
     AppLayout = appConfig?.layout or MainPageLayout
     layoutOpts = appConfig.layoutOptions
     layout = new AppLayout appConfig.layoutOptions
-    @showView layout    
+    @showView layout
 
   onStart: ->
     # build main page layout

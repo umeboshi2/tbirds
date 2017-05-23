@@ -89,7 +89,7 @@ class AppletRouter extends Marionette.AppRouter
   onRoute: (name, path, args) ->
     if __DEV__
       console.log "MainRouter.onRoute", name, path, args
-    
+
 MainChannel.reply 'main:app:route', () ->
   controller = new RequireController
   router = new AppletRouter
