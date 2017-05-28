@@ -21,7 +21,10 @@ class BootstrapModalRegion extends Marionette.Region
     @$el.modal 'show'
       
 MainChannel.reply 'main:app:show-modal', (view, options) ->
-  modal_region = MainChannel.request 'main:app:get-region', 'modal'
+  app = MainChannel.request 'main:app:object'
+  layout = app.getView()
+  modal_region = layout.regions.modal
+  #modal_region = MainChannel.request 'main:app:get-region', 'modal'
   modal_region.backdrop = !!options?.backdrop
   modal_region.show view
   
