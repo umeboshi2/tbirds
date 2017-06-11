@@ -20,9 +20,9 @@ MainChannel.reply 'create-current-user-object', (url) ->
   MainChannel.reply 'update-user-config', (config) ->
     currentuser.set 'config', config
     response = currentuser.save()
-    response.done =>
+    response.done ->
       currentuser
-    response.fail =>
+    response.fail ->
       MessageChannel.request 'danger', 'failed to update user config!'
   currentuser
   

@@ -39,11 +39,11 @@ MainChannel.reply 'add-navbar-entries', (olist) ->
 navbar_collapse_button  = tc.renderable (target) ->
   tc.button '.navbar-toggle', type:'button', 'data-toggle':'collapse',
   'data-target': "##{target}", ->
-      tc.span '.sr-only', 'Toggle Navigation'
-      tc.span '.icon-bar'
-      tc.span '.icon-bar'
-      tc.span '.icon-bar'
-
+    tc.span '.sr-only', 'Toggle Navigation'
+    tc.span '.icon-bar'
+    tc.span '.icon-bar'
+    tc.span '.icon-bar'
+      
 dropdown_toggle = tc.component (selector, attrs, renderContents) ->
   tc.a "#{selector}.dropdown-toggle", href:attrs.href,
   'data-toggle':'dropdown', renderContents

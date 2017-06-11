@@ -20,7 +20,6 @@ module.exports =
     label: 'TBirds'
     url: '#'
   # applet to be used for frontdoor
-  # 
   frontdoorApplet: 'frontdoor'
 
   # Does the application have a user?

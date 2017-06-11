@@ -3,7 +3,7 @@
 #  String.prototype.endsWith = string_endswith
 module.exports = (searchString, position) ->
   subjectString = @toString()
-  if typeof position != 'number' or !isFinite(position) or Math.floor(position) != position or position > subjectString.length
+  if typeof position != 'number' or !isFinite(position) or Math.floor(position) != position or position > subjectString.length # noqa
     position = subjectString.length
   position -= searchString.length
   lastIndex = subjectString.indexOf(searchString, position)

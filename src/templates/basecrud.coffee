@@ -10,7 +10,7 @@ marked = require 'marked'
 capitalize = require '../util/capitalize'
 
 # Main Templates must use teacup.
-# The template must be a teacup.renderable, 
+# The template must be a teacup.renderable,
 # and accept a layout model as an argument.
 
 ########################################

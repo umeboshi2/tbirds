@@ -4,7 +4,7 @@ tc = require 'teacup'
 ModalRegion = require './regions/bsmodal'
 
 class MainPageLayout extends Marionette.View
-  template: tc.renderable () -> 
+  template: tc.renderable () ->
     tc.div '#navbar-view-container'
     tc.div ".container-fluid", ->
       tc.div '.row', ->

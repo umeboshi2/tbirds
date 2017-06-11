@@ -12,7 +12,7 @@ make_aliases = (dirname) ->
   phaser = path.resolve phaserbuild, 'phaser-split.js'
   pixi = path.resolve phaserbuild, 'pixi.js'
   p2 = path.resolve phaserbuild, 'p2.js'
-  aliases = 
+  aliases =
     jquery: 'jquery/src/jquery'
     request: 'browser-request'
     applets: path.join dirname, '../client/applets'

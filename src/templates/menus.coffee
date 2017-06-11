@@ -47,7 +47,7 @@ main_sidebar = tc.renderable (model) ->
   tc.div '.btn-group-vertical', ->
     for entry in model.entries
       tc.div '.btn.btn-default.sidebar-entry-button', 'button-url':entry.url, ->
-        tc.text entry.name          
+        tc.text entry.name
 
 
 ########################################

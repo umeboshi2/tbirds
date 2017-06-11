@@ -32,7 +32,7 @@ class FormView extends Backbone.Marionette.View
     eventHash
 
   createModel: ->
-    throw new Error 'implement #createModel in your FormView subclass to return a Backbone model'
+    throw new Error 'implement #createModel in your FormView subclass to return a Backbone model' # noqa 
 
   prepareModel: ->
     @model = @createModel()
@@ -54,7 +54,7 @@ class FormView extends Backbone.Marionette.View
     @saveModel()
 
   updateModel: ->
-    throw new Error 'implement #updateModel in your FormView subclass to update the attributes of @model'
+    throw new Error 'implement #updateModel in your FormView subclass to update the attributes of @model' # noqa
 
   saveModel: ->
     callbacks =

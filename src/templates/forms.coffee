@@ -12,7 +12,7 @@ form_group_input_div = tc.renderable (data) ->
       for:data.input_id
       data.label
     selector = "##{data.input_id}.form-control"
-    atts = data.input_attributes 
+    atts = data.input_attributes
     input_type = tc.input
     if data?.input_type
       input_type = tc[data.input_type]
@@ -55,7 +55,7 @@ make_field_select = (field, optlist) ->
         else
           tc.option value:opt, opt
           
-make_login_form = (action='/login', method='POST') -> 
+make_login_form = (action='/login', method='POST') ->
   tc.renderable (user) ->
     tc.form
       role:'form'

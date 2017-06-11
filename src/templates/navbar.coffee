@@ -26,7 +26,7 @@ BootstrapNavBarTemplate = tc.renderable (appmodel) ->
       tc.ul '#main-menu.nav.navbar-nav.navbar-left'
       tc.ul '#user-menu.nav.navbar-nav.navbar-right'
 
-# FIXME -- no search form with action 
+# FIXME -- no search form with action
 nav_pt_search = tc.renderable (appmodel) ->
   tc.form '#form-search.navbar-form.navbar-right', role:'search',
   method:'post', action:"#{appmodel.navbarSearchAction}", ->

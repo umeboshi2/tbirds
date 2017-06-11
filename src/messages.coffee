@@ -14,7 +14,7 @@ main_message_collection = new BaseMessageCollection
 MessageChannel.reply 'messages', ->
   main_message_collection
 
-add_message = (msg, level, icon=false, delay=6000) =>
+add_message = (msg, level, icon=false, delay=6000) ->
   message = new BaseMessage
     content: msg
     level: level
@@ -26,17 +26,17 @@ add_message = (msg, level, icon=false, delay=6000) =>
     setTimeout destroy, delay
   main_message_collection.add message
   
-MessageChannel.reply 'display-message', (msg, lvl='info', icon=false) =>
+MessageChannel.reply 'display-message', (msg, lvl='info', icon=false) ->
   console.warn 'icon', icon
   add_message msg, lvl, icon
 
 for level in ['success', 'info', 'warning', 'danger']
   do (level) ->
-    MessageChannel.reply level, (msg, icon=false) =>
+    MessageChannel.reply level, (msg, icon=false) ->
       add_message msg, level, icon
       
 
-MessageChannel.reply 'delete-message', (model) =>
+MessageChannel.reply 'delete-message', (model) ->
   main_message_collection.remove model
 
 module.exports =
