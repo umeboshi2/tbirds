@@ -7,6 +7,7 @@ MainChannel = Backbone.Radio.channel 'global'
 class BootstrapModalRegion extends Marionette.Region
   el: '#modal'
   backdrop: false
+  keyboard: false
   
   getEl: (selector) ->
     $el = $ selector
@@ -18,6 +19,7 @@ class BootstrapModalRegion extends Marionette.Region
     super view
     @$el.modal
       backdrop: @backdrop
+      keyboard: @keyboard
     @$el.modal 'show'
       
 MainChannel.reply 'main:app:show-modal', (view, options) ->
