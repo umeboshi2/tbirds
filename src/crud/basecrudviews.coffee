@@ -38,9 +38,9 @@ class ConfirmDeleteModal extends Backbone.Marionette.View
   confirm_delete: ->
     name = @model.get 'name'
     response = @model.destroy()
-    response.done =>
+    response.done ->
       MessageChannel.request 'success', "#{name} deleted.",
-    response.fail =>
+    response.fail ->
       MessageChannel.request 'danger', "#{name} NOT deleted."
       
 class BaseItemView extends Backbone.Marionette.View
@@ -67,11 +67,18 @@ class BaseItemView extends Backbone.Marionette.View
     MainChannel.request 'main:app:show-modal', view, {backdrop:true}
     
 
-class BaseListView extends Backbone.Marionette.CompositeView
-  childViewContainer: "##{@item_type}-container"
+class BaseCollectionView extends Backbone.Marionette.CollectionView
+  childView: BaseItemView
+
+class BaseListView extends Backbone.Marionette.View
+  regions: ->
+    itemlist: "##{@item_type}-container"
   ui: ->
     make_new_item: "#new-#{@item_type}"
-    
+  onRender: ->
+    view = new BaseCollectionView
+      collection: @collection
+    @showChildView 'itemlist', view
   events: ->
     'click @ui.make_new_item': 'make_new_item'
 
@@ -79,14 +86,11 @@ class BaseListView extends Backbone.Marionette.CompositeView
     modal_region = MainChannel.request 'main:app:get-region', 'modal'
     modal_region.backdrop = backdrop
     modal_region.show view
-
   
   make_new_item: ->
     # FIXME - fix url dont't add 's'
     navigate_to_url "##{@route_name}/#{@item_type}s/new"
     
-  
-
 module.exports =
   BaseItemView: BaseItemView
   BaseListView: BaseListView
