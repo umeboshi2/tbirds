@@ -113,7 +113,6 @@ class NavbarEntryCollectionView extends Marionette.CollectionView
       view.unset_active()
       
   onChildviewClickEntry: (cview, event) ->
-    #console.log "HERE IS MORE STUFF", event
     @setAllInactive()
     cview.set_active()
     @navigateOnClickEntry cview, event
@@ -168,10 +167,22 @@ class BootstrapNavBarView extends Marionette.View
         tc.div '#navbar-entries'
   regions:
     header: '.navbar-header'
+    usermenu: '#user-menu'
+    mainmenu: '#main-menu'
     entries: '#navbar-entries'
   onRender: ->
+    if @model.get 'hasUser'
+      app = MainChannel.request 'main:app:object'
+      currentUser = app.getState 'currentUser'
+      navbarEntries = []
+      for entry in @model.get 'navbarEntries'
+        if entry?.needUser and not currentUser
+          continue
+        navbarEntries.push entry
+    else
+      navbarEntries = @model.get 'navbarEntries'
     eview = new NavbarEntriesView
-      collection: new Backbone.Collection @model.get 'navbarEntries'
+      collection: new Backbone.Collection navbarEntries
     @showChildView 'entries', eview
     hview = new NavbarHeaderView
       model: new Backbone.Model @model.get 'brand'
