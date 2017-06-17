@@ -74,6 +74,8 @@ dropdown_entry = tc.renderable (entry) ->
     tc.b '.caret'
   tc.ul '.dropdown-menu', ->
     for link in entry.menu
+      if link?.needUser and not entry.currentUser
+        continue
       tc.li ->
         tc.a '.navbar-entry', href:link.url, link.label
 
@@ -85,6 +87,12 @@ class NavbarEntryView extends Marionette.View
   tagName: 'li'
   className: ->
     if @model.has 'menu' then 'dropdown' else undefined
+  templateContext: ->
+    app = MainChannel.request 'main:app:object'
+    context =
+      app: app
+      currentUser: app.getState 'currentUser'
+    return context
   template: tc.renderable (model) ->
     if model?.menu
       dropdown_entry model
