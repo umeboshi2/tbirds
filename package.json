@@ -23,7 +23,7 @@
     "backbone.radio": "^2.0.0",
     "brace": "^0.10.0",
     "jquery": "^3.2.1",
-    "marionette.toolkit": "^3.1.0",
+    "marionette.toolkit": "^4.0.0",
     "marked": "^0.3.6",
     "teacup": "^2.0.0",
     "underscore": "^1.8.3"
