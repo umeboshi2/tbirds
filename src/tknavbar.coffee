@@ -168,8 +168,6 @@ class BootstrapNavBarView extends Marionette.View
         tc.div '#navbar-entries'
   regions:
     header: '.navbar-header'
-    usermenu: '#user-menu'
-    mainmenu: '#main-menu'
     entries: '#navbar-entries'
   onRender: ->
     eview = new NavbarEntriesView
