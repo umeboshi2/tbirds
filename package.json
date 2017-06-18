@@ -1,11 +1,11 @@
 {
   "name": "tbirds",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "JS and coffeescript modules for marionette apps",
   "main": "index.js",
   "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "postversion": "git push && git push --tags"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
