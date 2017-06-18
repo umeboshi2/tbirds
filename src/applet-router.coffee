@@ -22,8 +22,12 @@ registered_apps = {}
 MainChannel.reply 'main:applet:unregister', (appname) ->
   delete registered_apps[appname]
 
-MainChannel.reply 'main:applet:register', (appname) ->
-  registered_apps[appname] = true
+MainChannel.reply 'main:applet:register', (appname, applet) ->
+  registered_apps[appname] = applet
+
+MainChannel.reply 'main:applet:get-applet', (appname) ->
+  registered_apps[appname]
+  
 
 class RequireController extends Marionette.Object
   _route_applet: (applet) ->
@@ -37,7 +41,12 @@ class RequireController extends Marionette.Object
       console.log "Frontdoor system.import", appname
     handler.then (Applet) =>
       applet = new Applet
-      MainChannel.request 'main:applet:register', appname
+      # we want to adjust the approuter for frontdoor
+      # use here, instead of in the AppRouter class,
+      # so only one applet handles the "empty route."
+      # FIXME -uncomment this when ready....
+      # applet.router.appRoute '', 'start'
+      MainChannel.request 'main:applet:register', appname, applet
       applet.start()
       Backbone.history.start() unless Backbone.history.started
       if __DEV__
@@ -61,13 +70,7 @@ class RequireController extends Marionette.Object
       console.log "system.import", appname
     handler.then (Applet) ->
       applet = new Applet
-      # we want to adjust the approuter for frontdoor
-      # use here, instead of in the AppRouter class,
-      # so only one applet handles the "empty route."
-      # FIXME -uncomment this when ready....
-      #if config.frontdoorApplet == appname
-      #  applet.router.appRoute '', 'start'
-      MainChannel.request 'main:applet:register', appname
+      MainChannel.request 'main:applet:register', appname, applet
       applet.start()
       Backbone.history.loadUrl()
     .catch (err) ->
