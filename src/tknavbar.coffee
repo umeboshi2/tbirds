@@ -44,60 +44,15 @@ navbar_collapse_button  = tc.renderable (target) ->
     tc.span '.icon-bar'
     tc.span '.icon-bar'
       
-dropdown_toggle = tc.component (selector, attrs, renderContents) ->
-  tc.a "#{selector}.dropdown-toggle", href:attrs.href,
-  'data-toggle':'dropdown', renderContents
-
-nav_pt_content = tc.renderable (appmodel) ->
-  tc.div ".#{appmodel.container or 'container'}", ->
-    tc.div '.navbar-header', ->
-      navbar_collapse_button 'navbar-view-collapse'
-      tc.a '.navbar-brand', href:'#', 'TKTest'
-    tc.div '#navbar-view-collapse.collapse.navbar-collapse', ->
-      tc.ul '.nav.navbar-nav.nav-pills', ->
-      tc.ul '#user-menu.nav.navbar-nav.navbar-right'
-      tc.div '#form-search-container'
-
-nav_pt = tc.renderable (appmodel) ->
-  tc.nav '#navbar-view.navbar.navbar-static-top.navbar-default',
-  xmlns:'http://www.w3.org/1999/xhtml', 'xml:lang':'en',
-  role:'navigation', ->
-    tc.div '.container', ->
-      tc.div '.navbar-header', ->
-        navbar_collapse_button 'navbar-view-collapse'
-        tc.a '.navbar-brand', href:'#', 'TkTest'
-      tc.div '#navbar-view-collapse.collapse.navbar-collapse'
-
-dropdown_entry = tc.renderable (entry) ->
-  tc.a '.dropdown-toggle', role:'button', 'data-toggle':'dropdown', ->
-    tc.text entry.label
-    tc.b '.caret'
-  tc.ul '.dropdown-menu', ->
-    for link in entry.menu
-      if link?.needUser and not entry.currentUser
-        continue
-      tc.li ->
-        tc.a '.navbar-entry', href:link.url, link.label
-
-single_entry = tc.renderable (entry) ->
-  tc.a '.navbar-entry', href:entry.url, entry.label
-      
-class NavbarEntryView extends Marionette.View
+class BaseEntryView extends Marionette.View
   model: NavbarEntry
   tagName: 'li'
-  className: ->
-    if @model.has 'menu' then 'dropdown' else undefined
   templateContext: ->
     app = MainChannel.request 'main:app:object'
     context =
       app: app
       currentUser: app.getState 'currentUser'
     return context
-  template: tc.renderable (model) ->
-    if model?.menu
-      dropdown_entry model
-    else
-      single_entry model
   ui:
     entry: '.navbar-entry'
   triggers:
@@ -110,12 +65,35 @@ class NavbarEntryView extends Marionette.View
     # seems to leave dropdown open
     # this closes the navbar menu
     @$el.removeClass 'open'
-    
-    
+  
+class SingleEntryView extends BaseEntryView
+  template: tc.renderable (entry) ->
+    tc.a '.navbar-entry', href:entry.url, entry.label
+
+class DropdownEntryView extends BaseEntryView
+  className: 'dropdown'
+  template: tc.renderable (entry) ->
+    console.log "Hello!!!!!!!!!!!!!", entry
+    tc.a '.dropdown-toggle', role:'button', 'data-toggle':'dropdown', ->
+      tc.text entry.label
+      tc.b '.caret'
+    tc.ul '.dropdown-menu', ->
+      for link in entry.menu
+        if link?.needUser and not entry.currentUser
+          continue
+        tc.li ->
+          tc.a '.navbar-entry', href:link.url, link.label
+
 class NavbarEntryCollectionView extends Marionette.CollectionView
   tagName: 'ul'
   className: 'nav navbar-nav nav-pills'
-  childView: NavbarEntryView
+  
+  childView: (item) ->
+    if item.has('menu') and item.get('menu')
+      DropdownEntryView
+    else
+      SingleEntryView
+      
   setAllInactive: ->
     @children.each (view) ->
       view.unset_active()
