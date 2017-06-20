@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm dist -fr && gulp coffee && git add dist",
     "postversion": "git push && git push --tags"
   },
   "repository": {
