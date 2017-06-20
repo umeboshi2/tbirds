@@ -73,7 +73,6 @@ class SingleEntryView extends BaseEntryView
 class DropdownEntryView extends BaseEntryView
   className: 'dropdown'
   template: tc.renderable (entry) ->
-    console.log "Hello!!!!!!!!!!!!!", entry
     tc.a '.dropdown-toggle', role:'button', 'data-toggle':'dropdown', ->
       tc.text entry.label
       tc.b '.caret'
