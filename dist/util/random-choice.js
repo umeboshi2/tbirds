@@ -1,0 +1,7 @@
+module.exports = function(myArray) {
+  var index;
+  index = Math.floor(Math.random() * myArray.length);
+  return myArray[index];
+};
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC9yYW5kb20tY2hvaWNlLmpzIiwic291cmNlcyI6WyJ1dGlsL3JhbmRvbS1jaG9pY2UuY29mZmVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBQyxPQUFQLEdBQWlCLFNBQUMsT0FBRDtBQUNmLE1BQUE7RUFBQSxLQUFBLEdBQVEsSUFBSSxDQUFDLEtBQUwsQ0FBVyxJQUFJLENBQUMsTUFBTCxDQUFBLENBQUEsR0FBZ0IsT0FBTyxDQUFDLE1BQW5DO1NBQ1IsT0FBUSxDQUFBLEtBQUE7QUFGTyIsInNvdXJjZXNDb250ZW50IjpbIm1vZHVsZS5leHBvcnRzID0gKG15QXJyYXkpIC0+XG4gIGluZGV4ID0gTWF0aC5mbG9vcihNYXRoLnJhbmRvbSgpICogbXlBcnJheS5sZW5ndGgpXG4gIG15QXJyYXlbaW5kZXhdXG5cbiJdfQ==
