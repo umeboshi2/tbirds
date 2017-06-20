@@ -41,11 +41,8 @@ class RequireController extends Marionette.Object
       console.log "Frontdoor system.import", appname
     handler.then (Applet) =>
       applet = new Applet
-      # we want to adjust the approuter for frontdoor
-      # use here, instead of in the AppRouter class,
-      # so only one applet handles the "empty route."
-      # FIXME -uncomment this when ready....
-      # applet.router.appRoute '', 'start'
+        appConfig: config
+        isFrontdoorApplet: true
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
       Backbone.history.start() unless Backbone.history.started
@@ -70,6 +67,7 @@ class RequireController extends Marionette.Object
       console.log "system.import", appname
     handler.then (Applet) ->
       applet = new Applet
+        appConfig: config
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
       Backbone.history.loadUrl()
