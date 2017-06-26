@@ -8,18 +8,19 @@ class ToolbarEntryView extends Marionette.View
     'class': 'btn btn-default'
   template: tc.renderable (model) ->
     tc.i model.icon, model.label
-  events:
+  triggers:
     # we capture every click within the view
     # we don't need ui hash
     # https://gitter.im/marionettejs/backbone.marionette?at=59514dd876a757f808aa504f # noqa
-    'click': 'buttonClicked'
+    click: 'button:clicked'
   buttonClicked: (event) ->
-    navigate_to_url @model.get 'url'
 
 class ToolbarEntryCollectionView extends Marionette.CollectionView
   childView: ToolbarEntryView
   className: 'btn-group btn-group-justified'
-  
+  onChildviewButtonClicked: (child) ->
+    @trigger 'toolbar:entry:clicked', child
+    
 class ToolbarView extends Marionette.View
   template: tc.renderable () ->
     tc.div '.toolbar-entries'
@@ -31,7 +32,9 @@ class ToolbarView extends Marionette.View
     view = new ToolbarEntryCollectionView
       collection: @collection
     @showChildView 'entries', view
-
+  onChildviewToolbarEntryClicked: (child) ->
+    navigate_to_url child.model.get 'url'
+    
     
 module.exports = ToolbarView
 
