@@ -19,7 +19,7 @@ capitalize = require '../util/capitalize'
 
 base_item_template = (name, route_name) ->
   tc.renderable (model) ->
-    item_btn = ".btn.btn-default.btn-xs"
+    item_btn = ".btn.btn-secondary.btn-xs"
     tc.li ".list-group-item.#{name}-item", ->
       tc.span ->
         tc.a href:"##{route_name}/#{name}s/view/#{model.id}", model.name
@@ -31,7 +31,7 @@ base_list_template = (name) ->
   tc.renderable (model) ->
     tc.div '.listview-header', ->
       tc.text capitalize name
-    tc.button "#new-#{name}.btn.btn-default", ->
+    tc.button "#new-#{name}.btn.btn-secondary", ->
       "Add New #{capitalize name}"
     tc.hr()
     tc.ul "##{name}-container.list-group"

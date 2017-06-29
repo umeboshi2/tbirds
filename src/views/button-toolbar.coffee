@@ -10,7 +10,7 @@ default_entry_template = tc.renderable (model) ->
   
 class ToolbarEntryView extends Marionette.View
   attributes:
-    'class': 'btn btn-default'
+    'class': 'btn btn-secondary'
   triggers:
     # we capture every click within the view
     # we don't need ui hash

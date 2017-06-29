@@ -74,7 +74,7 @@ make_login_form = (action='/login', method='POST') ->
             name: 'password'
             type: 'password'
             placeholder: 'Type your password here....'
-        tc.button '.btn.btn-default', type:'submit', 'login'
+        tc.button '.btn.btn-secondary', type:'submit', 'login'
 
 login_form = make_login_form()
 
@@ -92,7 +92,7 @@ name_content_form = tc.renderable (model) ->
     input_attributes:
       name: 'content'
       placeholder: '...'
-  tc.input '.btn.btn-default.btn-xs', type:'submit', value:'Add'
+  tc.input '.btn.btn-secondary.btn-xs', type:'submit', value:'Add'
 
 ########################################
 module.exports =

@@ -34,7 +34,7 @@ nav_pt_search = tc.renderable (appmodel) ->
       # FIXME search input placeholder needs to come from server
       tc.input '.form-control', name:'search-term', type:'search',
       placeholder:'Search...'
-    tc.button '.btn.btn-default', type:'submit', name:'search-submit',
+    tc.button '.btn.btn-secondary', type:'submit', name:'search-submit',
     value:'search', style:'display: none;', ->
       tc.raw '&#8594'
       

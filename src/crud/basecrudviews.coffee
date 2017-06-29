@@ -19,7 +19,7 @@ ConfirmDeleteTemplate = tc.renderable (model) ->
         tc.div '#selected-children'
       tc.div '.modal-footer', ->
         tc.ul '.list-inline', ->
-          btnclass = 'btn.btn-default.btn-sm'
+          btnclass = 'btn.btn-secondary.btn-sm'
           tc.li "#confirm-delete-button", ->
             modal_close_button 'OK', 'check'
           tc.li "#cancel-delete-button", ->
