@@ -144,7 +144,7 @@ class NavbarHeaderView extends Marionette.View
     
 class BootstrapNavBarView extends Marionette.View
   template: tc.renderable (model) ->
-    tc.nav '#navbar-view.navbar.navbar-static-top.navbar-light',
+    tc.nav '#navbar-view.navbar.navbar-static-top.navbar-light.bg-faded',
     xmlns:'http://www.w3.org/1999/xhtml', 'xml:lang':'en',
     role:'navigation', ->
       tc.div '.container', ->
