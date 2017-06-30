@@ -9,6 +9,7 @@ default_entry_template = tc.renderable (model) ->
   tc.text model.label
   
 class ToolbarEntryView extends Marionette.View
+  tagName: 'button'
   attributes:
     'class': 'btn btn-secondary'
   triggers:
