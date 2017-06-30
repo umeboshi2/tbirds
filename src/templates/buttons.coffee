@@ -5,13 +5,13 @@ tc = require 'teacup'
 # Button Templates
 ########################################
 spanbutton = tc.component (selector, attrs, renderContents) ->
-  tc.span "#{selector}.btn.btn-secondary.btn-xs", renderContents
+  tc.span "#{selector}.btn.btn-secondary.btn-sm", renderContents
 
 divbutton = tc.component (selector, attrs, renderContents) ->
-  tc.div "#{selector}.btn.btn-secondary.btn-xs", renderContents
+  tc.div "#{selector}.btn.btn-secondary.btn-sm", renderContents
 
 modal_close_button = tc.renderable (label='Close', icon='close')->
-  tc.div '.btn.btn-secondary.btn-xs', 'data-dismiss': 'modal', ->
+  tc.div '.btn.btn-secondary.btn-sm', 'data-dismiss': 'modal', ->
     tc.h4 '.modal-title', ->
       tc.i ".fa.fa-#{icon}"
       tc.text label
