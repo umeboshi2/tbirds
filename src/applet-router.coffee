@@ -87,13 +87,26 @@ class RequireController extends Marionette.Object
     catch err
       if err.message.startsWith 'Unhandled applet'
         MessageChannel.request 'warning', err.message
-        
+  directLink: (remainder) ->
+    if __DEV__
+      console.log "directLink", remainder
+    
 class AppletRouter extends Marionette.AppRouter
   appRoutes:
+    'http*remainder': 'directLink'
     ':applet' : 'routeApplet'
     ':applet/*path': 'routeApplet'
 
   onRoute: (name, path, args) ->
+    if name is 'directLink'
+      if args.length == 2
+        if args[1] isnt null
+          url = "http#{args.join('?')}"
+        else
+          url = "http#{args[0]}"
+        window.open url, '_blank'
+      else
+        console.log "unhandled directLink"
     if __DEV__
       console.log "MainRouter.onRoute", name, path, args
 
