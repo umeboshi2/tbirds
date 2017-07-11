@@ -30,9 +30,6 @@ MainChannel.reply 'main:applet:get-applet', (appname) ->
   
 
 class RequireController extends Marionette.Object
-  _route_applet: (applet) ->
-    MainChannel.request "applet:#{applet}:route"
-
   loadFrontDoor: ->
     config = MainChannel.request 'main:app:config'
     appname = config?.frontdoorApplet or 'frontdoor'
