@@ -22,8 +22,11 @@ class TkApplet extends Toolkit.App
         if __DEV__
           console.warn "Adding start to TkApplet"
         @router.appRoute '', method
+    #@initExtraRouters()
   onStop: ->
     console.log "Stopping TkApplet", @.isRunning()
+  #initExtraRouters: ->
+  #  console.log 'initExtraRouters'
     
       
 module.exports = TkApplet
