@@ -42,7 +42,7 @@ class DbCollection extends Marionette.Object
   getModel: (id) ->
     model = @collection.get id
     if model is undefined
-      return new collection.model
+      return new @collection.model
         id: id
     else
       return model
