@@ -4,7 +4,6 @@ Marionette = require 'backbone.marionette'
 
 { DefaultAppletLayout } = require './views/layout'
 
-{ navbar_set_active } = require './util'
 navigate_to_url = require './util/navigate-to-url'
 scroll_top_fast = require './util/scroll-top-fast'
 
@@ -15,7 +14,6 @@ class BaseController extends Backbone.Marionette.Object
     # do nothing
   scroll_top: scroll_top_fast
   navigate_to_url: navigate_to_url
-  navbar_set_active: navbar_set_active
 
 class MainController extends BaseController
   layoutClass: DefaultAppletLayout
@@ -47,23 +45,6 @@ class MainController extends BaseController
   _get_region: (region) ->
     @layout.getRegion region
 
-  _show_content: (view) ->
-    console.warn "_show_content is deprecated"
-    content = @_get_region 'content'
-    content.show view
-
-  _empty_sidebar: ->
-    sidebar = @_get_region 'sidebar'
-    sidebar.empty()
-    sidebar
-        
-  _make_sidebar: ->
-    console.warn "_make_sidebar is deprecated"
-    sidebar = @_empty_sidebar()
-    view = new @sidebarclass
-      model: @sidebar_model
-    sidebar.show view
-    
   _show_view: (vclass, model) ->
     view = new vclass
       model: model
@@ -76,7 +57,7 @@ class MainController extends BaseController
       response = model.fetch()
       response.done =>
         @_show_view vclass, model
-      response.fail =>
+      response.fail ->
         msg = "Failed to load #{objname} data."
         MessageChannel.request 'danger', msg
     else
