@@ -9,7 +9,7 @@ scroll_top_fast = require './util/scroll-top-fast'
 
 MainChannel = Backbone.Radio.channel 'global'
 
-class BaseController extends Backbone.Marionette.Object
+class BaseController extends Marionette.Object
   init_page: () ->
     # do nothing
   scroll_top: scroll_top_fast
@@ -63,8 +63,21 @@ class MainController extends BaseController
     else
       @_show_view vclass, model
       
-    
+class ExtraController extends BaseController
+  channelName: ->
+    @getOption('channelName') or 'global'
+  initialize: (options) ->
+    @appletName = options.appletName
+    @applet = MainChannel.request 'main:applet:get-applet', @appletName
+    @mainController = @applet.router.controller
+    @channel = @getChannel()
+  setup_layout_if_needed: ->
+    @mainController.setup_layout_if_needed()
+  showChildView: (region, view) ->
+    @mainController.layout.showChildView region, view
+  
 module.exports =
   BaseController: BaseController
   MainController: MainController
-
+  ExtraController: ExtraController
+  
