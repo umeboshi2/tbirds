@@ -24,7 +24,8 @@ class DbCollection extends Marionette.Object
     @collection
   newModel: (attributes) ->
     attributes = attributes or {}
-    new @modelClass attributes
+    modelClass = @getOption 'modelClass'
+    new modelClass attributes
   addModel: (attributes) ->
     attributes = attributes or {}
     channel = @getChannel()
@@ -35,8 +36,9 @@ class DbCollection extends Marionette.Object
     @collection.add model
   updatePassedModel: (model, newAttributes) ->
     channel = @getChannel()
+    name = @getOption 'modelName'
     model.once 'sync', ->
-      channel.trigger 'db:#{name}:updated'
+      channel.trigger "db:#{name}:updated"
     model.set newAttributes
     model.save()
   getModel: (id) ->
