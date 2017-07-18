@@ -16,8 +16,9 @@ class ToolbarEntryView extends Marionette.View
     # we don't need ui hash
     # https://gitter.im/marionettejs/backbone.marionette?at=59514dd876a757f808aa504f # noqa
     click: 'button:clicked'
-  buttonClicked: (event) ->
-
+  modelEvents:
+    change: 'render'
+    
 class ToolbarEntryCollectionView extends Marionette.CollectionView
   childView: ToolbarEntryView
   childViewOptions: ->
