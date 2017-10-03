@@ -4,7 +4,7 @@ Validation = require 'backbone.validation'
 
 class FormView extends Backbone.Marionette.View
   constructor: ->
-    super
+    super arguments...
 
     @listenTo this, 'render', @hideActivityIndicator
     @listenTo this, 'render', @prepareModel
