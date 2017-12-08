@@ -43,9 +43,6 @@ class RequireController extends Marionette.Object
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
       Backbone.history.start() unless Backbone.history.started
-      if __DEV__
-        hash = window.location.hash
-        console.log "History Started at", hash
       
   _handle_route: (appname, suffix) ->
     if __DEV__
