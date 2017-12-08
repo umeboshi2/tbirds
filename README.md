@@ -53,9 +53,9 @@ When using the [main-router](https://github.com/umeboshi2/tbirds/blob/master/src
 by matching the route and loading the corresponding applet.  The purpose 
 of this feature is to eventually provide that certain applets the ability 
 to be maintained separately in their own code repositories.  The longterm 
-goal is to be able to include an applet in the project by a simple 
-```npm install --save-dev applet-foobar```, allowing the same applet to 
-be reused in a variety of frontend apps.
+goal is to be able to include an applet in the 
+project by a simple ``` npm install --save-dev applet-foobar```, allowing 
+the same applet to be reused in a variety of frontend apps.
 
 
 ## Default AppConfig
@@ -137,7 +137,7 @@ The 'global' channel is used to help manage the app.
 
 	- ```'main:app:route'``` -> registers the "main-router".  *This must be 
 	  requested by the developer in the entry file after creating 
-	  the app.*
+	  the app.* (This should be renamed.)
 	  
 	- ```'main:app:object'``` -> returns the "TopApp" object.
 
@@ -160,7 +160,6 @@ The 'global' channel is used to help manage the app.
 	potential to unload an applet to conserve memory in a large 
 	application.
 	
-
 ### Main Regions
 
 - messages: '#messages'
