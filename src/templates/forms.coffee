@@ -92,7 +92,7 @@ name_content_form = tc.renderable (model) ->
     input_attributes:
       name: 'content'
       placeholder: '...'
-  tc.input '.btn.btn-secondary.btn-xs', type:'submit', value:'Add'
+  tc.input '.btn.btn-secondary.btn-sm', type:'submit', value:'Add'
 
 ########################################
 module.exports =
