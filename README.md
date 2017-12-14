@@ -220,3 +220,15 @@ class Router extends Marionette.AppRouter
     'dbdocs/documents/edit/:id': 'edit_page'
 ```
 
+
+## Decaffeination
+
+- Start removing coffeescript
+
+- Start using import syntax and remove require
+
+- keep using teacup for templates and consider 
+  transition to pug
+  
+- make broader support for loadable template functions
+
