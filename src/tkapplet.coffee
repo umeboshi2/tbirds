@@ -1,3 +1,4 @@
+Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 Toolkit = require 'marionette.toolkit'
 
