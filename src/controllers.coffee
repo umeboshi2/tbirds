@@ -21,7 +21,7 @@ class MainController extends BaseController
     app = MainChannel.request 'main:app:object'
     app.getView().getRegion 'applet'
     
-  setup_layout: ->
+  setupLayout: ->
     @layout = new @layoutClass
     #console.log "created layout", @layout
     applet = @_get_applet()
@@ -29,27 +29,34 @@ class MainController extends BaseController
       #console.log "applet has view"
       applet.empty()
     applet.show @layout
-
+    return
+    
+  setup_layout: ->
+    console.warn "don't use setup_layout"
+    @setupLayout()
+    return
+    
   # use this method to create a layout only if
   # needed, making routing within the applet
   # more efficient.
   setup_layout_if_needed: ->
     if @layout is undefined
       #console.log 'layout is undefined'
-      @setup_layout()
+      @setupLayout()
     else if @layout.isDestroyed()
       #console.log 'layout is destroyed ------>', @layout
-      @setup_layout()
-    
+      @setupLayout()
+    return
   
   _get_region: (region) ->
-    @layout.getRegion region
+    return @layout.getRegion region
 
   _show_view: (vclass, model) ->
     view = new vclass
       model: model
     @layout.showChildView 'content', view
-
+    return
+    
   _load_view: (vclass, model, objname) ->
     # FIXME
     # presume "id" is only attribute there if length is 1
@@ -57,25 +64,30 @@ class MainController extends BaseController
       response = model.fetch()
       response.done =>
         @_show_view vclass, model
+        return
       response.fail ->
         msg = "Failed to load #{objname} data."
         MessageChannel.request 'danger', msg
+        return
     else
       @_show_view vclass, model
-      
+    return  
 class ExtraController extends BaseController
   channelName: ->
-    @getOption('channelName') or 'global'
+    return @getOption('channelName') or 'global'
   initialize: (options) ->
     @appletName = options.appletName
     @applet = MainChannel.request 'main:applet:get-applet', @appletName
     @mainController = @applet.router.controller
     @channel = @getChannel()
+    return
   setup_layout_if_needed: ->
     @mainController.setup_layout_if_needed()
+    return
   showChildView: (region, view) ->
     @mainController.layout.showChildView region, view
-  
+    return
+    
 module.exports =
   BaseController: BaseController
   MainController: MainController
