@@ -1,3 +1,13 @@
-module.exports = ['.webpack.js', '.web.js', '.js', '.coffee'];
+module.exports = [
+  // fixed webpack2
+  // MUST include empty string
+  // https://webpack.github.io/docs/configuration.html#resolve-extensions
+  //''
+  '.webpack.js',
+  '.web.js',
+  '.js',
+  // add coffescript files to the list
+  '.coffee'
+];
 
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2VicGFjay9yZXNvbHZlLWV4dGVuc2lvbnMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2svcmVzb2x2ZS1leHRlbnNpb25zLmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLENBQUMsT0FBUCxHQUFpQixDQUtmLGFBTGUsRUFNZixTQU5lLEVBT2YsS0FQZSxFQVNmLFNBVGUiLCJzb3VyY2VzQ29udGVudCI6WyJtb2R1bGUuZXhwb3J0cyA9IFtcbiAgIyBmaXhlZCB3ZWJwYWNrMlxuICAjIE1VU1QgaW5jbHVkZSBlbXB0eSBzdHJpbmdcbiAgIyBodHRwczovL3dlYnBhY2suZ2l0aHViLmlvL2RvY3MvY29uZmlndXJhdGlvbi5odG1sI3Jlc29sdmUtZXh0ZW5zaW9uc1xuICAjJydcbiAgJy53ZWJwYWNrLmpzJ1xuICAnLndlYi5qcydcbiAgJy5qcydcbiAgIyBhZGQgY29mZmVzY3JpcHQgZmlsZXMgdG8gdGhlIGxpc3RcbiAgJy5jb2ZmZWUnXG5dXG4iXX0=
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2VicGFjay9yZXNvbHZlLWV4dGVuc2lvbnMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2svcmVzb2x2ZS1leHRlbnNpb25zLmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLENBQUMsT0FBUCxHQUFpQjs7Ozs7RUFLZixhQUxlO0VBTWYsU0FOZTtFQU9mLEtBUGU7O0VBU2YsU0FUZSIsInNvdXJjZXNDb250ZW50IjpbIm1vZHVsZS5leHBvcnRzID0gW1xuICAjIGZpeGVkIHdlYnBhY2syXG4gICMgTVVTVCBpbmNsdWRlIGVtcHR5IHN0cmluZ1xuICAjIGh0dHBzOi8vd2VicGFjay5naXRodWIuaW8vZG9jcy9jb25maWd1cmF0aW9uLmh0bWwjcmVzb2x2ZS1leHRlbnNpb25zXG4gICMnJ1xuICAnLndlYnBhY2suanMnXG4gICcud2ViLmpzJ1xuICAnLmpzJ1xuICAjIGFkZCBjb2ZmZXNjcmlwdCBmaWxlcyB0byB0aGUgbGlzdFxuICAnLmNvZmZlZSdcbl1cbiJdfQ==
