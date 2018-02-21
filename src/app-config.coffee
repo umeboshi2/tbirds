@@ -49,3 +49,16 @@ module.exports =
   appletRoutes:
     pages: 'frontdoor'
     
+
+  # authToken is for auth token config
+  authToken:
+    refreshInterval: '5m'
+    refreshIntervalMultiple: 3
+    loginUrl: '#frontdoor/login'
+    refreshUrl: '/auth/refresh'
+    bearerName: 'Bearer'
+    requestHeader: 'Authorization'
+    tokenKeyName: 'auth_token'
+    tokenResponseProperty: 'token'
+    
+    
