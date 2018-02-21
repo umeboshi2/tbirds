@@ -30,5 +30,6 @@ class BasicPageableCollection extends PageableCollection
     @state.lastPage = @state.totalPages - 1
     super response.items
     
-module.exports = {}
+module.exports = BasicPageableCollection
+
   
