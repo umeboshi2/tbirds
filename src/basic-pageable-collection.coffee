@@ -3,8 +3,10 @@ PageableCollection = require 'backbone.paginator'
 
 MainChannel = Backbone.Radio.channel 'global'
 
-pageSize = MainChannel.request 'main:app:get-pagesize' or 10
-
+pageSize = MainChannel.request 'main:app:get-pagesize'
+if not pageSize
+  pageSize = 10
+  
 class BasicPageableCollection extends PageableCollection
   queryParams:
     sort: ->
@@ -17,6 +19,7 @@ class BasicPageableCollection extends PageableCollection
       @state.currentPage * @state.pageSize
   state:
     firstPage: 0
+    currentPage: 0
     pageSize: parseInt pageSize
     sortColumn: 'id'
     sortDirection: 'asc'
