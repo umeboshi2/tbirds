@@ -83,7 +83,7 @@ MainChannel.reply 'main:app:refresh-token', (loginUrl) ->
     if response.status == 401
       window.location.hash = loginUrl
     else
-     msg = 'There was a problem refreshing the access token'
+      msg = 'There was a problem refreshing the access token'
       MessageChannel.request 'warning', msg
   response.done ->
     token = refresh.get 'token'
