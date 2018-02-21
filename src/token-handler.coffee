@@ -2,57 +2,60 @@ Backbone = require 'backbone'
 Marionette = require 'backbone.marionette'
 ms = require 'ms'
 
-objectEmpty = require '../object-empty'
+objectEmpty = require './util/object-empty'
 
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
 
-ms_remaining = (token) ->
+msRemaining = (token) ->
   now = new Date()
   exp = new Date(token.exp * 1000)
   return exp - now
 
-access_time_remaining = ->
+accessTimeRemaining = ->
   token = MainChannel.request 'main:app:decode-auth-token'
   if objectEmpty token
     return 0
-  remaining = ms_remaining token
+  remaining = msRemaining token
   return Math.floor(remaining / 1000)
 
-token_needs_refresh = (token, options) ->
+tokenNeedsRefresh = (token, options) ->
   options = options or {}
-  remaining = ms_remaining token
+  remaining = msRemaining token
   interval = ms '5m'
   if 'refreshInterval' in Object.keys options
     interval = ms options.refreshInterval
   multiple = options.refreshIntervalMultiple or 3
-  access_period = 1000 * (token.exp - token.iat)
-  refresh_when = access_period - (multiple * interval)
-  return remaining < refresh_when
+  accessPeriod = 1000 * (token.exp - token.iat)
+  refreshWhen = accessPeriod - (multiple * interval)
+  return remaining < refreshWhen
   
   
-keep_token_fresh = (options) ->
+keepTokenFresh = (options) ->
   options = options or {}
   token = MainChannel.request 'main:app:decode-auth-token'
-  if token_needs_refresh token, options
+  if tokenNeedsRefresh token, options
     MainChannel.request 'main:app:refresh-token', options.loginUrl
 
-init_token = ->
-  remaining = access_time_remaining()
+initToken = ->
+  remaining = accessTimeRemaining()
   token = MainChannel.request 'main:app:decode-auth-token'
   if remaining <= 0 and not objectEmpty token
     MessageChannel.request 'warning', 'deleting expired access token'
     MainChannel.request 'main:app:destroy-auth-token'
   token
-  
-start_user_app = (app, appConfig) ->
-  token = init_token()
+
+# setupAuthModels(appConfig) needs to be called
+# before calling this function.
+# ex: "require('./authmodels')(appConfig)"
+startUserApp = (app, appConfig) ->
+  token = initToken()
   if objectEmpty token
     app.start
       state:
         currentUser: null
-  else if token_needs_refresh token, appConfig.authToken
+  else if tokenNeedsRefresh token, appConfig.authToken
     AuthRefresh = MainChannel.request 'main:app:AuthRefresh'
     refresh = new AuthRefresh
     response = refresh.fetch()
@@ -82,10 +85,6 @@ start_user_app = (app, appConfig) ->
        
   
 module.exports =
-  access_time_remaining: access_time_remaining
-  keep_token_fresh: keep_token_fresh
-  start_user_app: start_user_app
-  
-
-
-
+  accessTimeRemaining: accessTimeRemaining
+  keepTokenFresh: keepTokenFresh
+  startUserApp: startUserApp
