@@ -21,13 +21,15 @@ registered_apps = {}
 # able to remove unused child apps to save memory.
 MainChannel.reply 'main:applet:unregister', (appname) ->
   delete registered_apps[appname]
-
+  return
+  
 MainChannel.reply 'main:applet:register', (appname, applet) ->
   registered_apps[appname] = applet
-
+  return
+  
 MainChannel.reply 'main:applet:get-applet', (appname) ->
   registered_apps[appname]
-  
+  return
 
 class RequireController extends Marionette.Object
   loadFrontDoor: ->
@@ -43,10 +45,12 @@ class RequireController extends Marionette.Object
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
       Backbone.history.start() unless Backbone.history.started
-      
-  _handle_route: (appname, suffix) ->
+      return
+    return
+    
+  _handleRoute: (appname, suffix) ->
     if __DEV__
-      console.log "_handle_route", appname, suffix
+      console.log "_handleRoute", appname, suffix
     config = MainChannel.request 'main:app:config'
     if not appname
       console.warn "No applet recognized", appname
@@ -65,25 +69,33 @@ class RequireController extends Marionette.Object
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
       Backbone.history.loadUrl()
+      return
     .catch (err) ->
       if err.message.startsWith 'Cannot find module'
         MessageChannel.request 'warning', "Bad route #{appname}, #{suffix}!!"
+        return
       # catch this here for initial page load with invalid
       # subpath
       else if err.message.startsWith 'Unhandled applet'
         MessageChannel.request 'warning', err.message
+        return
       else
         throw err
+    return
       
   routeApplet: (applet, href) ->
     try
-      @_handle_route applet, href
+      @_handleRoute applet, href
     catch err
       if err.message.startsWith 'Unhandled applet'
         MessageChannel.request 'warning', err.message
+        return
+    return
+    
   directLink: (remainder) ->
     if __DEV__
       console.log "directLink", remainder
+    return
     
 class AppletRouter extends Marionette.AppRouter
   appRoutes:
@@ -109,10 +121,11 @@ MainChannel.reply 'main:app:route', () ->
   router = new AppletRouter
     controller: controller
   MainChannel.reply 'main-controller', ->
-    controller
+    return controller
   MainChannel.reply 'main-router', ->
-    router
-    
+    return router
+  return
+  
 module.exports =
   RequireController: RequireController
   AppletRouter: AppletRouter
