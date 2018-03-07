@@ -4,7 +4,7 @@
   "description": "JS and coffeescript modules for marionette apps",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require coffee-script/register \"test/**/*.{js,coffee}\"",
+    "test": "mocha --require coffeescript/register \"test/**/*.{js,coffee}\"",
     "build": "rm dist -fr && gulp coffee && git add dist",
     "postversion": "git push && git push --tags"
   },
