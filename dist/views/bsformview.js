@@ -1,32 +1,28 @@
 var BootstrapFormView, FormView,
-  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-  hasProp = {}.hasOwnProperty;
+  boundMethodCheck = function(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new Error('Bound instance method accessed before binding'); } };
 
 FormView = require('./formview');
 
-BootstrapFormView = (function(superClass) {
-  extend(BootstrapFormView, superClass);
-
-  function BootstrapFormView() {
-    this.invalid = bind(this.invalid, this);
-    this.valid = bind(this.valid, this);
-    return BootstrapFormView.__super__.constructor.apply(this, arguments);
+BootstrapFormView = class BootstrapFormView extends FormView {
+  constructor() {
+    super(...arguments);
+    this.valid = this.valid.bind(this);
+    this.invalid = this.invalid.bind(this);
   }
 
-  BootstrapFormView.prototype.valid = function(view, attr, selector) {
-    return this.$("[data-validation=" + attr + "]").parent().removeClass('has-error').addClass('has-success');
-  };
+  valid(view, attr, selector) {
+    boundMethodCheck(this, BootstrapFormView);
+    return this.$(`[data-validation=${attr}]`).parent().removeClass('has-error').addClass('has-success');
+  }
 
-  BootstrapFormView.prototype.invalid = function(view, attr, error, selector) {
+  invalid(view, attr, error, selector) {
+    boundMethodCheck(this, BootstrapFormView);
     this.failure(this.model);
-    return this.$("[data-validation=" + attr + "]").parent().removeClass('has-success').addClass('has-error');
-  };
+    return this.$(`[data-validation=${attr}]`).parent().removeClass('has-success').addClass('has-error');
+  }
 
-  return BootstrapFormView;
-
-})(FormView);
+};
 
 module.exports = BootstrapFormView;
 
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidmlld3MvYnNmb3Jtdmlldy5qcyIsInNvdXJjZXMiOlsidmlld3MvYnNmb3Jtdmlldy5jb2ZmZWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsSUFBQSwyQkFBQTtFQUFBOzs7O0FBQUEsUUFBQSxHQUFXLE9BQUEsQ0FBUSxZQUFSOztBQUVMOzs7Ozs7Ozs7OEJBQ0osS0FBQSxHQUFPLFNBQUMsSUFBRCxFQUFPLElBQVAsRUFBYSxRQUFiO1dBQ0wsSUFBQyxDQUFBLENBQUQsQ0FBRyxtQkFBQSxHQUFvQixJQUFwQixHQUF5QixHQUE1QixDQUErQixDQUFDLE1BQWhDLENBQUEsQ0FDRSxDQUFDLFdBREgsQ0FDZSxXQURmLENBRUUsQ0FBQyxRQUZILENBRVksYUFGWjtFQURLOzs4QkFLUCxPQUFBLEdBQVMsU0FBQyxJQUFELEVBQU8sSUFBUCxFQUFhLEtBQWIsRUFBb0IsUUFBcEI7SUFDUCxJQUFDLENBQUEsT0FBRCxDQUFTLElBQUMsQ0FBQSxLQUFWO1dBQ0EsSUFBQyxDQUFBLENBQUQsQ0FBRyxtQkFBQSxHQUFvQixJQUFwQixHQUF5QixHQUE1QixDQUErQixDQUFDLE1BQWhDLENBQUEsQ0FDRSxDQUFDLFdBREgsQ0FDZSxhQURmLENBRUUsQ0FBQyxRQUZILENBRVksV0FGWjtFQUZPOzs7O0dBTnFCOztBQVloQyxNQUFNLENBQUMsT0FBUCxHQUFpQiIsInNvdXJjZXNDb250ZW50IjpbIkZvcm1WaWV3ID0gcmVxdWlyZSAnLi9mb3JtdmlldydcblxuY2xhc3MgQm9vdHN0cmFwRm9ybVZpZXcgZXh0ZW5kcyBGb3JtVmlld1xuICB2YWxpZDogKHZpZXcsIGF0dHIsIHNlbGVjdG9yKSA9PlxuICAgIEAkKFwiW2RhdGEtdmFsaWRhdGlvbj0je2F0dHJ9XVwiKS5wYXJlbnQoKVxuICAgICAgLnJlbW92ZUNsYXNzKCdoYXMtZXJyb3InKVxuICAgICAgLmFkZENsYXNzKCdoYXMtc3VjY2VzcycpXG5cbiAgaW52YWxpZDogKHZpZXcsIGF0dHIsIGVycm9yLCBzZWxlY3RvcikgPT5cbiAgICBAZmFpbHVyZShAbW9kZWwpXG4gICAgQCQoXCJbZGF0YS12YWxpZGF0aW9uPSN7YXR0cn1dXCIpLnBhcmVudCgpXG4gICAgICAucmVtb3ZlQ2xhc3MoJ2hhcy1zdWNjZXNzJylcbiAgICAgIC5hZGRDbGFzcygnaGFzLWVycm9yJylcblxubW9kdWxlLmV4cG9ydHMgPSBCb290c3RyYXBGb3JtVmlld1xuIl19
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidmlld3MvYnNmb3Jtdmlldy5qcyIsInNvdXJjZXMiOlsidmlld3MvYnNmb3Jtdmlldy5jb2ZmZWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsSUFBQSxpQkFBQSxFQUFBLFFBQUE7RUFBQTs7QUFBQSxRQUFBLEdBQVcsT0FBQSxDQUFRLFlBQVI7O0FBRUwsb0JBQU4sTUFBQSxrQkFBQSxRQUFnQyxTQUFoQzs7O1FBQ0UsQ0FBQSxZQUFBLENBQUE7UUFLQSxDQUFBLGNBQUEsQ0FBQTs7O0VBTEEsS0FBTyxDQUFDLElBQUQsRUFBTyxJQUFQLEVBQWEsUUFBYixDQUFBOzJCQURIO1dBRUYsSUFBQyxDQUFBLENBQUQsQ0FBRyxDQUFBLGlCQUFBLENBQUEsQ0FBb0IsSUFBcEIsQ0FBeUIsQ0FBekIsQ0FBSCxDQUErQixDQUFDLE1BQWhDLENBQUEsQ0FDRSxDQUFDLFdBREgsQ0FDZSxXQURmLENBRUUsQ0FBQyxRQUZILENBRVksYUFGWjtFQURLOztFQUtQLE9BQVMsQ0FBQyxJQUFELEVBQU8sSUFBUCxFQUFhLEtBQWIsRUFBb0IsUUFBcEIsQ0FBQTsyQkFOTDtJQU9GLElBQUMsQ0FBQSxPQUFELENBQVMsSUFBQyxDQUFBLEtBQVY7V0FDQSxJQUFDLENBQUEsQ0FBRCxDQUFHLENBQUEsaUJBQUEsQ0FBQSxDQUFvQixJQUFwQixDQUF5QixDQUF6QixDQUFILENBQStCLENBQUMsTUFBaEMsQ0FBQSxDQUNFLENBQUMsV0FESCxDQUNlLGFBRGYsQ0FFRSxDQUFDLFFBRkgsQ0FFWSxXQUZaO0VBRk87O0FBTlg7O0FBWUEsTUFBTSxDQUFDLE9BQVAsR0FBaUIiLCJzb3VyY2VzQ29udGVudCI6WyJGb3JtVmlldyA9IHJlcXVpcmUgJy4vZm9ybXZpZXcnXG5cbmNsYXNzIEJvb3RzdHJhcEZvcm1WaWV3IGV4dGVuZHMgRm9ybVZpZXdcbiAgdmFsaWQ6ICh2aWV3LCBhdHRyLCBzZWxlY3RvcikgPT5cbiAgICBAJChcIltkYXRhLXZhbGlkYXRpb249I3thdHRyfV1cIikucGFyZW50KClcbiAgICAgIC5yZW1vdmVDbGFzcygnaGFzLWVycm9yJylcbiAgICAgIC5hZGRDbGFzcygnaGFzLXN1Y2Nlc3MnKVxuXG4gIGludmFsaWQ6ICh2aWV3LCBhdHRyLCBlcnJvciwgc2VsZWN0b3IpID0+XG4gICAgQGZhaWx1cmUoQG1vZGVsKVxuICAgIEAkKFwiW2RhdGEtdmFsaWRhdGlvbj0je2F0dHJ9XVwiKS5wYXJlbnQoKVxuICAgICAgLnJlbW92ZUNsYXNzKCdoYXMtc3VjY2VzcycpXG4gICAgICAuYWRkQ2xhc3MoJ2hhcy1lcnJvcicpXG5cbm1vZHVsZS5leHBvcnRzID0gQm9vdHN0cmFwRm9ybVZpZXdcbiJdfQ==
