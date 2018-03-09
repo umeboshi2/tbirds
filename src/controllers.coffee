@@ -1,32 +1,33 @@
-$ = require 'jquery'
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
+import $ from 'jquery'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
 
-{ DefaultAppletLayout } = require './views/layout'
+{ ToolbarAppletLayout } = require './views/layout'
 
 navigate_to_url = require './util/navigate-to-url'
 scroll_top_fast = require './util/scroll-top-fast'
 
 MainChannel = Backbone.Radio.channel 'global'
 
-class BaseController extends Marionette.Object
+#class BaseController extends Marionette.Object
+BaseController = Marionette.Object.extend
   init_page: () ->
     # do nothing
   scroll_top: scroll_top_fast
   navigate_to_url: navigate_to_url
 
-class MainController extends BaseController
-  layoutClass: DefaultAppletLayout
+#class MainController extends BaseController
+MainController = BaseController.extend
+  layoutClass: ToolbarAppletLayout
   _get_applet: ->
     app = MainChannel.request 'main:app:object'
-    app.getView().getRegion 'applet'
+    return app.getView().getRegion 'applet'
     
   setupLayout: ->
-    @layout = new @layoutClass
-    #console.log "created layout", @layout
+    layoutClass = @getOption 'layoutClass'
+    @layout = new layoutClass
     applet = @_get_applet()
     if applet.hasView()
-      #console.log "applet has view"
       applet.empty()
     applet.show @layout
     return
@@ -39,15 +40,18 @@ class MainController extends BaseController
   # use this method to create a layout only if
   # needed, making routing within the applet
   # more efficient.
-  setup_layout_if_needed: ->
+  setupLayoutIfNeeded: ->
     if @layout is undefined
-      #console.log 'layout is undefined'
       @setupLayout()
     else if @layout.isDestroyed()
-      #console.log 'layout is destroyed ------>', @layout
       @setupLayout()
     return
   
+  setup_layout_if_needed: ->
+    console.warn "use setupLayoutIfNeeded instead"
+    @setupLayoutIfNeeded()
+    return
+    
   _get_region: (region) ->
     return @layout.getRegion region
 
@@ -71,8 +75,10 @@ class MainController extends BaseController
         return
     else
       @_show_view vclass, model
-    return  
-class ExtraController extends BaseController
+    return
+    
+#class ExtraController extends BaseController
+ExtraController = BaseController.extend
   channelName: ->
     return @getOption('channelName') or 'global'
   initialize: (options) ->
@@ -88,8 +94,15 @@ class ExtraController extends BaseController
     @mainController.layout.showChildView region, view
     return
     
-module.exports =
-  BaseController: BaseController
-  MainController: MainController
-  ExtraController: ExtraController
+#module.exports =
+#  BaseController: BaseController
+#  MainController: MainController
+#  ExtraController: ExtraController
+
+export {
+  BaseController
+  MainController
+  ExtraController
+  }
   
+
