@@ -7,7 +7,7 @@ message_box = require './templates/message-box'
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
 
-require './messages'
+require './dbchannel'
 
 class MessageView extends Marionette.View
   template: tc.renderable (model) ->
