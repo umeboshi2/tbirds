@@ -12,6 +12,7 @@ MessageChannel = Backbone.Radio.channel 'messages'
 class BaseEntryView extends Marionette.View
   model: NavbarEntry
   tagName: 'li'
+  className: 'nav-item'
   templateContext: ->
     app = MainChannel.request 'main:app:object'
     context =
@@ -34,12 +35,13 @@ class BaseEntryView extends Marionette.View
     
 class SingleEntryView extends BaseEntryView
   template: tc.renderable (entry) ->
-    tc.a '.navbar-entry', href:entry.url, entry.label
+    tc.a '.navbar-entry.nav-link', href:entry.url, entry.label
 
 class DropdownEntryView extends BaseEntryView
-  className: 'dropdown'
+  className: 'nav-item dropdown'
   template: tc.renderable (entry) ->
-    tc.a '.dropdown-toggle', role:'button', 'data-toggle':'dropdown', ->
+    tc.a '.nav-link.dropdown-toggle',
+    role:'button', 'data-toggle':'dropdown', ->
       tc.text entry.label
       tc.b '.caret'
     tc.ul '.dropdown-menu', ->
@@ -47,11 +49,12 @@ class DropdownEntryView extends BaseEntryView
         if link?.needUser and not entry.currentUser
           continue
         tc.li ->
-          tc.a '.navbar-entry.dropdown-item', href:link.url, link.label
+          tc.a '.navbar-entry.nav-link.dropdown-item', href:link.url, link.label
 
 class NavbarEntryCollectionView extends Marionette.CollectionView
   tagName: 'ul'
-  className: 'nav navbar-nav nav-pills'
+  #className: 'navbar-nav nav-pills'
+  className: 'navbar-nav mr-auto'
   
   childView: (item) ->
     if item.has('menu') and item.get('menu')
