@@ -15,21 +15,21 @@ class TkAppState extends Backbone.Model
     appConfig: {}
     
 MainChannel = Backbone.Radio.channel 'global'
-class TopApp extends Toolkit.App
+TopApp = Toolkit.App.extend
   StateModel: TkAppState
   options:
     appConfig: {}
   onBeforeStart: ->
-    appConfig = @options.appConfig
     MainChannel.reply 'main:app:object', =>
       @
-    MainChannel.reply 'main:app:config', ->
-      appConfig
+    MainChannel.reply 'main:app:config', =>
+      @getOption 'appConfig'
+    cfg = @getOption 'appConfig'
     # FIXME - test for region class
-    @setRegion new Marionette.Region el: appConfig?.appRegion or 'body'
+    @setRegion new Marionette.Region el: cfg?.appRegion or 'body'
     # setup messages
     useMessages = true
-    if appConfig.useMessages? and appConfig.useMessages is false
+    if cfg.useMessages? and cfg.useMessages is false
       useMessages = false
     if useMessages
       messagesApp = @addChildApp 'messages',
@@ -39,21 +39,21 @@ class TopApp extends Toolkit.App
         parentApp: @
     # setup navbar
     useNavbar = true
-    if appConfig.useNavbar? and appConfig.useNavbar is false
+    if cfg.useNavbar? and cfg.useNavbar is false
       useNavbar = false
     if useNavbar
       navbarApp = @addChildApp 'navbar',
         AppClass: NavbarApp
         startWithParent: true
-        appConfig: appConfig
+        appConfig: cfg
         ,
         parentApp: @
         
   initPage: ->
-    appConfig = @options.appConfig
-    AppLayout = appConfig?.layout or MainPageLayout
-    layoutOpts = appConfig.layoutOptions
-    layout = new AppLayout appConfig.layoutOptions
+    cfg = @options.appConfig
+    AppLayout = cfg?.layout or MainPageLayout
+    layoutOpts = cfg.layoutOptions
+    layout = new AppLayout cfg.layoutOptions
     @showView layout
 
   onStart: ->
