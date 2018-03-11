@@ -27,11 +27,6 @@ class BaseEntryView extends Marionette.View
     @$el.addClass 'active'
   unset_active: ->
     @$el.removeClass 'active'
-    # FIXME triggering click:entry
-    # seems to leave dropdown open
-    # this closes the navbar menu
-    console.log @$el.dropdown
-    
     
 class SingleEntryView extends BaseEntryView
   template: tc.renderable (entry) ->
@@ -72,7 +67,9 @@ class NavbarEntryCollectionView extends Marionette.CollectionView
     @navigateOnClickEntry cview, event
     
   navigateOnClickEntry: (cview, event) ->
-    console.log "hello there dude"
+    # FIXME triggering click:entry
+    # seems to leave dropdown open
+    # this closes the navbar menu
     event.stopPropagation()
     if cview.$el.hasClass "show"
       cview.$el.dropdown('toggle')
