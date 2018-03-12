@@ -1,6 +1,9 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-Toolkit = require 'marionette.toolkit'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import Toolkit from 'marionette.toolkit'
+#Backbone = require 'backbone'
+#Marionette = require 'backbone.marionette'
+#Toolkit = require 'marionette.toolkit'
 tc = require 'teacup'
 
 MessagesApp = require './tkmessages'
@@ -66,6 +69,7 @@ TopApp = Toolkit.App.extend
       c = MainChannel.request 'main-controller'
       c.loadFrontDoor()
       
-module.exports = TopApp
+#module.exports = TopApp
+export default TopApp
 
 
