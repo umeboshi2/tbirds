@@ -39,7 +39,8 @@ class RequireController extends Marionette.Object
     if __DEV__
       console.log "Frontdoor system.import", appname
     handler.then (Applet) =>
-      applet = new Applet
+      # FIXME fix applet structure to provide appropriate export
+      applet = new Applet.default
         appConfig: config
         isFrontdoorApplet: true
       MainChannel.request 'main:applet:register', appname, applet
@@ -64,7 +65,8 @@ class RequireController extends Marionette.Object
     if __DEV__
       console.log "system.import", appname
     handler.then (Applet) ->
-      applet = new Applet
+      # FIXME fix applet structure to provide appropriate export
+      applet = new Applet.default
         appConfig: config
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
