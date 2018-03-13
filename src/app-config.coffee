@@ -1,6 +1,6 @@
-MainPageLayout = require './tklayout'
+import MainPageLayout from './tklayout'
 
-module.exports =
+appConfig =
   # This is the html element to attach
   # the app.  This is to be marionette Region
   appRegion: 'body'
@@ -60,5 +60,6 @@ module.exports =
     requestHeader: 'Authorization'
     tokenKeyName: 'auth_token'
     tokenResponseProperty: 'token'
-    
-    
+
+
+export default appConfig

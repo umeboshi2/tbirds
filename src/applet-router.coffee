@@ -1,4 +1,4 @@
-Marionette = require 'backbone.marionette'
+import Marionette from 'backbone.marionette'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -28,8 +28,7 @@ MainChannel.reply 'main:applet:register', (appname, applet) ->
   return
   
 MainChannel.reply 'main:applet:get-applet', (appname) ->
-  registered_apps[appname]
-  return
+  return registered_apps[appname]
 
 class RequireController extends Marionette.Object
   loadFrontDoor: ->
@@ -38,7 +37,7 @@ class RequireController extends Marionette.Object
     handler = System.import "applets/#{appname}/main"
     if __DEV__
       console.log "Frontdoor system.import", appname
-    handler.then (Applet) =>
+    handler.then (Applet) ->
       # FIXME fix applet structure to provide appropriate export
       applet = new Applet.default
         appConfig: config
@@ -127,9 +126,8 @@ MainChannel.reply 'main:app:route', () ->
   MainChannel.reply 'main-router', ->
     return router
   return
-  
-module.exports =
-  RequireController: RequireController
-  AppletRouter: AppletRouter
 
-  
+export {
+  RequireController
+  AppletRouter
+  }
