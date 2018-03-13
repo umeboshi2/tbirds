@@ -1,7 +1,8 @@
 Backbone = require 'backbone'
 navigate_to_url = require 'tbirds/util/navigate-to-url'
 jwtDecode = require 'jwt-decode'
-BasicPageableCollection = require './basic-pageable-collection'
+
+{BasicPageableCollection} = require './basic-pageable-collection'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -13,7 +14,7 @@ setupAuthModels = (appConfig) ->
     # retrieve from local storage on each request
     # to ensure current token
     token = localStorage.getItem tokenKeyName
-    "#{appConfig.authToken.bearerName} #{token}"
+    return "#{appConfig.authToken.bearerName} #{token}"
   
   sendAuthHeader = (xhr) ->
     rheader = appConfig.authToken.requestHeader
@@ -21,15 +22,16 @@ setupAuthModels = (appConfig) ->
     console.log "RHEADER", rheader
     console.log "AHEADER", aheader
     xhr.setRequestHeader appConfig.authToken.requestHeader, makeAuthHeader()
-
+    return
+    
   MainChannel.reply 'main:app:authBeforeSend', ->
-    sendAuthHeader
+    return sendAuthHeader
   
 
   auth_sync_options = (options) ->
     options = options || {}
     options.beforeSend = sendAuthHeader
-    options
+    return options
 
   class AuthModel extends Backbone.Model
     sync: (method, model, options) ->
@@ -50,17 +52,17 @@ setupAuthModels = (appConfig) ->
     
   
   MainChannel.reply 'main:app:AuthModel', ->
-    AuthModel
+    return AuthModel
   MainChannel.reply 'main:app:AuthCollection', ->
-    AuthCollection
+    return AuthCollection
   MainChannel.reply 'main:app:AuthUnPaginated', ->
-    AuthUnPaginated
+    return AuthUnPaginated
 
   class AuthRefresh extends AuthModel
     url: appConfig.authToken.refreshUrl
 
   MainChannel.reply 'main:app:AuthRefresh', ->
-    AuthRefresh
+    return AuthRefresh
 
   MainChannel.reply 'main:app:set-auth-token', (token) ->
     localStorage.setItem tokenKeyName, token
@@ -68,9 +70,9 @@ setupAuthModels = (appConfig) ->
   MainChannel.reply 'main:app:decode-auth-token', ->
     token = localStorage.getItem tokenKeyName
     if token
-      jwtDecode token
+      return jwtDecode token
     else
-      {}
+      return {}
 
 
   MainChannel.reply 'main:app:refresh-token', (loginUrl) ->
@@ -85,11 +87,13 @@ setupAuthModels = (appConfig) ->
       else
         msg = 'There was a problem refreshing the access token'
         MessageChannel.request 'warning', msg
+      return
     response.done ->
       token = refresh.get 'token'
       decoded = jwtDecode token
       localStorage.setItem tokenKeyName, token
-  
+      return
+      
   MainChannel.reply 'current-user', ->
     if __DEV__
       console.warn "We need to request 'main:app:decode-auth-token' instead"
