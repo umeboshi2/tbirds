@@ -48,8 +48,7 @@ class DropdownEntryView extends BaseEntryView
 
 class NavbarEntryCollectionView extends Marionette.CollectionView
   tagName: 'ul'
-  #className: 'navbar-nav nav-pills'
-  className: 'navbar-nav mr-auto'
+  className: 'navbar-nav'
   
   childView: (item) ->
     if item.has('menu') and item.get('menu')
@@ -84,8 +83,10 @@ class NavbarEntryCollectionView extends Marionette.CollectionView
     #cview.closeDropDown()
     
 class NavbarEntriesView extends Marionette.View
+  ui:
+    list: '.navbar-entries'
   regions:
-    list: '#navbar-entries'
+    list: '@ui.list'
     userMenu: '#user-menu'
     search: '#form-search-container'
   onRender: ->
@@ -94,8 +95,8 @@ class NavbarEntriesView extends Marionette.View
     @showChildView 'list', view
   template: tc.renderable (model) ->
     tc.div '#navbar-view-collapse.collapse.navbar-collapse', ->
-      tc.div '#navbar-entries'
-      tc.ul '#user-menu.nav.navbar-nav.navbar-right'
+      tc.div '.navbar-entries.mr-auto'
+      #tc.div '#user-menu.nav.navbar-nav.navbar-right.ml-auto'
       tc.div '#form-search-container'
   setAllInactive: ->
     view = @getChildView 'list'

@@ -21,12 +21,13 @@ class BootstrapNavBarView extends Marionette.View
     
   template: tc.renderable (model) ->
     tc.div '.navbar-header'
-    tc.div '#navbar-entries'
+    tc.div '.navbar-entries'
+    tc.div '#user-menu.ml-auto'
   regions:
     header: '.navbar-header'
     usermenu: '#user-menu'
     mainmenu: '#main-menu'
-    entries: '#navbar-entries'
+    entries: '.navbar-entries'
   onRender: ->
     if @model.get 'hasUser'
       app = MainChannel.request 'main:app:object'
