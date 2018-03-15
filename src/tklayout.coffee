@@ -1,7 +1,7 @@
-Marionette = require 'backbone.marionette'
-tc = require 'teacup'
+import Marionette from 'backbone.marionette'
+import tc from 'teacup'
 
-ModalRegion = require './regions/bsmodal'
+import ModalRegion from './regions/bsmodal'
 
 class MainPageLayout extends Marionette.View
   template: tc.renderable () ->
@@ -20,6 +20,6 @@ class MainPageLayout extends Marionette.View
     applet: '#applet-content'
     footer: '#footer'
     
-module.exports = MainPageLayout
+export default MainPageLayout
 
 

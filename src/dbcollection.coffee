@@ -1,5 +1,5 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
 
 class DbCollection extends Marionette.Object
   initialize: (options) ->
@@ -21,11 +21,11 @@ class DbCollection extends Marionette.Object
     obj["#{prefix}:collectionClass"] = 'getCollectionClass'
     return obj
   getCollection: ->
-    @collection
+    return @collection
   newModel: (attributes) ->
     attributes = attributes or {}
     modelClass = @getOption 'modelClass'
-    new modelClass attributes
+    return new modelClass attributes
   addModel: (attributes) ->
     attributes = attributes or {}
     channel = @getChannel()
@@ -34,6 +34,7 @@ class DbCollection extends Marionette.Object
     model.once 'sync', ->
       channel.trigger "db:#{name}:inserted"
     @collection.add model
+    return
   updatePassedModel: (model, newAttributes) ->
     channel = @getChannel()
     name = @getOption 'modelName'
@@ -41,6 +42,7 @@ class DbCollection extends Marionette.Object
       channel.trigger "db:#{name}:updated"
     model.set newAttributes
     model.save()
+    return
   getModel: (id) ->
     model = @collection.get id
     if model is undefined
@@ -49,8 +51,8 @@ class DbCollection extends Marionette.Object
     else
       return model
   getModelClass: ->
-    @getOption 'modelClass'
+    return @getOption 'modelClass'
   getCollectionClass: ->
-    @getOption 'collectionClass'
+    return @getOption 'collectionClass'
 
-module.exports = DbCollection
+export default DbCollection
