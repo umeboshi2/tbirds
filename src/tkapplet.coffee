@@ -1,6 +1,6 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-Toolkit = require 'marionette.toolkit'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import Toolkit from 'marionette.toolkit'
 
 MainChannel = Backbone.Radio.channel 'global'
 
@@ -46,4 +46,5 @@ class TkApplet extends Toolkit.App
     @_extraRouters[name]
     
       
-module.exports = TkApplet
+export default TkApplet
+
