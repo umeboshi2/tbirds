@@ -1,13 +1,9 @@
-tc = require 'teacup'
-marked = require 'marked'
+import tc from 'teacup'
+import marked from 'marked'
 
 
-  
-{ form_group_input_div } = require './forms'
-
-
-
-capitalize = require '../util/capitalize'
+import { form_group_input_div } from './forms'
+import capitalize from '../util/capitalize'
 
 # Main Templates must use teacup.
 # The template must be a teacup.renderable,
@@ -36,6 +32,8 @@ base_list_template = (name) ->
     tc.hr()
     tc.ul "##{name}-container.list-group"
 
-module.exports =
-  base_item_template: base_item_template
-  base_list_template: base_list_template
+export {
+  base_item_template
+  base_list_template
+  }
+  

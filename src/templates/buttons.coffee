@@ -1,4 +1,4 @@
-tc = require 'teacup'
+import tc from 'teacup'
 
 
 ########################################
@@ -28,9 +28,11 @@ dropdown_toggle = tc.component (selector, attrs, renderContents) ->
   tc.a "#{selector}.dropdown-toggle", href:attrs.href,
   'data-toggle':'dropdown', renderContents
 
-module.exports =
-  spanbutton: spanbutton
-  divbutton: divbutton
-  modal_close_button: modal_close_button
-  navbar_collapse_button: navbar_collapse_button
-  dropdown_toggle: dropdown_toggle
+export {
+  spanbutton
+  divbutton
+  modal_close_button
+  navbar_collapse_button
+  dropdown_toggle
+  }
+  

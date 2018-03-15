@@ -1,6 +1,6 @@
-tc = require 'teacup'
+import tc from 'teacup'
 
-capitalize = require '../util/capitalize'
+import capitalize from '../util/capitalize'
 
 
 ########################################
@@ -95,11 +95,13 @@ name_content_form = tc.renderable (model) ->
   tc.input '.btn.btn-secondary.btn-sm', type:'submit', value:'Add'
 
 ########################################
-module.exports =
-  form_group_input_div: form_group_input_div
-  make_field_input: make_field_input
-  make_field_textarea: make_field_textarea
-  make_field_select: make_field_select
-  make_login_form: make_login_form
-  login_form: login_form
-  name_content_form: name_content_form
+export {
+  form_group_input_div
+  make_field_input
+  make_field_textarea
+  make_field_select
+  make_login_form
+  login_form
+  name_content_form
+  }
+  

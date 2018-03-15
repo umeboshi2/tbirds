@@ -1,4 +1,4 @@
-tc = require 'teacup'
+import tc from 'teacup'
 
 ########################################
 # Menu Templates
@@ -51,6 +51,7 @@ main_sidebar = tc.renderable (model) ->
 
 
 ########################################
-module.exports =
-  user_menu: user_menu
-  main_sidebar: main_sidebar
+export {
+  user_menu
+  main_sidebar
+  }
