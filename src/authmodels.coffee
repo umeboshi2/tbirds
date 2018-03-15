@@ -19,8 +19,6 @@ setupAuthModels = (appConfig) ->
   sendAuthHeader = (xhr) ->
     rheader = appConfig.authToken.requestHeader
     aheader = makeAuthHeader()
-    console.log "RHEADER", rheader
-    console.log "AHEADER", aheader
     xhr.setRequestHeader appConfig.authToken.requestHeader, makeAuthHeader()
     return
     
