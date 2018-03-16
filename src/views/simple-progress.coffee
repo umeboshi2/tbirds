@@ -1,6 +1,6 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-tc = require 'teacup'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import tc from 'teacup'
 
 class ProgressModel extends Backbone.Model
   defaults:
@@ -25,9 +25,7 @@ class ProgressView extends Marionette.View
     'change': 'render'
     
     
-module.exports =
-  ProgressModel: ProgressModel
-  ProgressView: ProgressView
-  
-
-
+export {
+  ProgressModel
+  ProgressView
+  }

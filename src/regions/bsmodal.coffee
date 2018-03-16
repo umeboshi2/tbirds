@@ -1,8 +1,7 @@
-$ = require 'jquery'
-Marionette = require 'backbone.marionette'
+import $ from 'jquery'
+import Marionette from 'backbone.marionette'
 
 MainChannel = Backbone.Radio.channel 'global'
-
 
 class BootstrapModalRegion extends Marionette.Region
   el: '#modal'
@@ -30,4 +29,4 @@ MainChannel.reply 'main:app:show-modal', (view, options) ->
   modal_region.backdrop = !!options?.backdrop
   modal_region.show view
   
-module.exports = BootstrapModalRegion
+export default BootstrapModalRegion

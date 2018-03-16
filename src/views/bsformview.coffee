@@ -1,4 +1,4 @@
-FormView = require './formview'
+import FormView from './formview'
 
 class BootstrapFormView extends FormView
   valid: (view, attr, selector) =>
@@ -12,4 +12,4 @@ class BootstrapFormView extends FormView
       .removeClass('has-success')
       .addClass('has-error')
 
-module.exports = BootstrapFormView
+export default BootstrapFormView

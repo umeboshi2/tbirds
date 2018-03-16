@@ -1,4 +1,4 @@
-tc = require 'teacup'
+import tc from 'teacup'
 
 message_box = tc.renderable (msg) ->
   lvl = msg.level
@@ -16,6 +16,6 @@ message_box = tc.renderable (msg) ->
       tc.raw '&nbsp;&nbsp'
     tc.text msg.content
     
-module.exports = message_box
+export default message_box
   
 

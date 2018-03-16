@@ -1,13 +1,13 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-Toolkit = require 'marionette.toolkit'
-tc = require 'teacup'
-message_box = require './templates/message-box'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import Toolkit from 'marionette.toolkit'
+import tc from 'teacup'
+import message_box from './templates/message-box'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
 
-require './dbchannel'
+import './dbchannel'
 
 class MessageView extends Marionette.View
   template: tc.renderable (model) ->
@@ -38,6 +38,6 @@ class MessagesApp extends Toolkit.App
       collection: @collection
     @showView view
 
-module.exports = MessagesApp
+export default MessagesApp
   
 

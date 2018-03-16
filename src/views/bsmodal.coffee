@@ -1,6 +1,6 @@
-$ = require 'jquery'
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
+import $ from 'jquery'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -24,6 +24,6 @@ class BaseModalView extends Marionette.View
   onBeforeDestroy: ->
     @ui.html.unbind 'keydown', @keydownHandler
   
-module.exports = BaseModalView
+export default BaseModalView
 
 

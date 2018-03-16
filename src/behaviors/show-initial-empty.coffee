@@ -1,14 +1,11 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
 
 MainChannel = Backbone.Radio.channel 'global'
 
-EmptyView = require '../views/empty'
+import EmptyView from '../views/empty'
 
-class ShowInitialEmptyContent extends Backbone.Marionette.Behavior
+export default class ShowInitialEmptyContent extends Marionette.Behavior
   onDomRefresh: ->
     view = new EmptyView
     @view.showChildView 'content', view
-    
-module.exports = ShowInitialEmptyContent
-

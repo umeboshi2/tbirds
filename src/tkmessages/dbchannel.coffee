@@ -1,4 +1,4 @@
-Backbone = require 'backbone'
+import Backbone from 'backbone'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -39,7 +39,6 @@ for level in ['success', 'info', 'warning', 'danger']
 MessageChannel.reply 'delete-message', (model) ->
   main_message_collection.remove model
 
-module.exports =
-  BaseMessageCollection: BaseMessageCollection
-  
+export {BaseMessageCollection}
+
 

@@ -1,11 +1,11 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-tc = require 'teacup'
-ms = require 'ms'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import tc from 'teacup'
+import ms from 'ms'
 
-ShowInitialEmptyContent = require '../behaviors/show-initial-empty'
+import ShowInitialEmptyContent from '../behaviors/show-initial-empty'
 
-SlideDownRegion = require '../regions/slidedown'
+import SlideDownRegion from '../regions/slidedown'
 
 make_sidebar_template = (columns=3, size='sm', position='left') ->
   tc.renderable () ->
@@ -41,7 +41,7 @@ class ToolbarAppletLayout extends Backbone.Marionette.View
     content: region
     toolbar: '#main-toolbar'
 
-module.exports =
-  SidebarAppletLayout: SidebarAppletLayout
-  ToolbarAppletLayout: ToolbarAppletLayout
-  
+export {
+  SidebarAppletLayout
+  ToolbarAppletLayout
+  }

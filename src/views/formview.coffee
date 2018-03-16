@@ -1,8 +1,8 @@
-_ = require 'underscore'
-Marionette = require 'backbone.marionette'
-Validation = require 'backbone-validation'
+import _ from 'underscore'
+import Marionette from 'backbone.marionette'
+import Validation from 'backbone-validation'
 
-class FormView extends Backbone.Marionette.View
+export default class FormView extends Backbone.Marionette.View
   constructor: ->
     super arguments...
 
@@ -100,4 +100,3 @@ class FormView extends Backbone.Marionette.View
       .removeClass('valid')
       .addClass('invalid')
 
-module.exports = FormView

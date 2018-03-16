@@ -1,8 +1,8 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-tc = require 'teacup'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import tc from 'teacup'
 
-class EmptyView extends Backbone.Marionette.View
+export default class EmptyView extends Backbone.Marionette.View
   template: tc.renderable ->
     tc.div '.jumbotron', ->
       tc.h1 ->
@@ -10,4 +10,3 @@ class EmptyView extends Backbone.Marionette.View
         tc.i '.fa.fa-spinner.fa-spin'
     
   
-module.exports = EmptyView

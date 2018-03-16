@@ -1,5 +1,5 @@
-$ = require 'jquery'
-Marionette = require 'backbone.marionette'
+import $ from 'jquery'
+import Marionette from 'backbone.marionette'
 
 class SlideDownRegion extends Marionette.Region
   attachHtml: (view) ->
@@ -8,4 +8,4 @@ class SlideDownRegion extends Marionette.Region
     @$el.html view.el
     @$el.slideDown speed
 
-module.exports = SlideDownRegion
+export default SlideDownRegion
