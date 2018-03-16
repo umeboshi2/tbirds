@@ -1,7 +1,7 @@
-Marionette = require 'backbone.marionette'
-tc = require 'teacup'
+import Marionette from 'backbone.marionette'
+import tc from 'teacup'
 
-navigate_to_url = require '../util/navigate-to-url'
+import navigate_to_url from '../util/navigate-to-url'
 
 default_entry_template = tc.renderable (model) ->
   tc.i model.icon
@@ -45,5 +45,5 @@ class ToolbarView extends Marionette.View
     navigate_to_url child.model.get 'url'
     
     
-module.exports = ToolbarView
+export default ToolbarView
 

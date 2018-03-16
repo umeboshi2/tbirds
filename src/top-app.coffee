@@ -6,9 +6,9 @@ import Toolkit from 'marionette.toolkit'
 #Toolkit = require 'marionette.toolkit'
 tc = require 'teacup'
 
-MessagesApp = require './tkmessages'
-NavbarApp = require './tknavbar'
-MainPageLayout = require './tklayout'
+import MessagesApp from './tkmessages'
+import NavbarApp from './tknavbar'
+import MainPageLayout from './tklayout'
 
 MainChannel = Backbone.Radio.channel 'global'
 

@@ -1,10 +1,9 @@
-$ = require 'jquery'
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-Toolkit = require 'marionette.toolkit'
-tc = require 'teacup'
+import $ from 'jquery'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import tc from 'teacup'
 
-NavbarEntry = require './entry-model'
+import NavbarEntry from './entry-model'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -103,7 +102,7 @@ class NavbarEntriesView extends Marionette.View
     view.setAllInactive()
     
     
-module.exports = NavbarEntriesView
+export default NavbarEntriesView
 
 
 

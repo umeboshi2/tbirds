@@ -4,7 +4,7 @@ import Marionette from 'backbone.marionette'
 
 { ToolbarAppletLayout } = require './views/layout'
 
-navigate_to_url = require './util/navigate-to-url'
+import navigate_to_url from './util/navigate-to-url'
 scroll_top_fast = require './util/scroll-top-fast'
 
 MainChannel = Backbone.Radio.channel 'global'
@@ -14,7 +14,10 @@ BaseController = Marionette.Object.extend
   init_page: () ->
     # do nothing
   scroll_top: scroll_top_fast
-  navigate_to_url: navigate_to_url
+  navigateToUrl: navigate_to_url
+  navigate_to_url: ->
+    console.warn "use navigateToUrl instead"
+    @navigateToUrl arguments
 
 #class MainController extends BaseController
 MainController = BaseController.extend

@@ -1,5 +1,5 @@
-Backbone = require 'backbone'
-module.exports = (url) ->
+import Backbone from 'backbone'
+export default (url) ->
   if url.split('/')[0] == ''
     window.location = url
   else

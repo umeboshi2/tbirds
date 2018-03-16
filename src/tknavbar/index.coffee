@@ -1,11 +1,11 @@
-$ = require 'jquery'
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-Toolkit = require 'marionette.toolkit'
-tc = require 'teacup'
+import $ from 'jquery'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import Toolkit from 'marionette.toolkit'
+import tc from 'teacup'
 
-NavbarHeaderView = require './navbar-header'
-NavbarEntriesView = require './entries'
+import NavbarHeaderView from './navbar-header'
+import NavbarEntriesView from './entries'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -85,6 +85,6 @@ class NavbarApp extends Toolkit.App
       model: new Backbone.Model appConfig
     @showView layout
 
-module.exports = NavbarApp
+export default NavbarApp
 
 

@@ -1,10 +1,6 @@
-$ = require 'jquery'
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-Toolkit = require 'marionette.toolkit'
-tc = require 'teacup'
+import Backbone from 'backbone'
 
-NavbarEntry = require './entry-model'
+import NavbarEntry from './entry-model'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -19,13 +15,11 @@ MainChannel.reply 'navbar-entries', ->
 MainChannel.reply 'new-navbar-entry', ->
   new NavbarEntry
 
+
 MainChannel.reply 'add-navbar-entry', (atts) ->
   navbar_entry_collection.add atts
   
 MainChannel.reply 'add-navbar-entries', (olist) ->
   navbar_entry_collection.add olist
-
-module.exports = {}
-
 
 
