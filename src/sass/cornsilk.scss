@@ -72,6 +72,22 @@
     }
 }
 
+#navbar-view-collapse-foo {
+    @extend .collapse;
+    @extend .navbar-collapse;
+    //width: 100%;
+}
+
+
+#user-menu-foo {
+    @extend .navbar-nav;
+    //@extend .ml-auto;
+    //@extend .float-right;
+    //@extend .ml-lg-5;
+    //@extend .mr-auto;
+}
+
+
 .listview-list {
     background: $background;
     padding: 0.3em;
