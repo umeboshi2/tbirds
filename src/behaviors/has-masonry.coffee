@@ -1,7 +1,7 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-Masonry = require 'masonry-layout'
-imagesLoaded = require 'imagesloaded'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import Masonry from 'masonry-layout'
+import imagesLoaded from 'imagesloaded'
 
 class HasMasonryView extends Marionette.Behavior
   options:
@@ -40,4 +40,4 @@ class HasMasonryView extends Marionette.Behavior
       @view.afterDomRefresh()
     
   
-module.exports = HasMasonryView
+export default HasMasonryView

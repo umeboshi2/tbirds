@@ -1,3 +1,3 @@
-$ = require 'jquery'
-module.exports = ()  ->
+import $ from 'jquery'
+export default ()  ->
   $('html, body').animate {scrollTop: 0}, 'fast'

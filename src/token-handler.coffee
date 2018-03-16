@@ -1,8 +1,8 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-ms = require 'ms'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import ms from 'ms'
 
-objectEmpty = require './util/object-empty'
+import objectEmpty from './util/object-empty'
 
 
 MainChannel = Backbone.Radio.channel 'global'
@@ -83,8 +83,9 @@ startUserApp = (app, appConfig) ->
         currentUser: token
       
        
-  
-module.exports =
+# FIXME figure out what to export
+exportObject =
   accessTimeRemaining: accessTimeRemaining
   keepTokenFresh: keepTokenFresh
   startUserApp: startUserApp
+export default exportObject

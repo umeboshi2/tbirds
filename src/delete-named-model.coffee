@@ -1,8 +1,9 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-tc = require 'teacup'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import tc from 'teacup'
 
-{ modal_close_button } = require './templates/buttons'
+#{ modal_close_button } = require './templates/buttons'
+import modal_close_button from './templates/buttons'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -45,5 +46,5 @@ class ConfirmDeleteModal extends Backbone.Marionette.View
     response.fail ->
       MessageChannel.request 'danger', "#{name} NOT deleted."
       
-module.exports = ConfirmDeleteModal
+export default ConfirmDeleteModal
 

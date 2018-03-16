@@ -1,10 +1,5 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-tc = require 'teacup'
+import Marionette from 'backbone.marionette'
 
-
-class HasHeader extends Marionette.Behavior
+export default class HasHeader extends Marionette.Behavior
   onSetHeader: (text) ->
     @ui.header.text text
-    
-module.exports = HasHeader

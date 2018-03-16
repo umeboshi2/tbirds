@@ -1,12 +1,12 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
 
 MainChannel = Backbone.Radio.channel 'global'
 
-ace = require 'brace'
-html_mode = require 'brace/mode/html'
-twilight_theme = require 'brace/theme/twilight'
-markdown_mode = require 'brace/mode/markdown'
+import ace from 'brace'
+import html_mode from 'brace/mode/html'
+import twilight_theme from 'brace/theme/twilight'
+import markdown_mode from 'brace/mode/markdown'
 
 ACEDEFAULTS:
   editorTheme: 'ace/theme/twilight'
@@ -40,4 +40,4 @@ class HasAceEditor extends Backbone.Marionette.Behavior
     
   
   
-module.exports = HasAceEditor
+export default HasAceEditor

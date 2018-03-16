@@ -1,8 +1,8 @@
-$ = require 'jquery'
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
+import $ from 'jquery'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
 
-class IsEscapeModal extends Marionette.Behavior
+export default class IsEscapeModal extends Marionette.Behavior
   events:
     'click @ui.close_btn': 'onBeforeDestroy'
   keydownHandler: (event_object) =>
@@ -21,5 +21,3 @@ class IsEscapeModal extends Marionette.Behavior
     $('html').keydown @keydownHandler
   onBeforeDestroy: ->
     $('html').unbind 'keydown', @keydownHandler
-    
-module.exports = IsEscapeModal

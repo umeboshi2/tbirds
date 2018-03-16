@@ -1,2 +1,2 @@
-module.exports = (path) ->
+export default (path) ->
   path.replace /\/$/, ""

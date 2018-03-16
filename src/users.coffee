@@ -1,4 +1,4 @@
-Backbone = require 'backbone'
+import Backbone from 'backbone'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -27,8 +27,7 @@ MainChannel.reply 'create-current-user-object', (url) ->
   currentuser
   
 
-module.exports =
-  User: User
-  CurrentUser: CurrentUser
-  
-
+export {
+  User
+  CurrentUser
+  }
