@@ -1,5 +1,0 @@
-module.exports = function(path) {
-  return path.replace(/\/$/, "");
-};
-
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC9yZW1vdmUtdHJhaWxpbmctc2xhc2hlcy5qcyIsInNvdXJjZXMiOlsidXRpbC9yZW1vdmUtdHJhaWxpbmctc2xhc2hlcy5jb2ZmZWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFDLE9BQVAsR0FBaUIsUUFBQSxDQUFDLElBQUQsQ0FBQTtTQUNmLElBQUksQ0FBQyxPQUFMLENBQWEsS0FBYixFQUFvQixFQUFwQjtBQURlIiwic291cmNlc0NvbnRlbnQiOlsibW9kdWxlLmV4cG9ydHMgPSAocGF0aCkgLT5cbiAgcGF0aC5yZXBsYWNlIC9cXC8kLywgXCJcIlxuIl19

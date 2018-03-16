@@ -1,5 +1,0 @@
-module.exports = function(str) {
-  return str.replace(/(?:\r\n|\r|\n)/g, '<br />');
-};
-
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC9uZXdsaW5lLXRvLWJyLmpzIiwic291cmNlcyI6WyJ1dGlsL25ld2xpbmUtdG8tYnIuY29mZmVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBQyxPQUFQLEdBQWlCLFFBQUEsQ0FBQyxHQUFELENBQUE7U0FDZixHQUFHLENBQUMsT0FBSixDQUFZLGlCQUFaLEVBQStCLFFBQS9CO0FBRGUiLCJzb3VyY2VzQ29udGVudCI6WyJtb2R1bGUuZXhwb3J0cyA9IChzdHIpIC0+XG4gIHN0ci5yZXBsYWNlKC8oPzpcXHJcXG58XFxyfFxcbikvZywgJzxiciAvPicpXG5cblxuXG4iXX0=

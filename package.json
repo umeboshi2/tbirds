@@ -2,10 +2,10 @@
   "name": "tbirds",
   "version": "0.4.0-0",
   "description": "JS and coffeescript modules for marionette apps",
-  "main": "index.js",
+  "main": "src/",
   "scripts": {
     "test": "mocha --require coffeescript/register \"test/**/*.{js,coffee}\"",
-    "build": "rm dist -fr && gulp coffee && git add dist",
+    "dontbuild": "rm dist -fr && gulp coffee && git add dist",
     "postversion": "git push && git push --tags"
   },
   "repository": {
@@ -32,6 +32,7 @@
     "marionette.toolkit": "^4.0.0",
     "marked": "^0.3.7",
     "ms": "^2.1.1",
+    "popper.js": "^1.14.1",
     "teacup": "^2.0.0",
     "underscore": "^1.8.3"
   },
