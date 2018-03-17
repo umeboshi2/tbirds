@@ -1,5 +1,5 @@
-$ = require 'jquery'
-Backbone = require 'backbone'
+import $ from 'jquery'
+import Backbone from 'backbone'
 
 create_new_approuter = (channel, Router, Controller) ->
   controller = new Controller
@@ -36,8 +36,10 @@ navbar_set_active = (path) ->
 #    position = position or 0
 #    @substr(position, searchString.length) == searchString
 
-module.exports =
-  create_new_approuter: create_new_approuter
-  navbar_color_handlers: navbar_color_handlers
-  navbar_set_active: navbar_set_active
+export {
+  create_new_approuter
+  navbar_color_handlers
+  navbar_set_active
+  }
+  
 

@@ -1,8 +1,9 @@
-Backbone = require 'backbone'
-navigate_to_url = require 'tbirds/util/navigate-to-url'
-jwtDecode = require 'jwt-decode'
+import Backbone from 'backbone'
+import navigate_to_url from 'tbirds/util/navigate-to-url'
+import jwtDecode from 'jwt-decode'
 
-{BasicPageableCollection} = require './basic-pageable-collection'
+#{BasicPageableCollection} = require './basic-pageable-collection'
+import BasicPageableCollection from './basic-pageable-collection'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -105,5 +106,5 @@ setupAuthModels = (appConfig) ->
 
   return
   
-module.exports = setupAuthModels
+export default setupAuthModels
   

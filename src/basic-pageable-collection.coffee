@@ -1,6 +1,5 @@
 import Backbone from 'backbone'
-#import PageableCollection from 'backbone.paginator'
-PageableCollection = require 'backbone.paginator'
+import PageableCollection from  'backbone.paginator'
 
 MainChannel = Backbone.Radio.channel 'global'
 
@@ -8,7 +7,7 @@ pageSize = MainChannel.request 'main:app:get-pagesize'
 if not pageSize
   pageSize = 10
   
-export class BasicPageableCollection extends PageableCollection
+export default class BasicPageableCollection extends PageableCollection
   queryParams:
     sort: ->
       @state.sortColumn
@@ -33,6 +32,3 @@ export class BasicPageableCollection extends PageableCollection
     # we start at page zero
     @state.lastPage = @state.totalPages - 1
     super response.items
-    
-#export default BasicPageableCollection
-  

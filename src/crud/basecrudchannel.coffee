@@ -1,5 +1,5 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
 
 create_model = (collection, options) ->
   model = collection.create()
@@ -42,6 +42,7 @@ make_dbchannel = (channel, objname, modelClass, collectionClass) ->
     collectionClass
     
 
-module.exports =
-  make_dbclasses: make_dbclasses
-  make_dbchannel: make_dbchannel
+export {
+  make_dbclasses
+  make_dbchannel
+  }

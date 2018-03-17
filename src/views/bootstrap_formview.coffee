@@ -1,3 +1,3 @@
-BSFormView = require './bsformview'
+import BSFormView from './bsformview'
 console.warn "use bsformview instead of bootstrap_formview"
-module.exports = BSFormView
+export default BSFormView

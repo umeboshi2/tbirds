@@ -1,5 +1,5 @@
 # webpack config resolve.alias
-path = require 'path'
+import path from 'path'
 
 # FIXME - this isn't tested
 # This is a helper function to generate useful
@@ -21,5 +21,5 @@ make_aliases = (dirname) ->
     p2: p2
   return aliases
 
-module.exports = make_aliases
+export default make_aliases
 

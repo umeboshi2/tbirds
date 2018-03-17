@@ -1,10 +1,10 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-tc = require 'teacup'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import tc from 'teacup'
 
-navigate_to_url = require '../util/navigate-to-url'
-require '../regions/bsmodal'
-{ modal_close_button } = require '../templates/buttons'
+import navigate_to_url from '../util/navigate-to-url'
+import '../regions/bsmodal'
+import { modal_close_button } from '../templates/buttons'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -88,8 +88,8 @@ class BaseListView extends Marionette.View
     # FIXME - fix url dont't add 's'
     navigate_to_url "##{@route_name}/#{@item_type}s/new"
     
-module.exports =
-  BaseItemView: BaseItemView
-  BaseListView: BaseListView
-  
+export {
+  BaseItemView
+  BaseListView
+  }
 

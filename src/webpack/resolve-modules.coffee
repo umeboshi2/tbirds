@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   'node_modules'
   'bower_components'
   ]
