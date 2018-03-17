@@ -30,11 +30,16 @@ MainChannel.reply 'main:applet:register', (appname, applet) ->
 MainChannel.reply 'main:applet:get-applet', (appname) ->
   return registered_apps[appname]
 
+# FIXME: Using backticks for import() statements. Inner
+# js backticks are escaped for dynamic expressions.
+# https://github.com/jashkenas/coffeescript/issues/4834#issuecomment-354375627
+
 class RequireController extends Marionette.Object
   loadFrontDoor: ->
     config = MainChannel.request 'main:app:config'
     appname = config?.frontdoorApplet or 'frontdoor'
-    handler = System.import "applets/#{appname}/main"
+    #handler = System.import "applets/#{appname}/main"
+    handler = `import(\`applets/${appname}/main\`)`
     if __DEV__
       console.log "Frontdoor system.import", appname
     handler.then (Applet) ->
@@ -60,7 +65,8 @@ class RequireController extends Marionette.Object
       console.log "Using defined appletRoute", appname
     if appname in Object.keys registered_apps
       throw new Error "Unhandled applet path ##{appname}/#{suffix}"
-    handler = System.import "applets/#{appname}/main"
+    #handler = System.import "applets/#{appname}/main"
+    handler = `import(\`applets/${appname}/main\`)`
     if __DEV__
       console.log "system.import", appname
     handler.then (Applet) ->
