@@ -7,6 +7,8 @@ import ShowInitialEmptyContent from '../behaviors/show-initial-empty'
 
 import SlideDownRegion from '../regions/slidedown'
 
+NavbarChannel = Backbone.Radio.channel 'navbar'
+
 make_sidebar_template = (columns=3, size='sm', position='left') ->
   tc.renderable () ->
     if position is 'left'
@@ -15,13 +17,19 @@ make_sidebar_template = (columns=3, size='sm', position='left') ->
     if position is 'right'
       tc.div "#sidebar.col-#{size}-#{columns}.right-column"
 
-class SidebarAppletLayout extends Backbone.Marionette.View
+
+class BaseAppletLayout extends Marionette.View
+  onBeforeDestroy: ->
+    entries = NavbarChannel.request 'get-entries', 'applet'
+    entries.reset()
+  
+class SidebarAppletLayout extends BaseAppletLayout
   template: make_sidebar_template()
   regions:
     sidebar: '#sidebar'
     content: '#main-content'
 
-class ToolbarAppletLayout extends Backbone.Marionette.View
+class ToolbarAppletLayout extends BaseAppletLayout
   #el: '#applet-content'
   className: 'applet-container'
   behaviors:
@@ -40,8 +48,9 @@ class ToolbarAppletLayout extends Backbone.Marionette.View
     region.slide_speed = ms '.01s'
     content: region
     toolbar: '#main-toolbar'
-
+    
 export {
+  BaseAppletLayout
   SidebarAppletLayout
   ToolbarAppletLayout
   }

@@ -25,17 +25,19 @@ BaseController = Marionette.Object.extend
 #class MainController extends BaseController
 MainController = BaseController.extend
   layoutClass: ToolbarAppletLayout
-  _get_applet: ->
+
+  _getAppletRegion: ->
     app = MainChannel.request 'main:app:object'
     return app.getView().getRegion 'applet'
     
   setupLayout: ->
     layoutClass = @getOption 'layoutClass'
     @layout = new layoutClass
-    applet = @_get_applet()
-    if applet.hasView()
-      applet.empty()
-    applet.show @layout
+    region = @_getAppletRegion()
+    if region.hasView()
+      region.empty()
+    @applet.setupAppletEntries()
+    region.show @layout
     return
     
   setup_layout: ->

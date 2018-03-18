@@ -3,9 +3,16 @@ import Marionette from 'backbone.marionette'
 import Toolkit from 'marionette.toolkit'
 
 MainChannel = Backbone.Radio.channel 'global'
+NavbarChannel = Backbone.Radio.channel 'navbar'
 
 class TkApplet extends Toolkit.App
+  setupAppletEntries: ->
+    entries = NavbarChannel.request 'get-entries', 'applet'
+    entries.reset()
+    if @appletEntries
+      entries.set @appletEntries
   onBeforeStart: ->
+    @setupAppletEntries()
     controller = new @Controller
     controller.applet = @
     @router = new @Router
