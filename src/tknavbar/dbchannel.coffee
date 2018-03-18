@@ -4,22 +4,32 @@ import NavbarEntry from './entry-model'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
+NavbarChannel = Backbone.Radio.channel 'navbar'
 
 class NavbarEntryCollection extends Backbone.Collection
   model: NavbarEntry
 
-navbar_entry_collection = new NavbarEntryCollection
-MainChannel.reply 'navbar-entries', ->
-  navbar_entry_collection
 
-MainChannel.reply 'new-navbar-entry', ->
+siteEntryCollection = new NavbarEntryCollection
+userEntryCollection = new NavbarEntryCollection
+appletEntryCollection = new NavbarEntryCollection
+
+collections =
+  site: siteEntryCollection
+  user: userEntryCollection
+  applet: appletEntryCollection
+
+NavbarChannel.reply 'get-entries', (collection) ->
+  return collections[collection]
+
+  
+NavbarChannel.reply 'new-navbar-entry', ->
   new NavbarEntry
 
+NavbarChannel.reply 'add-entry', (atts, collection) ->
+  #console.log "collections", collections
+  #console.log "collection", collection
+  collections[collection].add atts
 
-MainChannel.reply 'add-navbar-entry', (atts) ->
-  navbar_entry_collection.add atts
-  
-MainChannel.reply 'add-navbar-entries', (olist) ->
-  navbar_entry_collection.add olist
-
-
+NavbarChannel.reply 'add-entries', (olist, collection) ->
+  collections[collection].add olist
