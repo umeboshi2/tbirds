@@ -46,6 +46,7 @@ class RequireController extends Marionette.Object
       # FIXME fix applet structure to provide appropriate export
       applet = new Applet.default
         appConfig: config
+        appName: appname
         isFrontdoorApplet: true
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
@@ -73,6 +74,7 @@ class RequireController extends Marionette.Object
       # FIXME fix applet structure to provide appropriate export
       applet = new Applet.default
         appConfig: config
+        appName: appname
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
       Backbone.history.loadUrl()
