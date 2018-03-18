@@ -29,7 +29,11 @@ class BaseEntryView extends Marionette.View
     
 class SingleEntryView extends BaseEntryView
   template: tc.renderable (entry) ->
-    tc.a '.navbar-entry.nav-link', href:entry.url, entry.label
+    tc.a '.navbar-entry.nav-link', href:entry.url, ->
+      if entry.icon
+        tc.i entry.icon
+        tc.text " "
+      tc.text entry.label
 
 class DropdownEntryView extends BaseEntryView
   className: 'nav-item dropdown'
@@ -43,7 +47,11 @@ class DropdownEntryView extends BaseEntryView
         if link?.needUser and not entry.currentUser
           continue
         tc.li ->
-          tc.a '.navbar-entry.nav-link.dropdown-item', href:link.url, link.label
+          tc.a '.navbar-entry.nav-link.dropdown-item', href:link.url, ->
+            if link.icon
+              tc.i link.icon
+              tc.text " "
+            tc.text link.label
 
 class NavbarEntryCollectionView extends Marionette.CollectionView
   tagName: 'ul'
