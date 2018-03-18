@@ -2,10 +2,10 @@ import $ from 'jquery'
 import Backbone from 'backbone'
 import Marionette from 'backbone.marionette'
 
-{ ToolbarAppletLayout } = require './views/layout'
+import { ToolbarAppletLayout } from './views/layout'
 
 import navigate_to_url from './util/navigate-to-url'
-scroll_top_fast = require './util/scroll-top-fast'
+import scroll_top_fast from './util/scroll-top-fast'
 
 MainChannel = Backbone.Radio.channel 'global'
 
@@ -13,7 +13,10 @@ MainChannel = Backbone.Radio.channel 'global'
 BaseController = Marionette.Object.extend
   init_page: () ->
     # do nothing
-  scroll_top: scroll_top_fast
+  scrollTop: scroll_top_fast
+  scroll_top: ->
+    console.warn "use scrollTop instead"
+    @scrollTop arguments
   navigateToUrl: navigate_to_url
   navigate_to_url: ->
     console.warn "use navigateToUrl instead"
