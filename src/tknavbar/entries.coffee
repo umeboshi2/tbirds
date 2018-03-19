@@ -80,8 +80,13 @@ class NavbarEntryCollectionView extends Marionette.CollectionView
     if cview.$el.hasClass "show"
       cview.$el.dropdown('toggle')
     target = event.target
+    if target.tagName is "I"
+      console.warn "clicked icon"
+      anchor = $(target).parent()
+    else
+      anchor = $(target)
     # look at href and go there maybe?
-    href = $(target).attr 'href'
+    href = anchor.attr 'href'
     if href.split('/')[0] == ''
       window.location = href
     else
