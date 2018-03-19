@@ -61,28 +61,43 @@ MainController = BaseController.extend
     return
     
   _get_region: (region) ->
-    return @layout.getRegion region
-
+    console.warn "use _getRegion instead"
+    return @_getRegion(region)
+    
   _show_view: (vclass, model) ->
+    console.warn "use _showView instead"
+    @_showView(vclass, model)
+
+  _load_view: (vclass, model, objname) ->
+    console.warn "use _loadView instead"
+    @_loadView(vclass, model, objname)
+
+  _getRegion: (region) ->
+    return @layout.getRegion region
+    
+  _showView: (vclass, model) ->
     view = new vclass
       model: model
     @layout.showChildView 'content', view
     return
     
-  _load_view: (vclass, model, objname) ->
+  _isModelPresent: (model) ->
     # FIXME
     # presume "id" is only attribute there if length is 1
-    if model.isEmpty() or Object.keys(model.attributes).length is 1
+    return model.isEmpty() or Object.keys(model.attributes).length is 1
+    
+  _loadView: (vclass, model, objname) ->
+    if @_isModelPresent(model)
       response = model.fetch()
       response.done =>
-        @_show_view vclass, model
+        @_showView vclass, model
         return
       response.fail ->
         msg = "Failed to load #{objname} data."
         MessageChannel.request 'danger', msg
         return
     else
-      @_show_view vclass, model
+      @_showView vclass, model
     return
     
 #class ExtraController extends BaseController
