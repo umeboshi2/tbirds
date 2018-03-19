@@ -19,9 +19,13 @@ make_sidebar_template = (columns=3, size='sm', position='left') ->
 
 
 class BaseAppletLayout extends Marionette.View
+  className: 'applet-container'
   onBeforeDestroy: ->
     entries = NavbarChannel.request 'get-entries', 'applet'
     entries.reset()
+  behaviors:
+    ShowInitialEmptyContent:
+      behaviorClass: ShowInitialEmptyContent
   
 class SidebarAppletLayout extends BaseAppletLayout
   template: make_sidebar_template()
@@ -31,10 +35,6 @@ class SidebarAppletLayout extends BaseAppletLayout
 
 class ToolbarAppletLayout extends BaseAppletLayout
   #el: '#applet-content'
-  className: 'applet-container'
-  behaviors:
-    ShowInitialEmptyContent:
-      behaviorClass: ShowInitialEmptyContent
   template: tc.renderable () ->
     tc.div '.row', ->
       #tc.div  '#main-toolbar.col-sm-8.col-sm-offset-2'
