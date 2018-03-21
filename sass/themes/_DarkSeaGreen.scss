@@ -1,0 +1,16 @@
+@import "../X11colors";
+
+$primary: lighten(desaturate($color-DarkSeaGreen, 20%), 20%);
+$secondary: $color-salmon4;
+$text-color: darken($color-RosyBrown, 35%);
+
+
+$background: darken($primary, 10%);
+$body-bg: $background;
+
+$button-background: darken($background, 15%);
+
+$panel-bg: darken($background, 10%);
+
+
+
