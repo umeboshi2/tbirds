@@ -2,7 +2,7 @@
   "name": "tbirds",
   "version": "0.4.1-0",
   "description": "JS and coffeescript modules for marionette apps",
-  "main": "src/",
+  "main": "dist/",
   "scripts": {
     "test": "mocha --require coffeescript/register \"test/**/*.{js,coffee}\"",
     "dontbuild": "rm dist -fr && gulp coffee && git add dist",
