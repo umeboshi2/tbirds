@@ -254,6 +254,18 @@ The directory structure is as follows:
 	- views.js
 	
 
+### Applet Layout
+
+- layout view for applet, provides regions for applet views
+
+- applet layout view needs ```className: 'applet-container'```
+
+### Applet Controller
+
+The applet controller uses a layout view to provide regions for 
+the applet views.
+
+
 ## Default AppConfig
 
 ```coffee
