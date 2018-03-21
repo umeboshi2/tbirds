@@ -1,0 +1,18 @@
+var BuildEnvironment, coffeeLoaderRule;
+
+BuildEnvironment = process.env.NODE_ENV || 'development';
+
+coffeeLoaderRule = {
+  test: /\.coffee$/,
+  use: ['coffee-loader']
+};
+
+if (BuildEnvironment === 'development') {
+  coffeeLoaderRule.parser = {
+    system: true
+  };
+}
+
+export default coffeeLoaderRule;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2VicGFjay9ydWxlcy9jb2ZmZWUtbG9hZGVyLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrL3J1bGVzL2NvZmZlZS1sb2FkZXIuY29mZmVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLElBQUEsZ0JBQUEsRUFBQTs7QUFBQSxnQkFBQSxHQUFtQixPQUFPLENBQUMsR0FBRyxDQUFDLFFBQVosSUFBd0I7O0FBRTNDLGdCQUFBLEdBQ0U7RUFBQSxJQUFBLEVBQU0sV0FBTjtFQUNBLEdBQUEsRUFBSyxDQUFDLGVBQUQ7QUFETDs7QUFFRixJQUFHLGdCQUFBLEtBQW9CLGFBQXZCO0VBQ0UsZ0JBQWdCLENBQUMsTUFBakIsR0FDRTtJQUFBLE1BQUEsRUFBUTtFQUFSLEVBRko7OztBQUlBLE9BQUEsUUFBZSIsInNvdXJjZXNDb250ZW50IjpbIkJ1aWxkRW52aXJvbm1lbnQgPSBwcm9jZXNzLmVudi5OT0RFX0VOViBvciAnZGV2ZWxvcG1lbnQnXG5cbmNvZmZlZUxvYWRlclJ1bGUgPVxuICB0ZXN0OiAvXFwuY29mZmVlJC9cbiAgdXNlOiBbJ2NvZmZlZS1sb2FkZXInXVxuaWYgQnVpbGRFbnZpcm9ubWVudCBpcyAnZGV2ZWxvcG1lbnQnXG4gIGNvZmZlZUxvYWRlclJ1bGUucGFyc2VyID1cbiAgICBzeXN0ZW06IHRydWVcblxuZXhwb3J0IGRlZmF1bHQgY29mZmVlTG9hZGVyUnVsZVxuIl19

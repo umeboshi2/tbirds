@@ -1,0 +1,8 @@
+//https://github.com/goodeggs/teacup-camel-to-kebab
+export default function(str) {
+  return str.replace(/([A-Z])/g, function($1) {
+    return `-${$1.toLowerCase()}`;
+  });
+};
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC9jYW1lbC10by1rZWJhYi5qcyIsInNvdXJjZXMiOlsidXRpbC9jYW1lbC10by1rZWJhYi5jb2ZmZWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQSxPQUFBLFFBQWUsUUFBQSxDQUFDLEdBQUQsQ0FBQTtTQUNiLEdBQUcsQ0FBQyxPQUFKLENBQVksVUFBWixFQUF3QixRQUFBLENBQUMsRUFBRCxDQUFBO1dBQVEsQ0FBQSxDQUFBLENBQUEsQ0FBSSxFQUFFLENBQUMsV0FBSCxDQUFBLENBQUosQ0FBQTtFQUFSLENBQXhCO0FBRGEiLCJzb3VyY2VzQ29udGVudCI6WyIjaHR0cHM6Ly9naXRodWIuY29tL2dvb2RlZ2dzL3RlYWN1cC1jYW1lbC10by1rZWJhYlxuZXhwb3J0IGRlZmF1bHQgKHN0cikgLT5cbiAgc3RyLnJlcGxhY2UoLyhbQS1aXSkvZywgKCQxKSAtPiBcIi0jeyQxLnRvTG93ZXJDYXNlKCl9XCIpXG4iXX0=

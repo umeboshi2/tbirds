@@ -1,0 +1,24 @@
+var MainChannel, MessageChannel, NavbarEntry;
+
+import Backbone from 'backbone';
+
+MainChannel = Backbone.Radio.channel('global');
+
+MessageChannel = Backbone.Radio.channel('messages');
+
+export default NavbarEntry = (function() {
+  class NavbarEntry extends Backbone.Model {};
+
+  NavbarEntry.prototype.defaults = {
+    label: 'App Label',
+    url: '#app',
+    single_applet: false,
+    applets: [],
+    urls: []
+  };
+
+  return NavbarEntry;
+
+}).call(this);
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGtuYXZiYXIvZW50cnktbW9kZWwuanMiLCJzb3VyY2VzIjpbInRrbmF2YmFyL2VudHJ5LW1vZGVsLmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFBLFdBQUEsRUFBQSxjQUFBLEVBQUE7O0FBQUEsT0FBTyxRQUFQLE1BQUE7O0FBRUEsV0FBQSxHQUFjLFFBQVEsQ0FBQyxLQUFLLENBQUMsT0FBZixDQUF1QixRQUF2Qjs7QUFDZCxjQUFBLEdBQWlCLFFBQVEsQ0FBQyxLQUFLLENBQUMsT0FBZixDQUF1QixVQUF2Qjs7QUFFakIsT0FBQSxRQUFxQjtFQUFOLE1BQUEsWUFBQSxRQUEwQixRQUFRLENBQUMsTUFBbkMsQ0FBQTs7d0JBQ2IsUUFBQSxHQUNFO0lBQUEsS0FBQSxFQUFPLFdBQVA7SUFDQSxHQUFBLEVBQUssTUFETDtJQUVBLGFBQUEsRUFBZSxLQUZmO0lBR0EsT0FBQSxFQUFTLEVBSFQ7SUFJQSxJQUFBLEVBQU07RUFKTiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBCYWNrYm9uZSBmcm9tICdiYWNrYm9uZSdcblxuTWFpbkNoYW5uZWwgPSBCYWNrYm9uZS5SYWRpby5jaGFubmVsICdnbG9iYWwnXG5NZXNzYWdlQ2hhbm5lbCA9IEJhY2tib25lLlJhZGlvLmNoYW5uZWwgJ21lc3NhZ2VzJ1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBOYXZiYXJFbnRyeSBleHRlbmRzIEJhY2tib25lLk1vZGVsXG4gIGRlZmF1bHRzOlxuICAgIGxhYmVsOiAnQXBwIExhYmVsJ1xuICAgIHVybDogJyNhcHAnXG4gICAgc2luZ2xlX2FwcGxldDogZmFsc2VcbiAgICBhcHBsZXRzOiBbXVxuICAgIHVybHM6IFtdXG4iXX0=

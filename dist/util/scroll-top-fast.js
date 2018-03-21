@@ -1,0 +1,7 @@
+// http://stackoverflow.com/questions/1144805/scroll-to-the-top-of-the-page-using-javascript-jquery
+export default function() {
+  //$('html, body').animate {scrollTop: 0}, 'fast'
+  return window.scrollTo(0, 0);
+};
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC9zY3JvbGwtdG9wLWZhc3QuanMiLCJzb3VyY2VzIjpbInV0aWwvc2Nyb2xsLXRvcC1mYXN0LmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUNBLE9BQUEsUUFBZSxRQUFBLENBQUEsQ0FBQSxFQUFBOztTQUViLE1BQU0sQ0FBQyxRQUFQLENBQWdCLENBQWhCLEVBQWtCLENBQWxCO0FBRmEiLCJzb3VyY2VzQ29udGVudCI6WyIjIGh0dHA6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMTE0NDgwNS9zY3JvbGwtdG8tdGhlLXRvcC1vZi10aGUtcGFnZS11c2luZy1qYXZhc2NyaXB0LWpxdWVyeVxuZXhwb3J0IGRlZmF1bHQgKCkgIC0+XG4gICMkKCdodG1sLCBib2R5JykuYW5pbWF0ZSB7c2Nyb2xsVG9wOiAwfSwgJ2Zhc3QnXG4gIHdpbmRvdy5zY3JvbGxUbyAwLDBcbiJdfQ==

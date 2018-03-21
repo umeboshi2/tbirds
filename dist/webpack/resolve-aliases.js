@@ -1,0 +1,31 @@
+// webpack config resolve.alias
+var make_aliases;
+
+import path from 'path';
+
+// FIXME - this isn't tested
+// This is a helper function to generate useful
+// resolve aliases for webpack.  The function
+// should be called with __dirname from the
+// webpack-config/ subdirectory of a project.
+make_aliases = function(dirname) {
+  var aliases, nodeModulesPath, p2, phaser, phaserbuild, pixi;
+  nodeModulesPath = path.resolve(dirname, '..', 'node_modules');
+  phaserbuild = path.resolve(nodeModulesPath, 'phaser/build/custom');
+  phaser = path.resolve(phaserbuild, 'phaser-split.js');
+  pixi = path.resolve(phaserbuild, 'pixi.js');
+  p2 = path.resolve(phaserbuild, 'p2.js');
+  aliases = {
+    jquery: 'jquery/src/jquery',
+    request: 'browser-request',
+    applets: path.join(dirname, '../client/applets'),
+    phaser: phaser,
+    pixi: pixi,
+    p2: p2
+  };
+  return aliases;
+};
+
+export default make_aliases;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2VicGFjay9yZXNvbHZlLWFsaWFzZXMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2svcmVzb2x2ZS1hbGlhc2VzLmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUFBLElBQUE7O0FBQ0EsT0FBTyxJQUFQLE1BQUEsT0FEQTs7Ozs7OztBQVFBLFlBQUEsR0FBZSxRQUFBLENBQUMsT0FBRCxDQUFBO0FBQ2IsTUFBQSxPQUFBLEVBQUEsZUFBQSxFQUFBLEVBQUEsRUFBQSxNQUFBLEVBQUEsV0FBQSxFQUFBO0VBQUEsZUFBQSxHQUFrQixJQUFJLENBQUMsT0FBTCxDQUFhLE9BQWIsRUFBc0IsSUFBdEIsRUFBNEIsY0FBNUI7RUFDbEIsV0FBQSxHQUFjLElBQUksQ0FBQyxPQUFMLENBQWEsZUFBYixFQUE4QixxQkFBOUI7RUFDZCxNQUFBLEdBQVMsSUFBSSxDQUFDLE9BQUwsQ0FBYSxXQUFiLEVBQTBCLGlCQUExQjtFQUNULElBQUEsR0FBTyxJQUFJLENBQUMsT0FBTCxDQUFhLFdBQWIsRUFBMEIsU0FBMUI7RUFDUCxFQUFBLEdBQUssSUFBSSxDQUFDLE9BQUwsQ0FBYSxXQUFiLEVBQTBCLE9BQTFCO0VBQ0wsT0FBQSxHQUNFO0lBQUEsTUFBQSxFQUFRLG1CQUFSO0lBQ0EsT0FBQSxFQUFTLGlCQURUO0lBRUEsT0FBQSxFQUFTLElBQUksQ0FBQyxJQUFMLENBQVUsT0FBVixFQUFtQixtQkFBbkIsQ0FGVDtJQUdBLE1BQUEsRUFBUSxNQUhSO0lBSUEsSUFBQSxFQUFNLElBSk47SUFLQSxFQUFBLEVBQUk7RUFMSjtBQU1GLFNBQU87QUFiTTs7QUFlZixPQUFBLFFBQWUiLCJzb3VyY2VzQ29udGVudCI6WyIjIHdlYnBhY2sgY29uZmlnIHJlc29sdmUuYWxpYXNcbmltcG9ydCBwYXRoIGZyb20gJ3BhdGgnXG5cbiMgRklYTUUgLSB0aGlzIGlzbid0IHRlc3RlZFxuIyBUaGlzIGlzIGEgaGVscGVyIGZ1bmN0aW9uIHRvIGdlbmVyYXRlIHVzZWZ1bFxuIyByZXNvbHZlIGFsaWFzZXMgZm9yIHdlYnBhY2suICBUaGUgZnVuY3Rpb25cbiMgc2hvdWxkIGJlIGNhbGxlZCB3aXRoIF9fZGlybmFtZSBmcm9tIHRoZVxuIyB3ZWJwYWNrLWNvbmZpZy8gc3ViZGlyZWN0b3J5IG9mIGEgcHJvamVjdC5cbm1ha2VfYWxpYXNlcyA9IChkaXJuYW1lKSAtPlxuICBub2RlTW9kdWxlc1BhdGggPSBwYXRoLnJlc29sdmUgZGlybmFtZSwgJy4uJywgJ25vZGVfbW9kdWxlcydcbiAgcGhhc2VyYnVpbGQgPSBwYXRoLnJlc29sdmUgbm9kZU1vZHVsZXNQYXRoLCAncGhhc2VyL2J1aWxkL2N1c3RvbSdcbiAgcGhhc2VyID0gcGF0aC5yZXNvbHZlIHBoYXNlcmJ1aWxkLCAncGhhc2VyLXNwbGl0LmpzJ1xuICBwaXhpID0gcGF0aC5yZXNvbHZlIHBoYXNlcmJ1aWxkLCAncGl4aS5qcydcbiAgcDIgPSBwYXRoLnJlc29sdmUgcGhhc2VyYnVpbGQsICdwMi5qcydcbiAgYWxpYXNlcyA9XG4gICAganF1ZXJ5OiAnanF1ZXJ5L3NyYy9qcXVlcnknXG4gICAgcmVxdWVzdDogJ2Jyb3dzZXItcmVxdWVzdCdcbiAgICBhcHBsZXRzOiBwYXRoLmpvaW4gZGlybmFtZSwgJy4uL2NsaWVudC9hcHBsZXRzJ1xuICAgIHBoYXNlcjogcGhhc2VyXG4gICAgcGl4aTogcGl4aVxuICAgIHAyOiBwMlxuICByZXR1cm4gYWxpYXNlc1xuXG5leHBvcnQgZGVmYXVsdCBtYWtlX2FsaWFzZXNcblxuIl19
