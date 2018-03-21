@@ -1,10 +1,16 @@
-export default [
+module.exports = [
   'backbone'
+  'backbone-validation'
   'backbone.marionette'
+  'backbone.paginator'
   'backbone.radio'
+  'backbone.routefilter'
   'bootstrap'
-  'marionette.toolkit'
   'jquery'
+  'marionette.toolkit'
+  'marked'
+  'ms'
+  'popper.js'
   'teacup'
   'underscore'
   ]
