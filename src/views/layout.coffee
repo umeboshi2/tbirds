@@ -7,6 +7,8 @@ import ShowInitialEmptyContent from '../behaviors/show-initial-empty'
 
 import SlideDownRegion from '../regions/slidedown'
 
+import "../../sass/applet-layout.scss"
+
 NavbarChannel = Backbone.Radio.channel 'navbar'
 
 make_sidebar_template = (columns=3, size='sm', position='left') ->

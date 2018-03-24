@@ -1,0 +1,23 @@
+@import "bootstrap-base";
+@import "themes/cornsilk.scss";
+
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/code";
+//@import "~bootstrap/scss/grid";
+
+.container-fluid {
+    @include make-container();
+}
+
+#applet-content {
+    @include make-row();
+}
+
+#footer {
+    @include make-row();
+}
+
+

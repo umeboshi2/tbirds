@@ -1,0 +1,17 @@
+@import "bootstrap-base";
+@import "themes/cornsilk";
+
+@import "~bootstrap/scss/alert";
+// close needed for dismissable alerts
+@import "~bootstrap/scss/close";
+
+
+// .col-sm-10.col-sm-offset-1
+#messages {
+    @include make-col-ready();
+    @include make-col(10);
+    @include make-col-offset(1);
+    //@extend .col-sm-10;
+    //@extend .offset-sm-1;
+}
+

@@ -6,6 +6,7 @@ import tc from 'teacup'
 import MessagesApp from './tkmessages'
 import NavbarApp from './tknavbar'
 import MainPageLayout from './tklayout'
+import "../sass/tklayout.scss"
 
 MainChannel = Backbone.Radio.channel 'global'
 
@@ -20,6 +21,7 @@ TopApp = Toolkit.App.extend
   options:
     appConfig: {}
   onBeforeStart: ->
+    console.warn "onBeforeStart"
     MainChannel.reply 'main:app:object', =>
       @
     MainChannel.reply 'main:app:config', =>
