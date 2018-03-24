@@ -103,7 +103,7 @@ class RequireController extends Marionette.Object
     
   directLink: (remainder) ->
     if __DEV__
-      console.log "directLink", remainder
+      console.warn "directLink", remainder
     return
     
 class AppletRouter extends Marionette.AppRouter
