@@ -7,6 +7,14 @@
 //@import "~bootstrap/scss/images";
 //@import "~bootstrap/scss/code";
 //@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/buttons";
+
+.btn-default {
+    @extend .btn;
+    @extend .btn-outline-secondary;
+}
+
+
 
 .applet-container {
     @include make-col-ready();

@@ -2,6 +2,8 @@ import tc from 'teacup'
 
 import capitalize from '../util/capitalize'
 
+if __useCssModules__
+  require "../../sass/forms.scss"
 
 ########################################
 # Form Templates

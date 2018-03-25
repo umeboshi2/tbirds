@@ -3,7 +3,9 @@ import Marionette from 'backbone.marionette'
 import Toolkit from 'marionette.toolkit'
 import tc from 'teacup'
 import message_box from './templates/message-box'
-import "../../sass/tkmessages.scss"
+
+if __useCssModules__
+  require "../../sass/tkmessages.scss"
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'

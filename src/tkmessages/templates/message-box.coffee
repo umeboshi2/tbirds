@@ -1,5 +1,8 @@
 import tc from 'teacup'
 
+if __useCssModules__
+  require '../../../sass/message-box.scss'
+  
 message_box = tc.renderable (msg) ->
   lvl = msg.level
   if lvl == 'error'

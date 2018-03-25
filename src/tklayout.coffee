@@ -2,7 +2,8 @@ import Marionette from 'backbone.marionette'
 import tc from 'teacup'
 
 import ModalRegion from './regions/bsmodal'
-import "../sass/tklayout.scss"
+if __useCssModules__
+  require "../sass/main-grid.scss"
 
 class MainPageLayout extends Marionette.View
   template: tc.renderable () ->

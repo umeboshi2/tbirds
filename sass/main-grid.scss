@@ -1,0 +1,16 @@
+@import "bootstrap-base";
+@import "themes/cornsilk.scss";
+
+.container-fluid {
+    @include make-container();
+}
+
+#applet-content {
+    @include make-row();
+}
+
+#footer {
+    @include make-row();
+}
+
+
