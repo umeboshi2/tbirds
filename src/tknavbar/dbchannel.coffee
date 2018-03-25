@@ -27,8 +27,6 @@ NavbarChannel.reply 'new-navbar-entry', ->
   new NavbarEntry
 
 NavbarChannel.reply 'add-entry', (atts, collection) ->
-  #console.log "collections", collections
-  #console.log "collection", collection
   collections[collection].add atts
 
 NavbarChannel.reply 'add-entries', (olist, collection) ->
