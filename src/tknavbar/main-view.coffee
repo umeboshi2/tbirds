@@ -43,7 +43,7 @@ class BootstrapNavBarView extends Marionette.View
         NavbarChannel.request 'add-entry', entry, 'site'
     else
       navbarEntries = @model.get 'navbarEntries'
-      NavbarChannel.request 'add-entries', navbarEntries
+      NavbarChannel.request 'add-entries', navbarEntries, 'site'
     eview = new NavbarEntriesView
       collection: NavbarChannel.request 'get-entries', 'site'
     @showChildView 'siteEntries', eview
