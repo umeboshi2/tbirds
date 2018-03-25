@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import _ from 'underscore'
 import Marionette from 'backbone.marionette'
 import Validation from 'backbone-validation'
