@@ -21,6 +21,7 @@
   "dependencies": {
     "backbone": "^1.3.3",
     "backbone-validation": "^0.11.5",
+    "backbone.eventrouter": "^0.3.0",
     "backbone.marionette": "^3.5.1",
     "backbone.paginator": "^2.0.6",
     "backbone.radio": "^2.0.0",
