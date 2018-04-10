@@ -109,9 +109,7 @@ class RequireController extends Marionette.Object
 class AppletRouter extends Marionette.AppRouter
   appRoutes:
     'http*remainder': 'directLink'
-    ':applet' : 'routeApplet'
-    ':applet/*path': 'routeApplet'
-
+    ':applet*path': 'routeApplet'
   onRoute: (name, path, args) ->
     if name is 'directLink'
       if args.length == 2
