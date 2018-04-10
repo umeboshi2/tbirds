@@ -14,6 +14,7 @@ class TkRouter extends Toolkit.App
     @configRoutes()
     @router = new @EventRouter
       routeTriggers: @_routeTriggers
+      channelName: @channelName
     @bindRouteEvents()
     @listenTo @router, 'noMatch', @stop
 
