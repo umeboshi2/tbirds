@@ -22,16 +22,19 @@ class BootstrapNavBarView extends Marionette.View
     tc.div '.navbar-header'
     tc.div '.site-entries'
     tc.div '.applet-entries'
+    tc.div '.view-entries'
     tc.div '.user-entries.ml-auto'
   ui:
     header: '.navbar-header'
     siteEntries: '.site-entries'
     appletEntries: '.applet-entries'
+    viewEntries: '.view-entries'
     userEntries: '.user-entries'
   regions:
     header: '@ui.header'
     siteEntries: '@ui.siteEntries'
     appletEntries: '@ui.appletEntries'
+    viewEntries: '@ui.viewEntries'
     userEntries: '@ui.userEntries'
   onRender: ->
     if @model.get 'hasUser'

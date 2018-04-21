@@ -13,12 +13,14 @@ class NavbarEntryCollection extends Backbone.Collection
 siteEntryCollection = new NavbarEntryCollection
 userEntryCollection = new NavbarEntryCollection
 appletEntryCollection = new NavbarEntryCollection
+viewEntryCollection = new NavbarEntryCollection
 
 collections =
   site: siteEntryCollection
   user: userEntryCollection
   applet: appletEntryCollection
-
+  view: viewEntryCollection
+  
 NavbarChannel.reply 'get-entries', (collection) ->
   return collections[collection]
 
