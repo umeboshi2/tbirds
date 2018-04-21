@@ -57,6 +57,10 @@ class RequireController extends Marionette.Object
   _handleRoute: (appname, suffix) ->
     if __DEV__
       console.log "_handleRoute", appname, suffix
+    if suffix and suffix.startsWith '/'
+      while suffix.startsWith '/'
+        console.log "Suffix.Startswith", suffix
+        suffix = suffix.slice 1
     config = MainChannel.request 'main:app:config'
     if not appname
       console.warn "No applet recognized", appname
