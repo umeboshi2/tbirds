@@ -53,6 +53,9 @@ class BootstrapNavBarView extends Marionette.View
     aview = new NavbarEntriesView
       collection: NavbarChannel.request 'get-entries', 'applet'
     @showChildView 'appletEntries', aview
+    vview = new NavbarEntriesView
+      collection: NavbarChannel.request 'get-entries', 'view'
+    @showChildView 'viewEntries', vview
     hview = new NavbarHeaderView
       model: new Backbone.Model @model.get 'brand'
     @showChildView 'header', hview
