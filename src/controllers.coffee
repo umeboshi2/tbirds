@@ -8,6 +8,7 @@ import navigate_to_url from './util/navigate-to-url'
 import scroll_top_fast from './util/scroll-top-fast'
 
 MainChannel = Backbone.Radio.channel 'global'
+NavbarChannel = Backbone.Radio.channel 'navbar'
 
 #class BaseController extends Marionette.Object
 BaseController = Marionette.Object.extend
@@ -40,11 +41,6 @@ MainController = BaseController.extend
     region.show @layout
     return
     
-  setup_layout: ->
-    console.warn "don't use setup_layout"
-    @setupLayout()
-    return
-    
   # use this method to create a layout only if
   # needed, making routing within the applet
   # more efficient.
@@ -53,6 +49,8 @@ MainController = BaseController.extend
       @setupLayout()
     else if @layout.isDestroyed()
       @setupLayout()
+    viewEntries = NavbarChannel.request 'get-entries', 'view'
+    viewEntries.reset()
     return
   
   setup_layout_if_needed: ->

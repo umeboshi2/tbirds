@@ -33,3 +33,7 @@ NavbarChannel.reply 'add-entry', (atts, collection) ->
 
 NavbarChannel.reply 'add-entries', (olist, collection) ->
   collections[collection].add olist
+
+NavbarChannel.reply 'clear-entries', (collection) ->
+  collections[collection].reset()
+  

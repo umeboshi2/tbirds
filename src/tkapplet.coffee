@@ -11,6 +11,8 @@ class TkApplet extends Toolkit.App
     entries.reset()
     if @appletEntries
       entries.set @appletEntries
+    viewEntries = NavbarChannel.request 'get-entries', 'view'
+    viewEntries.reset()
   onBeforeStart: ->
     @setupAppletEntries()
     controller = new @Controller
