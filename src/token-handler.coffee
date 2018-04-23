@@ -69,7 +69,7 @@ startUserApp = (app, appConfig) ->
         state:
           currentUser: null
     response.done ->
-      property = appConfig.authToken.tokenResponseProperty or 'token' 
+      property = appConfig.authToken.tokenResponseProperty or 'token'
       token = refresh.get property
       MainChannel.request 'main:app:set-auth-token', token
       # start the app
