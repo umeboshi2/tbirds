@@ -48,6 +48,7 @@ class RequireController extends Marionette.Object
         appConfig: config
         appName: appname
         isFrontdoorApplet: true
+        channelName: appname
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
       Backbone.history.start() unless Backbone.history.started
@@ -79,6 +80,7 @@ class RequireController extends Marionette.Object
       applet = new Applet.default
         appConfig: config
         appName: appname
+        channelName: appname
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
       Backbone.history.loadUrl()
