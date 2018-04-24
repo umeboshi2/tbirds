@@ -74,18 +74,22 @@ MainController = BaseController.extend
     return @layout.getRegion region
     
   _showView: (vclass, model) ->
-    view = new vclass
-      model: model
+    options = model: model
+    if model instanceof Backbone.Collection
+      options = collection: model
+    view = new vclass options
     @layout.showChildView 'content', view
     return
     
-  _isModelPresent: (model) ->
+  _isModelAbsent: (model) ->
+    if model instanceof Backbone.Collection
+      return model.isEmpty()
     # FIXME
     # presume "id" is only attribute there if length is 1
     return model.isEmpty() or Object.keys(model.attributes).length is 1
     
   _loadView: (vclass, model, objname) ->
-    if @_isModelPresent(model)
+    if @_isModelAbsent(model)
       response = model.fetch()
       response.done =>
         @_showView vclass, model
