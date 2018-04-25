@@ -30,7 +30,10 @@ MessageChannel.reply 'display-message', (msg, lvl='info', icon=false) ->
   console.warn 'icon', icon
   add_message msg, lvl, icon
 
-for level in ['success', 'info', 'warning', 'danger']
+levels = [ 'primary', 'secondary', 'success', 'info',
+  'warning', 'danger', 'light', 'dark']
+
+for level in levels
   do (level) ->
     MessageChannel.reply level, (msg, icon=false) ->
       add_message msg, level, icon
