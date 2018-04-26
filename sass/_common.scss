@@ -103,3 +103,19 @@
     border-color: lighten($primary, 10);
 }
 
+.bg-body-d5 {
+    background: darken($background, 5);
+}
+
+.bg-body-d10 {
+    background: darken($background, 10);
+}
+
+.text-local-primary {
+    color: $primary;
+}
+
+.text-local-secondary {
+    color: $secondary;
+}
+
