@@ -40,7 +40,7 @@ class RequireController extends Marionette.Object
     appname = config?.frontdoorApplet or 'frontdoor'
     #handler = System.import "applets/#{appname}/main"
     handler = `import(\`applets/${appname}/main\`)`
-    if __DEV__
+    if __DEV__ and DEBUG
       console.log "Frontdoor system.import", appname
     handler.then (Applet) ->
       # FIXME fix applet structure to provide appropriate export
@@ -56,7 +56,7 @@ class RequireController extends Marionette.Object
     return
     
   _handleRoute: (appname, suffix) ->
-    if __DEV__
+    if __DEV__ and DEBUG
       console.log "_handleRoute", appname, suffix
     if suffix and suffix.startsWith '/'
       while suffix.startsWith '/'
@@ -68,12 +68,13 @@ class RequireController extends Marionette.Object
       appname = 'frontdoor'
     if appname in Object.keys config.appletRoutes
       appname = config.appletRoutes[appname]
-      console.log "Using defined appletRoute", appname
+      if __DEV__
+        console.log "Using defined appletRoute", appname
     if appname in Object.keys registered_apps
       throw new Error "Unhandled applet path ##{appname}/#{suffix}"
     #handler = System.import "applets/#{appname}/main"
     handler = `import(\`applets/${appname}/main\`)`
-    if __DEV__
+    if __DEV__ and DEBUG
       console.log "system.import", appname
     handler.then (Applet) ->
       # FIXME fix applet structure to provide appropriate export
@@ -125,8 +126,8 @@ class AppletRouter extends Marionette.AppRouter
           url = "http#{args[0]}"
         window.open url, '_blank'
       else
-        console.log "unhandled directLink"
-    if __DEV__
+        console.warn "unhandled directLink"
+    if __DEV__ and DEBUG
       console.log "MainRouter.onRoute", name, path, args
 
 MainChannel.reply 'main:app:route', () ->

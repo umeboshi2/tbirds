@@ -1,3 +1,4 @@
+import { result } from 'underscore'
 import Backbone from 'backbone'
 import Marionette from 'backbone.marionette'
 
@@ -9,5 +10,6 @@ export default class ShowInitialEmptyContent extends Marionette.Behavior
   options:
     emptyView: EmptyView
   onDomRefresh: ->
-    view = new @getOption 'emptyView'
+    View = @getOption 'emptyView'
+    view = new View
     @view.showChildView 'content', view
