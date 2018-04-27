@@ -6,6 +6,8 @@ MainChannel = Backbone.Radio.channel 'global'
 import EmptyView from '../views/empty'
 
 export default class ShowInitialEmptyContent extends Marionette.Behavior
+  options:
+    emptyView: EmptyView
   onDomRefresh: ->
-    view = new EmptyView
+    view = new @getOption 'emptyView'
     @view.showChildView 'content', view
