@@ -6,7 +6,7 @@ import imagesLoaded from 'imagesloaded'
 class HasMasonryView extends Marionette.Behavior
   options:
     listContainer: '.list-container'
-    channel: 'global'
+    hasPageableCollection: false
     masonryOptions:
       gutter: 1
       isInitLayout: false
@@ -27,9 +27,12 @@ class HasMasonryView extends Marionette.Behavior
     masonryOptions = @getOption 'masonryOptions'
     items = @$ masonryOptions.itemSelector
     imagesLoaded items, =>
-      @view.masonry.reloadItems()
-      @view.masonry.layout()
-
+      # FIXME we need to find a better option
+      setTimeout =>
+        @view.masonry.reloadItems()
+        @view.masonry.layout()
+      , 700
+      
   onBeforeDestroy: ->
     @view.masonry.destroy()
     
@@ -39,5 +42,10 @@ class HasMasonryView extends Marionette.Behavior
     if @view?.afterDomRefresh
       @view.afterDomRefresh()
     
-  
+  collectionEvents: ->
+    data = {}
+    if @getOption 'hasPageableCollection'
+      data['pageable:state:change'] = 'setMasonryLayout'
+    return data
+    
 export default HasMasonryView
