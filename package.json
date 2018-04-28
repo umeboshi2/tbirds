@@ -49,6 +49,7 @@
     "brace": "^0.11.1",
     "imagesloaded": "^4.1.4",
     "jwt-decode": "^2.2.0",
-    "masonry-layout": "^4.2.1"
+    "masonry-layout": "^4.2.1",
+    "packery": "^2.1.1"
   }
 }
