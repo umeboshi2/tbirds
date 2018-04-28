@@ -106,10 +106,7 @@ class NavbarEntriesView extends Marionette.View
       collection: @collection
     @showChildView 'list', view
   template: tc.renderable (model) ->
-    tc.div '#navbar-view-collapse.collapse.navbar-collapse', ->
-      tc.div '.navbar-entries.mr-auto'
-      #tc.div '#user-menu.nav.navbar-nav.navbar-right.ml-auto'
-      tc.div '#form-search-container'
+    tc.div '.navbar-entries.mr-auto'
   setAllInactive: ->
     view = @getChildView 'list'
     view.setAllInactive()

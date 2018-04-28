@@ -20,10 +20,11 @@ class BootstrapNavBarView extends Marionette.View
     role: 'navigation'
   template: tc.renderable (model) ->
     tc.div '.navbar-header'
-    tc.div '.site-entries'
-    tc.div '.applet-entries'
-    tc.div '.view-entries'
-    tc.div '.user-entries.ml-auto'
+    tc.div '#navbar-view-collapse.collapse.navbar-collapse', ->
+      tc.div '.site-entries'
+      tc.div '.applet-entries'
+      tc.div '.view-entries'
+      tc.div '.user-entries.ml-auto'
   ui:
     header: '.navbar-header'
     siteEntries: '.site-entries'
