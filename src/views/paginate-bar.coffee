@@ -75,16 +75,47 @@ export default class PaginationView extends Marionette.View
     state = @collection.state
     onLastPage = state.currentPage == state.lastPage
     if direction is 'prev' and state.currentPage
-      response = @collection.getPreviousPage()
+      if state.currentPage != state.firstPage
+        resp = @collection.getPreviousPage()
     else if direction is 'next' and not onLastPage
-      response = @collection.getNextPage()
+      resp = @collection.getNextPage()
+    else if onLastPage
+      return
     else
       throw new Error "bad direction '#{direction}'"
     @updateNavButtons()
-
+    return resp
+    
   getPreviousPage: ->
     return @getAnotherPage 'prev'
+      
   getNextPage: ->
     return @getAnotherPage 'next'
+      
+  onRender: ->
+    setKeyHandler = @getOption 'setKeyHandler'
+    if setKeyHandler
+      @onRenderHandleKeys()
+      
+  onBeforeDestroy: ->
+    setKeyHandler = @getOption 'setKeyHandler'
+    if setKeyHandler
+      @onBeforeDestroyHandleKeys()
+    
+  keycommands:
+    prev: 37
+    next: 39
+  handleKeyCommand: (command) ->
+    if command in ['prev', 'next']
+      @getAnotherPage command
+  keydownHandler: (event) =>
+    for key, value of @keycommands
+      if event.keyCode == value
+        @handleKeyCommand key
 
+  onRenderHandleKeys: ->
+    $("html").keydown @keydownHandler
+
+  onBeforeDestroyHandleKeys: ->
+    $("html").unbind 'keydown', @keydownHandler
     
