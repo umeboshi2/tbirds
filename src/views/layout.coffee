@@ -7,7 +7,8 @@ import ShowInitialEmptyContent from '../behaviors/show-initial-empty'
 
 import SlideDownRegion from '../regions/slidedown'
 
-import "../../sass/applet-layout.scss"
+if __useCssModules__
+  require "../../sass/applet-layout.scss"
 
 NavbarChannel = Backbone.Radio.channel 'navbar'
 

@@ -6,7 +6,9 @@ import tc from 'teacup'
 import MessagesApp from './tkmessages'
 import NavbarApp from './tknavbar'
 import MainPageLayout from './tklayout'
-import "../sass/tklayout.scss"
+
+if __useCssModules__
+  require "../sass/tklayout.scss"
 
 MainChannel = Backbone.Radio.channel 'global'
 

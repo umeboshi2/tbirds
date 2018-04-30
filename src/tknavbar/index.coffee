@@ -8,7 +8,9 @@ import './dbchannel'
 import NavbarHeaderView from './navbar-header'
 import NavbarEntriesView from './entries'
 import BootstrapNavBarView from './main-view'
-import "../../sass/tknavbar.scss"
+
+if __useCssModules__
+  require "../../sass/tknavbar.scss"
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
