@@ -11,7 +11,10 @@ export default class PaginationView extends Marionette.View
   tagName: 'ul'
   className: 'pagination'
   template: tc.renderable (model) ->
-    state = model.collection.state
+    if model instanceof Backbone.Collection
+      state = model.state
+    else
+      state = model.collection.state
     totalPages = state.totalPages
     firstPage = state.firstPage
     lastPage = state.lastPage
@@ -41,7 +44,6 @@ export default class PaginationView extends Marionette.View
     event.preventDefault()
     el = $(event.target)
     pageNumber = el.attr 'data-pagenumber'
-    console.log "pageNumber", pageNumber
     @collection.getPage Number pageNumber
     @updateNavButtons()
 
@@ -56,7 +58,6 @@ export default class PaginationView extends Marionette.View
         prevItem.removeClass 'disabled'
     nextItem = @ui.nextButton.parent()
     if state.currentPage == state.lastPage
-      console.log "On last page"
       unless nextItem.hasClass 'disabled'
         nextItem.addClass 'disabled'
     else
@@ -74,7 +75,9 @@ export default class PaginationView extends Marionette.View
   getAnotherPage: (direction) ->
     state = @collection.state
     onLastPage = state.currentPage == state.lastPage
-    if direction is 'prev' and state.currentPage
+    # we need this in case the pages start at zero
+    onFirstPage = state.currentPage == state.firstPage
+    if direction is 'prev' and not onFirstPage
       if state.currentPage != state.firstPage
         resp = @collection.getPreviousPage()
     else if direction is 'next' and not onLastPage
