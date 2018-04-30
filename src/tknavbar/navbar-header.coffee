@@ -29,11 +29,11 @@ class NavbarHeaderView extends Marionette.View
   ui:
     brand: '.navbar-brand'
   triggers:
-    'click @ui.brand': 'click:brand'
+    #'click @ui.brand': 'click:brand'
+    click: 'click:brand'
   onRender: ->
     tview = new NavbarToggleButton
     @showChildView 'toggle', tview
-    
     
 export default NavbarHeaderView
 

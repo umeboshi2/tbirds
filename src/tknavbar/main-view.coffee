@@ -56,14 +56,27 @@ class BootstrapNavBarView extends Marionette.View
     vview = new NavbarEntriesView
       collection: NavbarChannel.request 'get-entries', 'view'
     @showChildView 'viewEntries', vview
-    hview = new NavbarHeaderView
+    headerOpts =
       model: new Backbone.Model @model.get 'brand'
+    if @model.get 'navbarBrandTemplate'
+      headerOpts.template = @model.get 'navbarBrandTemplate'
+    hview = new NavbarHeaderView headerOpts
     @showChildView 'header', hview
+
+  _routeToURl: (href) ->
+    router = MainChannel.request 'main-router'
+    router.navigate href, trigger: true
+    return
     
   onChildviewClickBrand: (view, event) ->
     eview = @getChildView 'siteEntries'
     eview.setAllInactive()
-    @navigateOnClickEntry view, event
+    url = view.model.get 'url'
+    url = url or "#"
+    @_routeToURl url
+    return
+    
+
     
   navigateOnClickEntry: (cview, event) ->
     target = event.target
@@ -72,8 +85,8 @@ class BootstrapNavBarView extends Marionette.View
     if href.split('/')[0] == ''
       window.location = href
     else
-      router = MainChannel.request 'main-router'
-      router.navigate href, trigger: true
+      @_routeToURl href
+
       
 
 export default BootstrapNavBarView
