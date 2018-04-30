@@ -8,7 +8,6 @@ import NavbarHeaderView from './navbar-header'
 import NavbarEntriesView from './entries'
 
 MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
 NavbarChannel = Backbone.Radio.channel 'navbar'
     
 class BootstrapNavBarView extends Marionette.View
