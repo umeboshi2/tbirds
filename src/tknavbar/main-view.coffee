@@ -6,6 +6,7 @@ import tc from 'teacup'
 
 import NavbarHeaderView from './navbar-header'
 import NavbarEntriesView from './entries'
+import NavbarToggleButton from './toggle-button'
 
 MainChannel = Backbone.Radio.channel 'global'
 NavbarChannel = Backbone.Radio.channel 'navbar'
@@ -13,12 +14,14 @@ NavbarChannel = Backbone.Radio.channel 'navbar'
 class BootstrapNavBarView extends Marionette.View
   tagName: 'nav'
   id: 'navbar-view'
+  className: 'navbar navbar-expand-md'
   attributes:
     xmlns: 'http://www.w3.org/1999/xhtml'
     'xml:lang': 'en'
     role: 'navigation'
   template: tc.renderable (model) ->
     tc.div '.navbar-header'
+    tc.div '.toggle-button'
     tc.div '#navbar-view-collapse.collapse.navbar-collapse', ->
       tc.div '.site-entries'
       tc.div '.applet-entries'
@@ -30,13 +33,18 @@ class BootstrapNavBarView extends Marionette.View
     appletEntries: '.applet-entries'
     viewEntries: '.view-entries'
     userEntries: '.user-entries'
+    toggleBtn: '.toggle-button'
   regions:
+    toggleBtn: '@ui.toggleBtn'
     header: '@ui.header'
     siteEntries: '@ui.siteEntries'
     appletEntries: '@ui.appletEntries'
     viewEntries: '@ui.viewEntries'
     userEntries: '@ui.userEntries'
+  events:
+    'click @ui.toggleBtn': 'toggleCollapse'
   onRender: ->
+    console.log "@ui.toggleBtn", @ui.toggleBtn
     if @model.get 'hasUser'
       app = MainChannel.request 'main:app:object'
       currentUser = app.getState 'currentUser'
@@ -62,7 +70,9 @@ class BootstrapNavBarView extends Marionette.View
       headerOpts.template = @model.get 'navbarBrandTemplate'
     hview = new NavbarHeaderView headerOpts
     @showChildView 'header', hview
-
+    view = new NavbarToggleButton
+    @showChildView 'toggleBtn', view
+    
   _routeToURl: (href) ->
     router = MainChannel.request 'main-router'
     router.navigate href, trigger: true
@@ -77,7 +87,7 @@ class BootstrapNavBarView extends Marionette.View
     return
     
 
-    
+  
   navigateOnClickEntry: (cview, event) ->
     target = event.target
     # look at href and go there maybe?
@@ -87,6 +97,9 @@ class BootstrapNavBarView extends Marionette.View
     else
       @_routeToURl href
 
+  toggleCollapse: (event) ->
+    console.log "Togglecollapse", event
+    
       
 
 export default BootstrapNavBarView
