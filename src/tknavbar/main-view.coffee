@@ -21,7 +21,6 @@ class BootstrapNavBarView extends Marionette.View
     role: 'navigation'
   template: tc.renderable (model) ->
     tc.div '.navbar-header'
-    tc.div '.toggle-button'
     tc.div '#navbar-view-collapse.collapse.navbar-collapse', ->
       tc.div '.site-entries'
       tc.div '.applet-entries'
@@ -33,18 +32,13 @@ class BootstrapNavBarView extends Marionette.View
     appletEntries: '.applet-entries'
     viewEntries: '.view-entries'
     userEntries: '.user-entries'
-    toggleBtn: '.toggle-button'
   regions:
-    toggleBtn: '@ui.toggleBtn'
     header: '@ui.header'
     siteEntries: '@ui.siteEntries'
     appletEntries: '@ui.appletEntries'
     viewEntries: '@ui.viewEntries'
     userEntries: '@ui.userEntries'
-  events:
-    'click @ui.toggleBtn': 'toggleCollapse'
   onRender: ->
-    console.log "@ui.toggleBtn", @ui.toggleBtn
     if @model.get 'hasUser'
       app = MainChannel.request 'main:app:object'
       currentUser = app.getState 'currentUser'
@@ -70,8 +64,6 @@ class BootstrapNavBarView extends Marionette.View
       headerOpts.template = @model.get 'navbarBrandTemplate'
     hview = new NavbarHeaderView headerOpts
     @showChildView 'header', hview
-    view = new NavbarToggleButton
-    @showChildView 'toggleBtn', view
     
   _routeToURl: (href) ->
     router = MainChannel.request 'main-router'
@@ -86,8 +78,6 @@ class BootstrapNavBarView extends Marionette.View
     @_routeToURl url
     return
     
-
-  
   navigateOnClickEntry: (cview, event) ->
     target = event.target
     # look at href and go there maybe?
@@ -96,11 +86,6 @@ class BootstrapNavBarView extends Marionette.View
       window.location = href
     else
       @_routeToURl href
-
-  toggleCollapse: (event) ->
-    console.log "Togglecollapse", event
-    
-      
 
 export default BootstrapNavBarView
 

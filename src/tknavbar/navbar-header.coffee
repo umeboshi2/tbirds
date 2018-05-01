@@ -2,6 +2,8 @@ import Backbone from 'backbone'
 import Marionette from 'backbone.marionette'
 import tc from 'teacup'
 
+import NavbarToggleButton from './toggle-button'
+
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
 
@@ -9,10 +11,22 @@ MessageChannel = Backbone.Radio.channel 'messages'
 class NavbarHeaderView extends Marionette.View
   template: tc.renderable (model) ->
     tc.a '.navbar-brand', href:model.url, model.label
+    tc.div '.toggle-container'
   ui:
     brand: '.navbar-brand'
+    toggleContainer: '.toggle-container'
+  regions:
+    toggleContainer: '@ui.toggleContainer'
   triggers:
-    click: 'click:brand'
+    'click @ui.brand': 'click:brand'
+  onRender: ->
+    view = new NavbarToggleButton
+    @showChildView 'toggleContainer', view
+    
+
+    
+
+    
 export default NavbarHeaderView
 
 

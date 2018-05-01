@@ -80,8 +80,9 @@ class NavbarEntryCollectionView extends Marionette.CollectionView
     if cview.$el.hasClass "show"
       cview.$el.dropdown('toggle')
     target = event.target
+    # check if icon is clicked
     if target.tagName is "I"
-      console.warn "clicked icon"
+      #console.warn "clicked icon"
       anchor = $(target).parent()
     else
       anchor = $(target)
@@ -92,7 +93,6 @@ class NavbarEntryCollectionView extends Marionette.CollectionView
     else
       router = MainChannel.request 'main-router'
       router.navigate href, trigger: true
-    #cview.closeDropDown()
     
 class NavbarEntriesView extends Marionette.View
   ui:
