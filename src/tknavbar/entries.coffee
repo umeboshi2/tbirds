@@ -24,8 +24,10 @@ class BaseEntryView extends Marionette.View
     'click @ui.entry': 'click:entry'
   set_active: ->
     @$el.addClass 'active'
+    return
   unset_active: ->
     @$el.removeClass 'active'
+    return
     
 class SingleEntryView extends BaseEntryView
   template: tc.renderable (entry) ->
@@ -66,11 +68,13 @@ class NavbarEntryCollectionView extends Marionette.CollectionView
   setAllInactive: ->
     @children.each (view) ->
       view.unset_active()
+    return
       
   onChildviewClickEntry: (cview, event) ->
     @setAllInactive()
     cview.set_active()
     @navigateOnClickEntry cview, event
+    return
     
   navigateOnClickEntry: (cview, event) ->
     # FIXME triggering click:entry
@@ -93,6 +97,7 @@ class NavbarEntryCollectionView extends Marionette.CollectionView
     else
       router = MainChannel.request 'main-router'
       router.navigate href, trigger: true
+    return
     
 class NavbarEntriesView extends Marionette.View
   ui:
@@ -105,12 +110,14 @@ class NavbarEntriesView extends Marionette.View
     view = new NavbarEntryCollectionView
       collection: @collection
     @showChildView 'list', view
+    return
   template: tc.renderable (model) ->
     tc.div '.navbar-entries.mr-auto'
   setAllInactive: ->
     view = @getChildView 'list'
     view.setAllInactive()
-    
+    return
+   
     
 export default NavbarEntriesView
 
