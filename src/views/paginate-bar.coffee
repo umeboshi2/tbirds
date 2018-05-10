@@ -6,10 +6,23 @@ import tc from 'teacup'
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
 
+numberedPageItem = (p) ->
+  tc.li '.page-item', ->
+  tc.a '.numbered-page.page-link.bg-body-d5.text-dark',
+  href:'#', data: pageNumber: p, p
+
 # this needs to be contained in a 'nav' region
 export default class PaginationView extends Marionette.View
+  options: ->
+    setKeyHandler: false
+    barLength: 15
+    barStopAt: 7
   tagName: 'ul'
   className: 'pagination'
+  templateContext: ->
+    collection: @collection
+    barLength: @getOption 'barLength'
+    barStopAt: @getOption 'barStopAt'
   template: tc.renderable (model) ->
     if model instanceof Backbone.Collection
       state = model.state
@@ -18,18 +31,30 @@ export default class PaginationView extends Marionette.View
     totalPages = state.totalPages
     firstPage = state.firstPage
     lastPage = state.lastPage
+    ellipsis = false
+    if lastPage > model.barLength
+      ellipsis = true
+      stopAt = model.barStopAt
+      resumeAt = lastPage - model.barStopAt
     tc.li '.page-item', ->
       tc.a '.prev.page-link.bg-body-d5', ->
         tc.i '.fa.fa-arrow-left'
+    ellipsisDrawn = false
     for p in [firstPage..lastPage]
+      if ellipsis
+        if p >= stopAt and p <= resumeAt
+          if not ellipsisDrawn
+            ellipsisDrawn = true
+            tc.li '.page-item', ->
+              tc.a '.ellipsis-page.page-link.bg-body-d5.text-dark',
+              '...'
+          continue
       tc.li '.page-item', ->
         tc.a '.numbered-page.page-link.bg-body-d5.text-dark',
         href:'#', data: pageNumber: p, p
     tc.li '.page-item', ->
       tc.a '.next.page-link.bg-body-d5', ->
         tc.i '.fa.fa-arrow-right'
-  templateContext: ->
-    collection: @collection
   ui:
     numberedPage: '.numbered-page'
     prevButton: '.prev'
