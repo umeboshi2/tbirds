@@ -39,6 +39,9 @@ class SingleEntryView extends BaseEntryView
 
 class DropdownEntryView extends BaseEntryView
   className: 'nav-item dropdown'
+  ui: ->
+    toggleButton: '.dropdown-toggle'
+    entry: '.navbar-entry'
   template: tc.renderable (entry) ->
     tc.a '.nav-link.dropdown-toggle',
     role:'button', 'data-toggle':'dropdown', ->
@@ -82,7 +85,8 @@ class NavbarEntryCollectionView extends Marionette.CollectionView
     # this closes the navbar menu
     event.stopPropagation()
     if cview.$el.hasClass "show"
-      cview.$el.dropdown('toggle')
+      #cview.$el.dropdown('toggle')
+      cview.ui.toggleButton.click()
     target = event.target
     # check if icon is clicked
     if target.tagName is "I"
