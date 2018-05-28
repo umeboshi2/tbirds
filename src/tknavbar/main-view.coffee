@@ -66,6 +66,8 @@ class BootstrapNavBarView extends Marionette.View
     @showChildView 'header', hview
     
   _routeToURl: (href) ->
+    if href.startsWith '/'
+      window.open href
     router = MainChannel.request 'main-router'
     router.navigate href, trigger: true
     return
