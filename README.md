@@ -323,6 +323,34 @@ module.exports =
     
 ```
 
+## Using Backbone Models and Collections
+
+Models and collections can be accessed through a ```Backbone.Radio``` 
+channel.  Radio requests are made in the form ```db:{model}:{action}```.  When 
+the object is constructed, a default persistent collection is created, 
+which can be accessed by a radio request: ```db:{model}:collection```.
+
+Object actions (Prepend ```db:{model}:```)
+
+
+- ```collection```: returns the persistent collection property of object
+	
+- ```new```*(attributes)*: Returns a new instance of a model with attributes
+	
+- ```add```*(attributes)*: adds a new model with attributes.  Triggers
+  ```db:{model}:inserted```
+	
+- ```get```*(id)*: returns model from persistent connection, or creates new
+model with "id."
+
+- ```modelClass```: returns model class
+
+- ```collectionClass```: returns collection class
+
+		
+
+
+
 
 ## Decaffeination
 
