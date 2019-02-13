@@ -14,7 +14,7 @@ coffeeLoaderDevRule =
     sourceMap: true
 
 coffeeLoaderRule =
-  development: coffeeLoaderDevRule
+  development: coffeeLoaderTranspileRule
   production: coffeeLoaderTranspileRule
   
 module.exports = coffeeLoaderRule
