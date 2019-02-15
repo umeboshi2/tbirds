@@ -1,4 +1,5 @@
 import Marionette from 'backbone.marionette'
+import AppRouter from 'marionette.approuter'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -113,7 +114,7 @@ class RequireController extends Marionette.Object
       console.warn "directLink", remainder
     return
     
-class AppletRouter extends Marionette.AppRouter
+class AppletRouter extends AppRouter
   appRoutes:
     'http*remainder': 'directLink'
     ':applet*path': 'routeApplet'
