@@ -71,7 +71,12 @@ class BootstrapNavBarView extends Marionette.View
     router = MainChannel.request 'main-router'
     router.navigate href, trigger: true
     return
+
+  childViewEvents:
+    'click:brand': 'onChildviewClickBrand'
     
+  # onChildviewClickBrand will not be called
+  # without setting @childViewEvents
   onChildviewClickBrand: (view, event) ->
     eview = @getChildView 'siteEntries'
     eview.setAllInactive()
@@ -80,15 +85,6 @@ class BootstrapNavBarView extends Marionette.View
     @_routeToURl url
     return
     
-  navigateOnClickEntry: (cview, event) ->
-    target = event.target
-    # look at href and go there maybe?
-    href = $(target).attr 'href'
-    if href.split('/')[0] == ''
-      window.location = href
-    else
-      @_routeToURl href
-
 export default BootstrapNavBarView
 
 
