@@ -72,7 +72,12 @@ class NavbarEntryCollectionView extends Marionette.CollectionView
     @children.each (view) ->
       view.unset_active()
     return
-      
+
+  childViewEvents:
+    'click:entry': 'onChildviewClickEntry'
+
+  # onChildviewClickEntry will not be called
+  # without setting @childViewEvents
   onChildviewClickEntry: (cview, event) ->
     @setAllInactive()
     cview.set_active()

@@ -29,8 +29,8 @@ TopApp = Toolkit.App.extend
     MainChannel.reply 'main:app:config', =>
       @getOption 'appConfig'
     cfg = @getOption 'appConfig'
-    # FIXME - test for region class
-    @setRegion new Marionette.Region el: cfg?.appRegion or 'body'
+    # build main page layout
+    @initPage()
     # setup messages
     useMessages = true
     if cfg.useMessages? and cfg.useMessages is false
@@ -58,11 +58,11 @@ TopApp = Toolkit.App.extend
     AppLayout = cfg?.layout or MainPageLayout
     layoutOpts = cfg.layoutOptions
     layout = new AppLayout cfg.layoutOptions
+    # FIXME - test for region class
+    @setRegion new Marionette.Region el: cfg?.appRegion or 'body'
     @showView layout
 
   onStart: ->
-    # build main page layout
-    @initPage()
     if @getState 'startHistory'
       # FIXME we need something better
       # we seem to be required to, at minimum, load
