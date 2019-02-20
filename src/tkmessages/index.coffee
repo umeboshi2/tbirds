@@ -29,18 +29,12 @@ class MessagesView extends Marionette.CollectionView
   childView: MessageView
 
 class MessagesApp extends Toolkit.App
-  onBeforeStart: ->
+  initialize: (options) ->
     @collection = MessageChannel.request 'messages'
-    @setRegion @options.parentApp.getView().getRegion 'messages'
-    
-  onStart: ->
-    @initPage()
-
-  initPage: ->
     view = new MessagesView
       collection: @collection
     @showView view
-
+    
 export default MessagesApp
   
 

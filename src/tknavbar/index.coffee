@@ -13,31 +13,24 @@ if __useCssModules__
   require "../../sass/tknavbar.scss"
 
 MainChannel = Backbone.Radio.channel 'global'
+NavbarChannel = Backbone.Radio.channel 'navbar'
 MessageChannel = Backbone.Radio.channel 'messages'
 
 class NavbarApp extends Toolkit.App
-  onBeforeStart: ->
-    appConfig = @options.appConfig
-    region = @options.parentApp.getView().getRegion 'navbar'
-    @setRegion region
-    if appConfig.hasUser
-      userMenuApp = @addChildApp 'user-menu',
-        AppClass: appConfig.userMenuApp
-        startWithParent: true
-        appConfig: appConfig
-        ,
-        parentApp: @
-        
-  onStart: ->
-    # build main page layout
-    @initPage()
-
-  initPage: ->
-    appConfig = @options.parentApp.options.appConfig
+  initialize: (options) ->
+    appConfig = @getOption 'appConfig'
     layout = new BootstrapNavBarView
       model: new Backbone.Model appConfig
     @showView layout
+    if __DEV__
+      @_nbview = layout
 
+  onStart: ->
+    # FIXME: @getView() returns root layout view
+    cfg = MainChannel.request 'main:app:config'
+    NavbarChannel.request 'clear-entries', 'site'
+    NavbarChannel.request 'add-entries', cfg.navbarEntries, 'site'
+    
 export default NavbarApp
 
 
