@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { MnObject } from 'backbone.marionette'
 
 import { ToolbarAppletLayout } from './views/layout'
 
@@ -10,8 +10,8 @@ import scroll_top_fast from './util/scroll-top-fast'
 MainChannel = Backbone.Radio.channel 'global'
 NavbarChannel = Backbone.Radio.channel 'navbar'
 
-#class BaseController extends Marionette.Object
-BaseController = Marionette.Object.extend
+#class BaseController extends MnObject
+BaseController = MnObject.extend
   init_page: () ->
     # do nothing
   scrollTop: scroll_top_fast
