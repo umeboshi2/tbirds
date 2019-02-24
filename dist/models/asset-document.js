@@ -1,0 +1,22 @@
+var TextAssetDocument;
+
+import Backbone from 'backbone';
+
+TextAssetDocument = class TextAssetDocument extends Backbone.Model {
+  fetch(options) {
+    options = options || {};
+    options.dataType = 'text';
+    return super.fetch(options);
+  }
+
+  parse(response) {
+    return {
+      content: response
+    };
+  }
+
+};
+
+export default TextAssetDocument;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibW9kZWxzL2Fzc2V0LWRvY3VtZW50LmpzIiwic291cmNlcyI6WyJtb2RlbHMvYXNzZXQtZG9jdW1lbnQuY29mZmVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLElBQUE7O0FBQUEsT0FBTyxRQUFQLE1BQUE7O0FBRU0sb0JBQU4sTUFBQSxrQkFBQSxRQUFnQyxRQUFRLENBQUMsTUFBekM7RUFDRSxLQUFPLENBQUMsT0FBRCxDQUFBO0lBQ0wsT0FBQSxHQUFVLE9BQUEsSUFBVyxDQUFBO0lBQ3JCLE9BQU8sQ0FBQyxRQUFSLEdBQW1CO2dCQUZyQixDQUFBLEtBR0UsQ0FBTSxPQUFOO0VBSEs7O0VBSVAsS0FBTyxDQUFDLFFBQUQsQ0FBQTtXQUNMO01BQUEsT0FBQSxFQUFTO0lBQVQ7RUFESzs7QUFMVDs7QUFRQSxPQUFBLFFBQWUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgQmFja2JvbmUgZnJvbSAnYmFja2JvbmUnXG5cbmNsYXNzIFRleHRBc3NldERvY3VtZW50IGV4dGVuZHMgQmFja2JvbmUuTW9kZWxcbiAgZmV0Y2g6IChvcHRpb25zKSAtPlxuICAgIG9wdGlvbnMgPSBvcHRpb25zIG9yIHt9XG4gICAgb3B0aW9ucy5kYXRhVHlwZSA9ICd0ZXh0J1xuICAgIHN1cGVyIG9wdGlvbnNcbiAgcGFyc2U6IChyZXNwb25zZSkgLT5cbiAgICBjb250ZW50OiByZXNwb25zZVxuXG5leHBvcnQgZGVmYXVsdCBUZXh0QXNzZXREb2N1bWVudFxuIl19
