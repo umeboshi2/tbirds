@@ -1,4 +1,4 @@
-import Marionette from 'backbone.marionette'
+import { MnObject } from 'backbone.marionette'
 import AppRouter from 'marionette.approuter'
 
 MainChannel = Backbone.Radio.channel 'global'
@@ -35,7 +35,7 @@ MainChannel.reply 'main:applet:get-applet', (appname) ->
 # js backticks are escaped for dynamic expressions.
 # https://github.com/jashkenas/coffeescript/issues/4834#issuecomment-354375627
 
-class RequireController extends Marionette.Object
+class RequireController extends MnObject
   loadFrontDoor: ->
     config = MainChannel.request 'main:app:config'
     appname = config?.frontdoorApplet or 'frontdoor'

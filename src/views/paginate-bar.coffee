@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
 MainChannel = Backbone.Radio.channel 'global'
@@ -12,7 +12,7 @@ numberedPageItem = (p) ->
   href:'#', data: pageNumber: p, p
 
 # this needs to be contained in a 'nav' region
-export default class PaginationView extends Marionette.View
+export default class PaginationView extends View
   options: ->
     setKeyHandler: false
     barLength: 15

@@ -1,9 +1,9 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { Behavior } from 'backbone.marionette'
 import Packery from 'packery'
 import imagesLoaded from 'imagesloaded'
 
-class HasPackeryView extends Marionette.Behavior
+class HasPackeryView extends Behavior
   options:
     listContainer: '.list-container'
     hasPageableCollection: false

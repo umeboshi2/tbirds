@@ -1,11 +1,11 @@
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
 import ModalRegion from './regions/bsmodal'
 if __useCssModules__
   require "../sass/main-grid.scss"
 
-class MainPageLayout extends Marionette.View
+class MainPageLayout extends View
   template: tc.renderable () ->
     tc.div '#navbar-view-container'
     tc.div ".container-fluid", ->

@@ -1,5 +1,5 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View, CollectionView } from 'backbone.marionette'
 import tc from 'teacup'
 
 import navigate_to_url from '../util/navigate-to-url'
@@ -26,7 +26,7 @@ ConfirmDeleteTemplate = tc.renderable (model) ->
             modal_close_button 'Cancel'
     
 
-class ConfirmDeleteModal extends Marionette.View
+class ConfirmDeleteModal extends View
   template: ConfirmDeleteTemplate
   ui:
     confirm_delete: '#confirm-delete-button'
@@ -43,7 +43,7 @@ class ConfirmDeleteModal extends Marionette.View
     response.fail ->
       MessageChannel.request 'danger', "#{name} NOT deleted."
       
-class BaseItemView extends Marionette.View
+class BaseItemView extends View
   ui:
     edit_item: '.edit-item'
     delete_item: '.delete-item'
@@ -66,13 +66,13 @@ class BaseItemView extends Marionette.View
     show_modal view, true
     MainChannel.request 'main:app:show-modal', view, {backdrop:true}
     
-class BaseListView extends Marionette.View
+class BaseListView extends View
   regions: ->
     itemlist: "##{@item_type}-container"
   ui: ->
     make_new_item: "#new-#{@item_type}"
   onRender: ->
-    view = new Marionette.CollectionView
+    view = new CollectionView
       collection: @collection
       childView: @childView
     @showChildView 'itemlist', view

@@ -1,5 +1,5 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { Region } from 'backbone.marionette'
 import tc from 'teacup'
 
 import RootApp from './root-app'
@@ -10,7 +10,7 @@ MainChannel = Backbone.Radio.channel 'global'
 
 createMainApp = (cfg) ->
   rootEl = cfg?.appRegion or 'body'
-  rootRegion = new Marionette.Region el: rootEl
+  rootRegion = new Region el: rootEl
   mainApp = new RootApp
     appConfig: cfg
     region: rootRegion

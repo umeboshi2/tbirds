@@ -1,5 +1,5 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
 #{ modal_close_button } = require './templates/buttons'
@@ -24,7 +24,7 @@ ConfirmDeleteTemplate = tc.renderable (model) ->
             modal_close_button 'Cancel'
     
 
-class ConfirmDeleteModal extends Backbone.Marionette.View
+class ConfirmDeleteModal extends View
   template: ConfirmDeleteTemplate
   templateContext: ->
     # FIXME this is underscored to hopefully

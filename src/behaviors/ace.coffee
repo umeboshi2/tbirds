@@ -1,6 +1,5 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
-
+import { Behavior } from 'backbone.marionette'
 MainChannel = Backbone.Radio.channel 'global'
 
 import ace from 'brace'
@@ -14,7 +13,7 @@ ACEDEFAULTS:
   
 # view must have editorTheme and editorMode set
 # or should?
-class HasAceEditor extends Backbone.Marionette.Behavior
+class HasAceEditor extends Behavior
   ui:
     editor: '#ace-editor'
   defaults:

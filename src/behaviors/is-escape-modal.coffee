@@ -1,8 +1,8 @@
 import $ from 'jquery'
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { Behavior } from 'backbone.marionette'
 
-export default class IsEscapeModal extends Marionette.Behavior
+export default class IsEscapeModal extends Behavior
   events:
     'click @ui.close_btn': 'onBeforeDestroy'
   keydownHandler: (event_object) =>

@@ -1,7 +1,7 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { MnObject } from 'backbone.marionette'
 
-class DbCollection extends Marionette.Object
+class DbCollection extends MnObject
   initialize: (options) ->
     collectionClass = options.collectionClass or Backbone.Collection
     @collection = new collectionClass

@@ -1,7 +1,7 @@
 import $ from 'jquery'
-import Marionette from 'backbone.marionette'
+import { Region } from 'backbone.marionette'
 
-class SlideDownRegion extends Marionette.Region
+class SlideDownRegion extends Region
   attachHtml: (view) ->
     speed = if @slide_speed then @slide_speed else 'fast'
     @$el.hide()

@@ -1,5 +1,4 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
 import Toolkit from 'marionette.toolkit'
 import tc from 'teacup'
 

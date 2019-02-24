@@ -1,5 +1,4 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
 
 create_model = (collection, options) ->
   model = collection.create()

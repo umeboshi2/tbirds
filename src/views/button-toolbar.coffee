@@ -1,4 +1,4 @@
-import Marionette from 'backbone.marionette'
+import { view, CollectionView } from 'backbone.marionette'
 import tc from 'teacup'
 
 import navigate_to_url from '../util/navigate-to-url'
@@ -10,7 +10,7 @@ defaultEntryTemplate = tc.renderable (model) ->
   
 defaultButtonClassName = "btn btn-outline-primary"
 
-class ToolbarEntryView extends Marionette.View
+class ToolbarEntryView extends View
   tagName: 'button'
   className: ->
     name = @model.get 'buttonClassName'
@@ -25,7 +25,7 @@ class ToolbarEntryView extends Marionette.View
   modelEvents:
     change: 'render'
     
-class ToolbarEntryCollectionView extends Marionette.CollectionView
+class ToolbarEntryCollectionView extends CollectionView
   childView: ToolbarEntryView
   childViewOptions: ->
     template: @getOption 'entryTemplate'
@@ -34,7 +34,7 @@ class ToolbarEntryCollectionView extends Marionette.CollectionView
   childViewTriggers:
     'button:clicked': 'toolbar:entry:clicked'
      
-class ToolbarView extends Marionette.View
+class ToolbarView extends View
   template: tc.renderable () ->
     tc.div '.toolbar-entries'
   regions:

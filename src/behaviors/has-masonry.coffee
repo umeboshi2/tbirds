@@ -1,9 +1,9 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { Behavior } from 'backbone.marionette'
 import Masonry from 'masonry-layout'
 import imagesLoaded from 'imagesloaded'
 
-class HasMasonryView extends Marionette.Behavior
+class HasMasonryView extends Behavior
   options:
     listContainer: '.list-container'
     hasPageableCollection: false

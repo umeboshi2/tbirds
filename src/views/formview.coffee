@@ -1,9 +1,9 @@
 import $ from 'jquery'
 import _ from 'underscore'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import Validation from 'backbone.validation'
 
-export default class FormView extends Marionette.View
+export default class FormView extends View
   constructor: ->
     super arguments...
 

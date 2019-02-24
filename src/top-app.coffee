@@ -1,5 +1,5 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { Region } from 'backbone.marionette'
 import Toolkit from 'marionette.toolkit'
 import tc from 'teacup'
 
@@ -59,7 +59,7 @@ TopApp = Toolkit.App.extend
     layoutOpts = cfg.layoutOptions
     layout = new AppLayout cfg.layoutOptions
     # FIXME - test for region class
-    @setRegion new Marionette.Region el: cfg?.appRegion or 'body'
+    @setRegion new Region el: cfg?.appRegion or 'body'
     @showView layout
 
   onStart: ->

@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import Toolkit from 'marionette.toolkit'
 import tc from 'teacup'
 
@@ -11,7 +11,7 @@ import NavbarToggleButton from './toggle-button'
 MainChannel = Backbone.Radio.channel 'global'
 NavbarChannel = Backbone.Radio.channel 'navbar'
     
-class BootstrapNavBarView extends Marionette.View
+class BootstrapNavBarView extends View
   tagName: 'nav'
   id: 'navbar-view'
   className: 'navbar navbar-expand-md'

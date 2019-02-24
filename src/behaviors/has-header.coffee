@@ -1,5 +1,5 @@
-import Marionette from 'backbone.marionette'
+import { Behavior } from 'backbone.marionette'
 
-export default class HasHeader extends Marionette.Behavior
+export default class HasHeader extends Behavior
   onSetHeader: (text) ->
     @ui.header.text text

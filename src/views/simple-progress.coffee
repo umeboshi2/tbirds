@@ -1,5 +1,5 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
 class ProgressModel extends Backbone.Model
@@ -8,7 +8,7 @@ class ProgressModel extends Backbone.Model
     valuemax: 100
     valuenow: 0
 
-class ProgressView extends Marionette.View
+class ProgressView extends View
   template: tc.renderable (model) ->
     tc.div '.progress', ->
       aria =

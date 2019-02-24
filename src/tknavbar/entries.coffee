@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View, CollectionView } from 'backbone.marionette'
 import tc from 'teacup'
 
 import NavbarEntry from './entry-model'
@@ -8,7 +8,7 @@ import NavbarEntry from './entry-model'
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
 
-class BaseEntryView extends Marionette.View
+class BaseEntryView extends View
   model: NavbarEntry
   tagName: 'li'
   className: 'nav-item'
@@ -58,7 +58,7 @@ class DropdownEntryView extends BaseEntryView
               tc.text " "
             tc.text link.label
 
-class NavbarEntryCollectionView extends Marionette.CollectionView
+class NavbarEntryCollectionView extends CollectionView
   tagName: 'ul'
   className: 'navbar-nav'
   
@@ -108,7 +108,7 @@ class NavbarEntryCollectionView extends Marionette.CollectionView
       router.navigate href, trigger: true
     return
     
-class NavbarEntriesView extends Marionette.View
+class NavbarEntriesView extends View
   ui:
     list: '.navbar-entries'
   regions:

@@ -1,5 +1,5 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View, CollectionView } from 'backbone.marionette'
 import Toolkit from 'marionette.toolkit'
 import tc from 'teacup'
 import message_box from './templates/message-box'
@@ -12,7 +12,7 @@ MessageChannel = Backbone.Radio.channel 'messages'
 
 import './dbchannel'
 
-class MessageView extends Marionette.View
+class MessageView extends View
   template: tc.renderable (model) ->
     if typeof model.content is 'function'
       model.content model
@@ -25,7 +25,7 @@ class MessageView extends Marionette.View
   destroy_message: ->
     MessageChannel.request 'delete-message', @model
     
-class MessagesView extends Marionette.CollectionView
+class MessagesView extends CollectionView
   childView: MessageView
 
 class MessagesApp extends Toolkit.App

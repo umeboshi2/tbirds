@@ -1,12 +1,12 @@
 import $ from 'jquery'
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
 AppChannel = Backbone.Radio.channel 'ebcsv'
 
-class BaseModalView extends Marionette.View
+class BaseModalView extends View
   ui:
     html: 'html'
     close_btn: '#close-modal div'

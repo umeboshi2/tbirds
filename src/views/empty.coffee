@@ -1,8 +1,8 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
-export default class EmptyView extends Marionette.View
+export default class EmptyView extends View
   template: tc.renderable ->
     tc.div '.jumbotron', ->
       tc.h1 ->

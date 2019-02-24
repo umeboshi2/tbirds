@@ -1,5 +1,5 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import tc from 'teacup'
 import ms from 'ms'
 
@@ -21,7 +21,7 @@ make_sidebar_template = (columns=3, size='sm', position='left') ->
       tc.div "#sidebar.col-#{size}-#{columns}.right-column"
 
 
-class BaseAppletLayout extends Marionette.View
+class BaseAppletLayout extends View
   className: 'applet-container'
   onBeforeDestroy: ->
     entries = NavbarChannel.request 'get-entries', 'applet'
