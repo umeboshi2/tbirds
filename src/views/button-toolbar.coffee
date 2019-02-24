@@ -1,4 +1,4 @@
-import { view, CollectionView } from 'backbone.marionette'
+import { View, CollectionView } from 'backbone.marionette'
 import tc from 'teacup'
 
 import navigate_to_url from '../util/navigate-to-url'
