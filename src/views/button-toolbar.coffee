@@ -11,7 +11,7 @@ default_entry_template = tc.renderable (model) ->
 class ToolbarEntryView extends Marionette.View
   tagName: 'button'
   attributes:
-    'class': 'btn btn-secondary'
+    'class': 'btn btn-outline-primary'
   triggers:
     # we capture every click within the view
     # we don't need ui hash
@@ -25,9 +25,9 @@ class ToolbarEntryCollectionView extends Marionette.CollectionView
   childViewOptions: ->
     template: @options.entryTemplate
   className: 'btn-group btn-group-justified'
-  onChildviewButtonClicked: (child) ->
-    @trigger 'toolbar:entry:clicked', child
-    
+  childViewTriggers:
+    'button:clicked': 'toolbar:entry:clicked'
+     
 class ToolbarView extends Marionette.View
   template: tc.renderable () ->
     tc.div '.toolbar-entries'
