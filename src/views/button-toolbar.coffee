@@ -42,7 +42,7 @@ class ToolbarView extends View
       el: '.toolbar-entries'
       #replaceElement: true
   onRender: ->
-    entryTemplate = @getOption('entryTemplate') or defaultButtonTemplate
+    entryTemplate = @getOption('entryTemplate') or defaultEntryTemplate
     buttonClassName = @getOption('buttonClassName') or defaultButtonClassName
     view = new ToolbarEntryCollectionView
       collection: @collection
