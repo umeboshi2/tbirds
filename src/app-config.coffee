@@ -36,7 +36,7 @@ appConfig =
   needLogin: false
 
   # the url for login
-  loginUrl: '/#frontdoor/login'
+  loginUrl: '#login'
   guestUserName: 'Guest'
   
   # navbar entries is an array of objects
@@ -48,13 +48,15 @@ appConfig =
   # respond to property prefixes urls.
   appletRoutes:
     pages: 'frontdoor'
+    login: 'frontdoor'
+    logout: 'frontdoor'
     
 
   # authToken is for auth token config
   authToken:
     refreshInterval: '5m'
     refreshIntervalMultiple: 3
-    loginUrl: '#frontdoor/login'
+    loginUrl: '#login'
     refreshUrl: '/auth/refresh'
     bearerName: 'Bearer'
     requestHeader: 'Authorization'

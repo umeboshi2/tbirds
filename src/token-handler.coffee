@@ -62,7 +62,7 @@ startUserApp = (app, appConfig) ->
       if response.status == 401
         MainChannel.request 'main:app:destroy-auth-token'
         if appConfig.needLogin
-          loginUrl = appConfig.authToken.loginUrl or "#frontdoor/login"
+          loginUrl = appConfig.authToken.loginUrl or "#login"
           window.location.hash = loginUrl
       app.start
         state:

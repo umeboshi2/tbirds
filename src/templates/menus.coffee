@@ -16,7 +16,7 @@ user_menu = tc.renderable (user) ->
       tc.ul '.dropdown-menu', ->
         if name == undefined
           tc.li ->
-            tc.a href:'#frontdoor/login', 'login'
+            tc.a href:'#login', 'login'
         else
           tc.li ->
             tc.a href:'#profile', 'Profile Page'
@@ -45,8 +45,9 @@ user_menu = tc.renderable (user) ->
 
 main_sidebar = tc.renderable (model) ->
   tc.div '.btn-group-vertical', ->
+    entryBtnClass = '.btn.btn-secondary.sidebar-entry-button'
     for entry in model.entries
-      tc.div '.btn.btn-secondary.sidebar-entry-button', 'button-url':entry.url, ->
+      tc.div entryBtnClass, 'button-url':entry.url, ->
         tc.text entry.name
 
 
