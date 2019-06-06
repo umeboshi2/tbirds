@@ -1,23 +1,38 @@
-BootStrapAppRouter = require '../../bootstrap_router'
-
-Controller = require './controller'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
+import AppRouter from 'marionette.approuter'
+import TkApplet from '../../tkapplet'
+import Controller from './controller'
 
 
 MainChannel = Backbone.Radio.channel 'global'
 
 
-class Router extends BootStrapAppRouter
+class Router extends AppRouter
   appRoutes:
     '': 'frontdoor'
     'frontdoor': 'frontdoor'
     'frontdoor/view': 'frontdoor'
-    'frontdoor/view/:name': 'view_page'
-    'frontdoor/login': 'show_login'
+    'frontdoor/view/*name': 'viewPage'
+    'frontdoor/login': 'showLogin'
+    'frontdoor/logout': 'showLogout'
+    'login': 'showLogin'
+    'logout': 'showLogout'
     #FIXME
-    'pages/:name': 'view_page'
+    'pages/:name': 'viewPage'
     
-MainChannel.reply 'applet:frontdoor:route', () ->
-  controller = new Controller MainChannel
-  router = new Router
-    controller: controller
+class Applet extends TkApplet
+  Controller: Controller
+  Router: Router
 
+  onStop: ->
+    console.log "(Child) Stopping frontdoor", @.isRunning()
+    super()
+  appletEntries: [
+    {
+      label: 'Main Menu'
+      menu: appletEntries
+    }
+  ]
+
+export default Applet

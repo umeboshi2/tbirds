@@ -1,13 +1,15 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
+import path from 'path'
+import Backbone from 'backbone'
+import Marionette from 'backbone.marionette'
 
 { MainController } = require '../../controllers'
 { login_form } = require '../../templates/forms'
-{ SlideDownRegion } = require 'agate/src/regions'
+import SlideDownRegion from '../../regions/slidedown'
+import navigate_to_url from '../../util/navigate-to-url'
+import { BaseAppletLayout } from '../../views/layout'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
-DocChannel = Backbone.Radio.channel 'static-documents'
 
 tc = require 'teacup'
 
@@ -25,6 +27,20 @@ class FrontdoorLayout extends Backbone.Marionette.View
 class Controller extends MainController
   layoutClass: FrontdoorLayout
   
+  setupLayoutIfNeeded: ->
+    super()
+    @layout.controller = @
+    
+  _viewResource: (doc) ->
+    @setupLayoutIfNeeded()
+    view = new FrontDoorMainView
+      model: doc
+    @layout.showChildView 'content', view
+
+  _viewLogin: ->
+    view = new LoginView
+    @layout.showChildView 'content', view
+    
   _view_resource: (doc) ->
     @setup_layout_if_needed()
     require.ensure [], () =>
@@ -35,49 +51,48 @@ class Controller extends MainController
     # name the chunk
     , 'frontdoor-main-view'
     
-
-  _view_login: ->
-    require.ensure [], () =>
-      LoginView = require './loginview'
-      view = new LoginView
-      @layout.showChildView 'content', view
-      #@_show_content view
-    # name the chunk
-    , 'frontdoor-login-view'
-    
-  view_page: (name) ->
-    doc = DocChannel.request 'get-document', name
-    response = doc.fetch()
-    response.done =>
-      @_view_resource doc
-    response.fail =>
-      MessageChannel.request 'danger', 'Failed to get document'
-      
-
   frontdoor_needuser: ->
-    user = MainChannel.request 'current-user'
-    if user.has 'name'
-      @frontdoor_hasuser user
+    token = MainChannel.request 'main:app:decode-auth-token'
+    if 'name' in Object.keys token
+      @frontdoor_hasuser token
     else
       @show_login()
       
-  show_login: ->
-    @_view_login()
+  showLogin: ->
+    @setupLayoutIfNeeded()
+    @_viewLogin()
+    
+  showLogout: ->
+    MainChannel.request 'main:app:destroy-auth-token'
+    navigate_to_url '/'
     
   frontdoor_hasuser: (user) ->
-    @default_view()
+    @defaultView()
 
-  default_view: ->
-    @setup_layout_if_needed()
-    @view_page 'intro'
-      
+  viewPage: (name) ->
+    console.log "NAME IS", name
+    @setupLayoutIfNeeded()
+    model = MainChannel.request 'main:app:get-document', name
+    #model = new AssetDocument()
+    #model.url = path.join urlRoot, name
+    console.log "MODEL IS", model
+    response = model.fetch()
+    response.done =>
+      @_viewResource model
+    response.fail ->
+      MessageChannel.request 'warning', "failed to get #{name}"
+    
+  defaultView: ->
+    @setupLayoutIfNeeded()
+    #@show_login()
+    @view_readme()
+    
   frontdoor: ->
-    appmodel = MainChannel.request 'main:app:appmodel'
-    if appmodel.get 'needUser'
-      console.log 'needUser is true'
+    config = MainChannel.request 'main:app:config'
+    if config?.needLogin
       @frontdoor_needuser()
     else
-      @default_view()
+      @defaultView()
+      
 
-module.exports = Controller
-
+export default Controller
