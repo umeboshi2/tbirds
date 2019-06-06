@@ -1,6 +1,6 @@
 {
   "name": "tbirds",
-  "version": "0.4.30",
+  "version": "0.4.31",
   "description": "JS and coffeescript modules for marionette apps",
   "main": "dist/index.js",
   "scripts": {
