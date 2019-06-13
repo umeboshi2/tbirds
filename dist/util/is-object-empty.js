@@ -1,0 +1,6 @@
+// https://stackoverflow.com/a/32108184
+export default function(obj) {
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
+};
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC9pcy1vYmplY3QtZW1wdHkuanMiLCJzb3VyY2VzIjpbInV0aWwvaXMtb2JqZWN0LWVtcHR5LmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUNBLE9BQUEsUUFBZSxRQUFBLENBQUMsR0FBRCxDQUFBO1NBQ1osTUFBTSxDQUFDLElBQVAsQ0FBWSxHQUFaLENBQWdCLENBQUMsTUFBakIsS0FBMkIsQ0FBM0IsSUFBZ0MsR0FBRyxDQUFDLFdBQUosS0FBbUI7QUFEdkMiLCJzb3VyY2VzQ29udGVudCI6WyIjIGh0dHBzOi8vc3RhY2tvdmVyZmxvdy5jb20vYS8zMjEwODE4NFxuZXhwb3J0IGRlZmF1bHQgKG9iaikgLT5cbiAgKE9iamVjdC5rZXlzKG9iaikubGVuZ3RoID09IDAgJiYgb2JqLmNvbnN0cnVjdG9yID09IE9iamVjdClcbiJdfQ==
