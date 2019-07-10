@@ -4,7 +4,8 @@ import { Behavior } from 'backbone.marionette'
 export default class PointerOnHover extends Behavior
   options:
     uiProperty: ''
-    isClickable: 'hello'
+    isClickable: true
+    cursor: 'pointer'
   events: ->
     key = 'mouseenter'
     uiProperty = @getOption 'uiProperty'
@@ -22,5 +23,5 @@ export default class PointerOnHover extends Behavior
       else
         el = @$el
       el.css
-        cursor: 'pointer'
+        cursor: @getOption('cursor')
     return
