@@ -30,10 +30,14 @@ class HasAceEditor extends Behavior
     # Automatically scrolling cursor into view after selection change
     # this will be disabled in the next version
     # set editor.$blockScrolling = Infinity to disable this message
+    defaults = @getOption 'defaults'
     @view.editor.$blockScrolling = Infinity
-    @view.editor.setTheme @options.editorTheme
+    @view.editor.setTheme defaults.editorTheme
     if @view.model.has 'doctype'
-      @setEditorMode @view.model.get 'doctype'
+      doctype = @view.model.get 'doctype'
+      if __DEV__
+        console.log "doctype is", doctype
+      @setEditorMode doctype
     if @view?.afterDomRefresh
       @view.afterDomRefresh()
     
