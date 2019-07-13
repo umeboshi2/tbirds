@@ -40,7 +40,7 @@ class RequireController extends MnObject
     config = MainChannel.request 'main:app:config'
     appname = config?.frontdoorApplet or 'frontdoor'
     #handler = System.import "applets/#{appname}/main"
-    handler = `import(\`applets/${appname}/main\`)`
+    handler = `import(\`applets/${appname}/main\`)` # noqa
     if __DEV__ and DEBUG
       console.log "Frontdoor system.import", appname
     handler.then (Applet) ->
@@ -74,7 +74,7 @@ class RequireController extends MnObject
     if appname in Object.keys registered_apps
       throw new Error "Unhandled applet path ##{appname}/#{suffix}"
     #handler = System.import "applets/#{appname}/main"
-    handler = `import(\`applets/${appname}/main\`)`
+    handler = `import(\`applets/${appname}/main\`)` # noqa
     if __DEV__ and DEBUG
       console.log "system.import", appname
     handler.then (Applet) ->
@@ -131,7 +131,7 @@ class AppletRouter extends AppRouter
     if __DEV__ and DEBUG
       console.log "MainRouter.onRoute", name, path, args
 
-MainChannel.reply 'main:app:route', () ->
+MainChannel.reply 'main:app:create-main-router', ->
   controller = new RequireController
   router = new AppletRouter
     controller: controller
@@ -141,6 +141,10 @@ MainChannel.reply 'main:app:route', () ->
     return router
   return
 
+
+MainChannel.reply 'main:app:route', ->
+  console.warn "Use 'main:app:create-main-router' instead."
+  MainChannel.request 'main:app:create-main-router'
 export {
   RequireController
   AppletRouter
