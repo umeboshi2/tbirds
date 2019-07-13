@@ -1,5 +1,4 @@
 import Backbone from 'backbone'
-import navigate_to_url from 'tbirds/util/navigate-to-url'
 import jwtDecode from 'jwt-decode'
 
 #{BasicPageableCollection} = require './basic-pageable-collection'
@@ -63,13 +62,25 @@ setupAuthModels = (appConfig) ->
   MainChannel.reply 'main:app:AuthRefresh', ->
     return AuthRefresh
 
+  currentUser = new Backbone.Model
+  MainChannel.reply 'main:app:currentUser', ->
+    return currentUser
+  MainChannel.reply 'main:app:set-guest-user', ->
+    currentUser.set
+      name: 'guest'
+      fullname: 'Guest User'
+      groups: []
+    return
+
   MainChannel.reply 'main:app:set-auth-token', (token) ->
     localStorage.setItem tokenKeyName, token
-
+    
   MainChannel.reply 'main:app:decode-auth-token', ->
     token = localStorage.getItem tokenKeyName
     if token
-      return jwtDecode token
+      decoded = jwtDecode token
+      currentUser.set decoded
+      return currentUser.toJSON()
     else
       return {}
 
@@ -103,6 +114,7 @@ setupAuthModels = (appConfig) ->
   
   MainChannel.reply 'main:app:destroy-auth-token', ->
     localStorage.removeItem tokenKeyName
+    MainChannel.request 'main:app:set-guest-user'
 
   return
   
