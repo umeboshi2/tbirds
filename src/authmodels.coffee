@@ -63,6 +63,10 @@ setupAuthModels = (appConfig) ->
     return AuthRefresh
 
   currentUser = new Backbone.Model
+    name: 'guest'
+    fullname: 'Guest User'
+    groups: []
+    
   MainChannel.reply 'main:app:currentUser', ->
     return currentUser
   MainChannel.reply 'main:app:set-guest-user', ->
