@@ -1,0 +1,31 @@
+var optValTable;
+
+import tc from 'teacup';
+
+optValTable = tc.renderable(function(model) {
+  return tc.table('.table', function() {
+    var prop, results;
+    tc.thead('.table-info', function() {
+      return tc.tr(function() {
+        tc.th({
+          scope: 'col'
+        }, "Option");
+        return tc.th({
+          scope: 'col'
+        }, "Value");
+      });
+    });
+    results = [];
+    for (prop in model) {
+      results.push(tc.tr(function() {
+        tc.td(prop);
+        return tc.td(model[prop]);
+      }));
+    }
+    return results;
+  });
+});
+
+export default optValTable;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGVtcGxhdGVzL29wdHZhbC10YWJsZS5qcyIsInNvdXJjZXMiOlsidGVtcGxhdGVzL29wdHZhbC10YWJsZS5jb2ZmZWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsSUFBQTs7QUFBQSxPQUFPLEVBQVAsTUFBQTs7QUFFQSxXQUFBLEdBQWMsRUFBRSxDQUFDLFVBQUgsQ0FBYyxRQUFBLENBQUMsS0FBRCxDQUFBO1NBQzFCLEVBQUUsQ0FBQyxLQUFILENBQVMsUUFBVCxFQUFtQixRQUFBLENBQUEsQ0FBQTtBQUNqQixRQUFBLElBQUEsRUFBQTtJQUFBLEVBQUUsQ0FBQyxLQUFILENBQVMsYUFBVCxFQUF3QixRQUFBLENBQUEsQ0FBQTthQUN0QixFQUFFLENBQUMsRUFBSCxDQUFNLFFBQUEsQ0FBQSxDQUFBO1FBQ0osRUFBRSxDQUFDLEVBQUgsQ0FBTTtVQUFBLEtBQUEsRUFBTTtRQUFOLENBQU4sRUFBbUIsUUFBbkI7ZUFDQSxFQUFFLENBQUMsRUFBSCxDQUFNO1VBQUEsS0FBQSxFQUFNO1FBQU4sQ0FBTixFQUFtQixPQUFuQjtNQUZJLENBQU47SUFEc0IsQ0FBeEI7QUFJQTtJQUFBLEtBQUEsYUFBQTttQkFDRSxFQUFFLENBQUMsRUFBSCxDQUFNLFFBQUEsQ0FBQSxDQUFBO1FBQ0osRUFBRSxDQUFDLEVBQUgsQ0FBTSxJQUFOO2VBQ0EsRUFBRSxDQUFDLEVBQUgsQ0FBTSxLQUFNLENBQUEsSUFBQSxDQUFaO01BRkksQ0FBTjtJQURGLENBQUE7O0VBTGlCLENBQW5CO0FBRDBCLENBQWQ7O0FBV2QsT0FBQSxRQUFlIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHRjIGZyb20gJ3RlYWN1cCdcblxub3B0VmFsVGFibGUgPSB0Yy5yZW5kZXJhYmxlIChtb2RlbCkgLT5cbiAgdGMudGFibGUgJy50YWJsZScsIC0+XG4gICAgdGMudGhlYWQgJy50YWJsZS1pbmZvJywgLT5cbiAgICAgIHRjLnRyIC0+XG4gICAgICAgIHRjLnRoIHNjb3BlOidjb2wnLCBcIk9wdGlvblwiXG4gICAgICAgIHRjLnRoIHNjb3BlOidjb2wnLCBcIlZhbHVlXCJcbiAgICBmb3IgcHJvcCBvZiBtb2RlbFxuICAgICAgdGMudHIgLT5cbiAgICAgICAgdGMudGQgcHJvcFxuICAgICAgICB0Yy50ZCBtb2RlbFtwcm9wXVxuXG5leHBvcnQgZGVmYXVsdCBvcHRWYWxUYWJsZVxuIl19
