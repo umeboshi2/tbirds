@@ -19,12 +19,21 @@ class BootstrapModalRegion extends Region
       backdrop: @backdrop
       keyboard: @keyboard
     @$el.modal 'show'
-      
-MainChannel.reply 'main:app:show-modal', (view, options) ->
+
+getModalRegion = ->
   app = MainChannel.request 'main:app:object'
   layout = app.getView()
-  modal_region = layout.getRegion 'modal'
-  modal_region.backdrop = !!options?.backdrop
-  modal_region.show view
+  return layout.getRegion 'modal'
+  
+      
+MainChannel.reply 'main:app:show-modal', (view, options) ->
+  region = getModalRegion()
+  region.backdrop = !!options?.backdrop
+  region.show view
+
+MainChannel.reply 'main:app:empty-modal', ->
+  region = getModalRegion()
+  region.empty()
+  
   
 export default BootstrapModalRegion
