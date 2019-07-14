@@ -51,7 +51,9 @@ class TkApplet extends Toolkit.App
       if __DEV__
         console.log "extra router #{rtr} created"
   getExtraRouter: (name) ->
-    @_extraRouters[name]
+    return @_extraRouters[name]
+  getController: ->
+    return @router.controller
     
       
 export default TkApplet
