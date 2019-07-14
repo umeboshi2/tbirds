@@ -64,7 +64,7 @@ setupAuthModels = (appConfig) ->
 
   currentUser = new Backbone.Model
     isGuest: true
-    name: 'guest'
+    name: 'Guest'
     fullname: 'Guest User'
     groups: []
     
@@ -73,7 +73,7 @@ setupAuthModels = (appConfig) ->
   MainChannel.reply 'main:app:set-guest-user', ->
     currentUser.set
       isGuest: true
-      name: 'guest'
+      name: 'Guest'
       fullname: 'Guest User'
       groups: []
     return
@@ -85,6 +85,9 @@ setupAuthModels = (appConfig) ->
     token = localStorage.getItem tokenKeyName
     if token
       decoded = jwtDecode token
+      isGuest = currentUser.get 'isGuest'
+      if isGuest and decoded.uid
+        currentUser.set 'isGuest', false
       currentUser.set decoded
       return currentUser.toJSON()
     else
