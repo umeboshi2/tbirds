@@ -13,11 +13,8 @@ class BaseEntryView extends View
   tagName: 'li'
   className: 'nav-item'
   templateContext: ->
-    app = MainChannel.request 'main:app:object'
-    context =
-      app: app
-      currentUser: app.getState 'currentUser'
-    return context
+    app: MainChannel.request 'main:app:object'
+    currentUser: MainChannel.request 'main:app:currentUser'
   ui:
     entry: '.navbar-entry'
   triggers:
@@ -42,6 +39,8 @@ class DropdownEntryView extends BaseEntryView
   ui: ->
     toggleButton: '.dropdown-toggle'
     entry: '.navbar-entry'
+  modelEvents:
+    change: 'render'
   template: tc.renderable (entry) ->
     tc.a '.nav-link.dropdown-toggle',
     role:'button', 'data-toggle':'dropdown', ->
@@ -49,7 +48,7 @@ class DropdownEntryView extends BaseEntryView
       tc.b '.caret'
     tc.ul '.dropdown-menu', ->
       for link in entry.menu
-        if link?.needUser and not entry.currentUser
+        if link?.needUser and entry.currentUser.get('isGuest')
           continue
         tc.li ->
           tc.a '.navbar-entry.nav-link.dropdown-item', href:link.url, ->
