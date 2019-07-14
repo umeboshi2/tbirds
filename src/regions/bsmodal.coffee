@@ -11,7 +11,6 @@ class BootstrapModalRegion extends Region
   getEl: (selector) ->
     $el = $ selector
     $el.attr 'class', 'modal'
-    #$el.attr 'class', 'modal fade'
     $el
     
   show: (view) ->
@@ -24,8 +23,7 @@ class BootstrapModalRegion extends Region
 MainChannel.reply 'main:app:show-modal', (view, options) ->
   app = MainChannel.request 'main:app:object'
   layout = app.getView()
-  modal_region = layout.regions.modal
-  #modal_region = MainChannel.request 'main:app:get-region', 'modal'
+  modal_region = layout.getRegion 'modal'
   modal_region.backdrop = !!options?.backdrop
   modal_region.show view
   

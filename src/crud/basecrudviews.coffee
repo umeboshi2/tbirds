@@ -63,7 +63,6 @@ class BaseItemView extends View
       model: @model
     if __DEV__
       console.log 'modal view', view
-    show_modal view, true
     MainChannel.request 'main:app:show-modal', view, {backdrop:true}
     
 class BaseListView extends View
