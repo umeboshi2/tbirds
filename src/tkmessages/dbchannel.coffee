@@ -42,6 +42,10 @@ for level in levels
 MessageChannel.reply 'delete-message', (model) ->
   main_message_collection.remove model
 
+MessageChannel.reply 'xhr-error', (xhr) ->
+  add_message xhr.responseJSON.message, 'danger'
+  
+
 export {BaseMessageCollection}
 
 
