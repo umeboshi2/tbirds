@@ -18,6 +18,7 @@ export default class FormView extends View
     super events
 
   tagName: 'form'
+  className: 'needs-validation'
 
   _baseUI: ->
     submit: 'input[type="submit"]'
@@ -39,18 +40,27 @@ export default class FormView extends View
     @model = @createModel()
     @setupValidation()
 
-  validateField: (e) ->
-    validation = $(e.target).attr('data-validation')
-    value = $(e.target).val()
-    if @model.preValidate validation, value
+  validateInput: (element) ->
+    validation = element.attr('data-validation')
+    value = element.val()
+    valid = @model.preValidate validation, value
+    invalidMessage = @model.preValidate validation, value
+    if invalidMessage
+      formGroup = element.parent()
+      formGroup.children('.invalid-feedback').text invalidMessage
       @invalid @, validation
     else
       @valid @, validation
 
-  processForm: (e) ->
-    e.preventDefault()
-    @showActivityIndicator()
+  validateField: (event) ->
+    element = $(event.target)
+    @validateInput element
 
+  processForm: (event) ->
+    event.preventDefault()
+    @showActivityIndicator()
+    el = $('[data-validation]')
+    @validateInput el
     @updateModel()
     @saveModel()
 

@@ -22,6 +22,7 @@ form_group_input_div = tc.renderable (data) ->
         tc.text data?.content
     else
       input_type selector, atts
+    tc.div '.invalid-feedback'
 
 make_field_input = (field) ->
   tc.renderable (model) ->
@@ -32,6 +33,7 @@ make_field_input = (field) ->
         name: field
         placeholder: field
         value: model[field]
+        data:validation: field
     
 make_field_textarea = (field) ->
   tc.renderable (model) ->
@@ -42,6 +44,7 @@ make_field_textarea = (field) ->
       input_attributes:
         name: field
         placeholder: field
+        data:validation: field
       content: model[field]
 
 make_field_select = (field, optlist) ->
