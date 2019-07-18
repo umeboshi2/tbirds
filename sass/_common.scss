@@ -38,12 +38,6 @@
 }
 
 
-.btn-default {
-    @extend .btn;
-    @extend .btn-outline-secondary;
-}
-
-
 .listview-list {
     background: $background;
     padding: 0.3em;
@@ -103,3 +97,9 @@
 #main-content {
     @include make-col-ready();
 }    
+
+.btn {
+    @extend .btn;
+    // FIXME figure out why border-radius is being lost...
+    border-radius: 0.25rem;
+}
