@@ -5,8 +5,6 @@ import { Behavior } from 'backbone.marionette'
 MainChannel = Backbone.Radio.channel 'global'
 
 export default class IsEscapeModal extends Behavior
-  events:
-    'click @ui.close_btn': 'onBeforeDestroy'
   keydownHandler: (event_object) =>
     keyCode = event_object.keyCode
     # handle escape('esc') key
