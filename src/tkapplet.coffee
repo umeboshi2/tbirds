@@ -15,9 +15,11 @@ class TkApplet extends Toolkit.App
   onBeforeStart: ->
     @setupAppletEntries()
     controller = new @Controller
+      channelName: @getChannel().channelName
     controller.applet = @
     @router = new @Router
       controller: controller
+      channelName: @getChannel().channelName
     if @?.appRoutes
       appRoutes = @appRoutes?() or @appRoutes
       Object.keys(appRoutes).forEach (r) =>
@@ -33,6 +35,8 @@ class TkApplet extends Toolkit.App
         @router.appRoute '', method
     @_extraRouters = {}
     @initExtraRouters()
+    @getChannel().reply 'get-applet', =>
+      return @
   onStop: ->
     if __DEV__
       console.log "Stopping TkApplet", @.isRunning()
