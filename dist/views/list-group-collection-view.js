@@ -1,0 +1,20 @@
+var ListGroupView;
+
+import Backbone from 'backbone';
+
+import Marionette from 'backbone.marionette';
+
+ListGroupView = (function() {
+  class ListGroupView extends Marionette.CollectionView {};
+
+  ListGroupView.prototype.tagName = 'ul';
+
+  ListGroupView.prototype.className = 'list-group';
+
+  return ListGroupView;
+
+}).call(this);
+
+export default ListGroupView;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidmlld3MvbGlzdC1ncm91cC1jb2xsZWN0aW9uLXZpZXcuanMiLCJzb3VyY2VzIjpbInZpZXdzL2xpc3QtZ3JvdXAtY29sbGVjdGlvbi12aWV3LmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxJQUFBOztBQUFBLE9BQU8sUUFBUCxNQUFBOztBQUNBLE9BQU8sVUFBUCxNQUFBOztBQUVNO0VBQU4sTUFBQSxjQUFBLFFBQTRCLFVBQVUsQ0FBQyxlQUF2QyxDQUFBOzswQkFDRSxPQUFBLEdBQVM7OzBCQUNULFNBQUEsR0FBVzs7Ozs7O0FBRWIsT0FBQSxRQUFlIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEJhY2tib25lIGZyb20gJ2JhY2tib25lJ1xuaW1wb3J0IE1hcmlvbmV0dGUgZnJvbSAnYmFja2JvbmUubWFyaW9uZXR0ZSdcblxuY2xhc3MgTGlzdEdyb3VwVmlldyBleHRlbmRzIE1hcmlvbmV0dGUuQ29sbGVjdGlvblZpZXdcbiAgdGFnTmFtZTogJ3VsJ1xuICBjbGFzc05hbWU6ICdsaXN0LWdyb3VwJ1xuXG5leHBvcnQgZGVmYXVsdCBMaXN0R3JvdXBWaWV3XG4iXX0=
