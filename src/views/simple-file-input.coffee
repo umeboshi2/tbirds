@@ -12,12 +12,15 @@ class SimpleFileInput extends Marionette.View
         tc.div '.parse-btn.btn.btn-primary', noDisplay, ->
           tc.text 'upload dropped file'
       tc.div '.card-footer', ->
-        tc.input '.file-input.input.btn.btn-success', type:'file'
+        tc.div '.file-input-wrapper', ->
+          tc.input "##{model.inputId}", type:'file'
+          tc.label 'for':model.inputId, "Choose File"
         tc.span '.parse-chosen-btn.btn.btn-primary', noDisplay, ->
           tc.text model.parseMsg
   templateContext: ->
     parseMsg: @getOption('parseMsg') or 'Parse file'
     headerMsg: @getOption('headerMsg') or 'Drop file'
+    inputId: @getOption('inputId') or 'customFile'
   fileType: 'binary'
   ui:
     fileInput: '.file-input'
