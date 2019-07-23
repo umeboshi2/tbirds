@@ -1,6 +1,6 @@
 import Backbone from 'backbone'
 import 'backbone.routefilter'
-import Marionette from 'backbone.marionette'
+import 'backbone.marionette'
 import AppRouter from 'marionette.approuter'
 
 import navigate_to_url from './util/navigate-to-url'

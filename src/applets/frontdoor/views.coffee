@@ -1,7 +1,7 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-tc = require 'teacup'
-marked = require 'marked'
+import Backbone from 'backbone'
+import { View } from 'backbone.marionette'
+import tc from 'teacup'
+import marked from 'marked'
 
 MainChannel = Backbone.Radio.channel 'global'
 
@@ -11,9 +11,8 @@ DefaultStaticDocumentTemplate = tc.renderable (doc) ->
       tc.raw marked doc.content
 
 
-class FrontDoorMainView extends Backbone.Marionette.View
+class FrontDoorMainView extends View
   template: DefaultStaticDocumentTemplate
 
-module.exports =
-  FrontDoorMainView: FrontDoorMainView
+export { FrontDoorMainView }
 

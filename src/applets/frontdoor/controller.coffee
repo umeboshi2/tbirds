@@ -1,6 +1,6 @@
 import path from 'path'
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 
 { MainController } = require '../../controllers'
 { login_form } = require '../../templates/forms'
@@ -13,20 +13,43 @@ MessageChannel = Backbone.Radio.channel 'messages'
 
 tc = require 'teacup'
 
+import LoginView from './loginview'
+import FrontDoorMainView from './views/docview'
+
+urlRoot = "/assets/documents"
+
+class AssetDocument extends Backbone.Model
+  fetch: (options) ->
+    options = options or {}
+    options.dataType = 'text'
+    super options
+  parse: (response) ->
+    content: response
+
+class AssetCollection extends Backbone.Collection
+  urlRoot: urlRoot
+
+intro = 'intro'
+if __DEV__
+  intro = 'intro-dev'
+class ReadMeModel extends AssetDocument
+  url: "/assets/documents/#{intro}.md"
+
 frontdoor_template = tc.renderable () ->
-  tc.div '#main-content.col-sm-12'
-  
-class FrontdoorLayout extends Backbone.Marionette.View
+  #tc.div '#main-content.col-sm-10.col-sm-offset-1'
+  tc.div '.row', ->
+    tc.div '#main-content'
+
+class FrontdoorLayout extends BaseAppletLayout
   template: frontdoor_template
   regions: ->
     content: new SlideDownRegion
       el: '#main-content'
       speed: 'slow'
-  
 
 class Controller extends MainController
   layoutClass: FrontdoorLayout
-  
+
   setupLayoutIfNeeded: ->
     super()
     @layout.controller = @
@@ -41,16 +64,6 @@ class Controller extends MainController
     view = new LoginView
     @layout.showChildView 'content', view
     
-  _view_resource: (doc) ->
-    @setup_layout_if_needed()
-    require.ensure [], () =>
-      { FrontDoorMainView } = require './views'
-      view = new FrontDoorMainView
-        model: doc
-      @layout.showChildView 'content', view
-    # name the chunk
-    , 'frontdoor-main-view'
-    
   frontdoor_needuser: ->
     token = MainChannel.request 'main:app:decode-auth-token'
     if 'name' in Object.keys token
@@ -64,18 +77,17 @@ class Controller extends MainController
     
   showLogout: ->
     MainChannel.request 'main:app:destroy-auth-token'
-    navigate_to_url '/'
+    SiteNavChannel.request 'set-index-entries'
+    navigate_to_url '#'
     
   frontdoor_hasuser: (user) ->
     @defaultView()
 
   viewPage: (name) ->
-    console.log "NAME IS", name
+    if __DEV__
+      console.log "NAME IS", name
     @setupLayoutIfNeeded()
     model = MainChannel.request 'main:app:get-document', name
-    #model = new AssetDocument()
-    #model.url = path.join urlRoot, name
-    console.log "MODEL IS", model
     response = model.fetch()
     response.done =>
       @_viewResource model
@@ -94,5 +106,5 @@ class Controller extends MainController
     else
       @defaultView()
       
-
 export default Controller
+

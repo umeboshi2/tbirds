@@ -1,8 +1,8 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
-class SimpleFileInput extends Marionette.View
+class SimpleFileInput extends View
   template: tc.renderable (model) ->
     noDisplay = style:'display:none'
     tc.div '.dropzone.card', ->

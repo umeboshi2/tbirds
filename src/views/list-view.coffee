@@ -1,10 +1,10 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 
 import ListGroupView from './list-group-collection-view.coffee'
 import PaginateBar from './paginate-bar'
 
-class ListView extends Marionette.View
+class ListView extends View
   regions: ->
     itemList: '@ui.itemList'
     paginateBar: '@ui.paginateBar'

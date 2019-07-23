@@ -1,11 +1,11 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import tc from 'teacup'
 import Leaflet from 'leaflet'
 
 import 'leaflet/dist/leaflet.css'
 
-class MapView extends Marionette.View
+class MapView extends View
   template: tc.renderable (model) ->
     tc.div '.row', ->
       tc.h2 "Map View"

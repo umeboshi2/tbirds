@@ -1,12 +1,13 @@
-Backbone = require 'backbone'
-Marionette = require 'backbone.marionette'
-tc = require 'teacup'
+import $ from 'jquery'
+import Backbone from 'backbone'
+import { View } from 'backbone.marionette'
+import tc from 'teacup'
 
-make_field_input_ui = require '../../util/make-field-input-ui'
-navigate_to_url = require '../../util/navigate-to-url'
+import make_field_input_ui from '../../util/make-field-input-ui'
+import navigate_to_url from '../../util/navigate-to-url'
 
 { form_group_input_div } = require '../../templates/forms'
-BootstrapFormView = require '../../views/bsformview'
+import BootstrapFormView from '../../views/bsformview'
 
 MainChannel = Backbone.Radio.channel 'global'
 MessageChannel = Backbone.Radio.channel 'messages'
@@ -25,7 +26,7 @@ login_form =  tc.renderable (user) ->
       name: 'password'
       type: 'password'
       placeholder: 'Type your password here....'
-  tc.input '.btn.btn-secondary', type:'submit', value:'login'
+  tc.input '.btn.btn-primary', type:'submit', value:'login'
   tc.div '.spinner.fa.fa-spinner.fa-spin'
 
 
@@ -38,7 +39,7 @@ class BaseView extends BootstrapFormView
   onSuccess: ->
     # FIXME start reloading the child apps
     # that recognize users
-    navigate_to_url '/'
+    navigate_to_url '#'
     
 
 
@@ -81,7 +82,7 @@ token_form =  tc.renderable (user) ->
     input_attributes:
       name: 'token'
       placeholder: 'xxxxxxxxxxxxxxx'
-  tc.input '.btn.btn-default', type:'submit', value:'login'
+  tc.input '.btn.btn-primary', type:'submit', value:'login'
   tc.div '.spinner.fa.fa-spinner.fa-spin'
 
 class TokenView extends BaseView
@@ -103,7 +104,7 @@ class TokenView extends BaseView
     response.done =>
       @trigger 'save:form:success', @model
 
-class MainView extends Marionette.View
+class MainView extends View
   template: tc.renderable (model) ->
     tc.div '#login-form'
     tc.div '#token-form'
@@ -118,4 +119,4 @@ class MainView extends Marionette.View
 
     
     
-module.exports = MainView
+export default MainView

@@ -1,5 +1,5 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import 'backbone.marionette'
 import AppRouter from 'marionette.approuter'
 import TkApplet from '../../tkapplet'
 import Controller from './controller'

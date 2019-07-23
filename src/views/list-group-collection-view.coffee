@@ -1,7 +1,7 @@
 import Backbone from 'backbone'
-import Marionette from 'backbone.marionette'
+import { CollectionView } from 'backbone.marionette'
 
-class ListGroupView extends Marionette.CollectionView
+class ListGroupView extends CollectionView
   tagName: 'ul'
   className: 'list-group'
 
