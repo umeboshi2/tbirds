@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import Backbone from 'backbone'
-import Toolkit from 'marionette.toolkit'
+import { App } from 'marionette.toolkit'
 import tc from 'teacup'
 
 import './dbchannel'
@@ -15,7 +15,7 @@ MainChannel = Backbone.Radio.channel 'global'
 NavbarChannel = Backbone.Radio.channel 'navbar'
 MessageChannel = Backbone.Radio.channel 'messages'
 
-class NavbarApp extends Toolkit.App
+class NavbarApp extends App
   initialize: (options) ->
     appConfig = @getOption 'appConfig'
     layout = new BootstrapNavBarView

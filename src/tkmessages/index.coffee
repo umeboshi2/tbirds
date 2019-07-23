@@ -1,6 +1,6 @@
 import Backbone from 'backbone'
 import { View, CollectionView } from 'backbone.marionette'
-import Toolkit from 'marionette.toolkit'
+import { App } from 'marionette.toolkit'
 import tc from 'teacup'
 import message_box from './templates/message-box'
 
@@ -28,7 +28,7 @@ class MessageView extends View
 class MessagesView extends CollectionView
   childView: MessageView
 
-class MessagesApp extends Toolkit.App
+class MessagesApp extends App
   initialize: (options) ->
     @collection = MessageChannel.request 'messages'
     view = new MessagesView

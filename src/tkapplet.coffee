@@ -1,10 +1,10 @@
 import Backbone from 'backbone'
-import Toolkit from 'marionette.toolkit'
+import { App } from 'marionette.toolkit'
 
 MainChannel = Backbone.Radio.channel 'global'
 NavbarChannel = Backbone.Radio.channel 'navbar'
 
-class TkApplet extends Toolkit.App
+class TkApplet extends App
   setupAppletEntries: ->
     entries = NavbarChannel.request 'get-entries', 'applet'
     entries.reset()

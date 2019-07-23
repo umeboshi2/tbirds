@@ -30,7 +30,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
     "marionette.approuter": "^1.0.2",
-    "marionette.toolkit": "^5.0.0",
+    "marionette.toolkit": "^6.0.1",
     "marked": "^0.7.0",
     "ms": "^2.1.2",
     "popper.js": "^1.15.0",
@@ -45,7 +45,7 @@
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-util": "^3.0.8",
-    "mocha": "^6.1.4"
+    "mocha": "^6.2.0"
   },
   "optionalDependencies": {
     "brace": "^0.11.1",

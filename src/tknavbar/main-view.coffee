@@ -1,7 +1,6 @@
 import $ from 'jquery'
 import Backbone from 'backbone'
 import { View } from 'backbone.marionette'
-import Toolkit from 'marionette.toolkit'
 import tc from 'teacup'
 
 import NavbarHeaderView from './navbar-header'

@@ -1,6 +1,6 @@
 import Backbone from 'backbone'
 import { Region } from 'backbone.marionette'
-import Toolkit from 'marionette.toolkit'
+import { App } from 'marionette.toolkit'
 import tc from 'teacup'
 
 import MessagesApp from './tkmessages'
@@ -18,7 +18,7 @@ class TkAppState extends Backbone.Model
     appConfig: {}
     
 MainChannel = Backbone.Radio.channel 'global'
-TopApp = Toolkit.App.extend
+TopApp = App.extend
   StateModel: TkAppState
   options:
     appConfig: {}

@@ -1,5 +1,5 @@
 import Backbone from 'backbone'
-import Toolkit from 'marionette.toolkit'
+import { App } from 'marionette.toolkit'
 import tc from 'teacup'
 
 import MessagesApp from './tkmessages'
@@ -16,7 +16,7 @@ export class TkAppState extends Backbone.Model
     startHistory: true
     appConfig: {}
 
-class RootApp extends Toolkit.App
+class RootApp extends App
   StateModel: TkAppState
   initialize: (options) ->
     @initState options
