@@ -2,6 +2,9 @@ import Backbone from 'backbone'
 import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
+console.warn "Deprecated: try using tbirds/views/progress instead."
+
+
 class ProgressModel extends Backbone.Model
   defaults:
     valuemin: 0
