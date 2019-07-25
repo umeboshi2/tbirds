@@ -48,10 +48,18 @@
     "mocha": "^6.2.0"
   },
   "optionalDependencies": {
+    "@fullcalendar/core": "^4.2.0",
+    "@fullcalendar/daygrid": "^4.2.0",
+    "@fullcalendar/interaction": "^4.2.0",
+    "@fullcalendar/list": "^4.2.0",
+    "@fullcalendar/rrule": "^4.2.0",
+    "@fullcalendar/timegrid": "^4.2.0",
+    "@fullcalendar/timeline": "^4.2.0",
     "brace": "^0.11.1",
     "imagesloaded": "^4.1.4",
     "jwt-decode": "^2.2.0",
     "leaflet": "^1.5.1",
+    "luxon": "^1.17.2",
     "masonry-layout": "^4.2.2",
     "packery": "^2.1.2"
   }
