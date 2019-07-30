@@ -43,7 +43,10 @@ MessageChannel.reply 'delete-message', (model) ->
   main_message_collection.remove model
 
 MessageChannel.reply 'xhr-error', (xhr) ->
-  add_message xhr.responseJSON.message, 'danger'
+  msg = xhr?.responseJSON?.message
+  if not msg
+    msg = xhr.statusText
+  add_message msg, 'danger'
   
 
 export {BaseMessageCollection}
