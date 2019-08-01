@@ -29,5 +29,4 @@ class BaseLocalStorageCollection extends Backbone.Collection
   
 export {
   BaseLocalStorageCollection
-  }  
-
+  }
