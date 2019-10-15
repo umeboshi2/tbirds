@@ -38,14 +38,20 @@
     "underscore": "^1.9.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
     "chai": "^4.2.0",
+    "coffee-loader": "^0.9.0",
     "coffeescript": "^2.4.1",
     "gulp": "^4.0.2",
     "gulp-coffee": "^3.0.3",
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-util": "^3.0.8",
-    "mocha": "^6.2.0"
+    "mocha": "^6.2.1",
+    "mochapack": "^1.1.5",
+    "webpack": "^4.41.1",
+    "webpack-cli": "^3.3.9"
   },
   "optionalDependencies": {
     "@fullcalendar/core": "^4.2.0",
