@@ -1,2 +1,2 @@
 export default (path) ->
-  path.replace /\/$/, ""
+  path.replace /\/+$/, ""
