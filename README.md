@@ -363,3 +363,7 @@ model with "id."
   
 - make broader support for loadable template functions
 
+
+## Tests
+
+- Run a single test file:  ```npx mochapack --webpack-config webpack.config-test.coffee {path to test file}```
