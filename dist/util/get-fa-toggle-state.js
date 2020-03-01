@@ -1,0 +1,16 @@
+// FIXME: this may remain unused
+var getFAtoggleState;
+
+getFAtoggleState = function(el) {
+  if (el.hasClass('fa-toggle-off')) {
+    return false;
+  } else if (el.hasClass('fa-toggle-on')) {
+    return true;
+  } else {
+    throw Error("bad el", el);
+  }
+};
+
+export default getFAtoggleState;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC9nZXQtZmEtdG9nZ2xlLXN0YXRlLmpzIiwic291cmNlcyI6WyJ1dGlsL2dldC1mYS10b2dnbGUtc3RhdGUuY29mZmVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQUEsSUFBQTs7QUFDQSxnQkFBQSxHQUFtQixRQUFBLENBQUMsRUFBRCxDQUFBO0VBQ2pCLElBQUcsRUFBRSxDQUFDLFFBQUgsQ0FBWSxlQUFaLENBQUg7QUFDRSxXQUFPLE1BRFQ7R0FBQSxNQUVLLElBQUcsRUFBRSxDQUFDLFFBQUgsQ0FBWSxjQUFaLENBQUg7QUFDSCxXQUFPLEtBREo7R0FBQSxNQUFBO0lBR0gsTUFBTSxLQUFBLENBQU0sUUFBTixFQUFnQixFQUFoQixFQUhIOztBQUhZOztBQVFuQixPQUFBLFFBQWUiLCJzb3VyY2VzQ29udGVudCI6WyIjIEZJWE1FOiB0aGlzIG1heSByZW1haW4gdW51c2VkXG5nZXRGQXRvZ2dsZVN0YXRlID0gKGVsKSAtPlxuICBpZiBlbC5oYXNDbGFzcyAnZmEtdG9nZ2xlLW9mZidcbiAgICByZXR1cm4gZmFsc2VcbiAgZWxzZSBpZiBlbC5oYXNDbGFzcyAnZmEtdG9nZ2xlLW9uJ1xuICAgIHJldHVybiB0cnVlXG4gIGVsc2VcbiAgICB0aHJvdyBFcnJvcihcImJhZCBlbFwiLCBlbClcbiAgICBcbmV4cG9ydCBkZWZhdWx0IGdldEZBdG9nZ2xlU3RhdGVcbiJdfQ==
