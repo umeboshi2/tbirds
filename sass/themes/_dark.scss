@@ -7,12 +7,13 @@
 $primary: $color-cornsilk4;
 
 //$secondary-color: darken($color-RosyBrown, 20%);
-$secondary: $color-DarkSlateBlue;
+$secondary: lighten($color-salmon, 10%);
 
-$background: darken($primary, 30%);
+//$background: darken($primary, 30%);
+$background: $color-black;
 $body-bg: $background;
 $body-color: $color-cornsilk;;
-$link-color: lighten(#ace, 10%);
+$link-color: lighten($color-salmon, 10%);
 
 $navbar-light-color: $link-color;
 $navbar-light-hover-color: $link-color;
@@ -23,6 +24,7 @@ $list-group-bg: lighten(saturate($background, 5%), 5%);
 $card-bg: lighten(saturate($background, 5%), 5%);
 
 $panel-bg: lighten($background, 10%);
+$jumbotron-bg: lighten($background, 10%);
 $modal-content-bg: lighten($background, 10%);
 
 

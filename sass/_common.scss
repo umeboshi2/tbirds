@@ -18,10 +18,6 @@
 }
 
 
-#navbar-brand {
-    //@extend .navbar-header;
-}
-
 #navbar-view {
     @extend .navbar;
     @extend .navbar-expand-md;
@@ -102,4 +98,8 @@
     @extend .btn;
     // FIXME figure out why border-radius is being lost...
     border-radius: 0.25rem;
+}
+
+.navbar-brand span {
+    color: $link-color;
 }
