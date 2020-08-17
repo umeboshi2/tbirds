@@ -17,9 +17,22 @@ class NavbarToggleButton extends View
     'aria-controls': 'navbar-view-collapse'
     'aria-expanded': 'false'
     'aria-label': 'Toggle navigation'
+  ui:
+    icon: '.fa'
   template: tc.renderable ->
-    tc.span '.navbar-toggler-icon'
-    
+    tc.i '.fa.fa-toggle-down.navbar-toggler-icon'
+  events:
+    click: "toggleIcon"
+  toggleIcon: ->
+    icon = @ui.icon
+    if icon.hasClass 'fa-toggle-down'
+      console.log "ICON", icon
+      icon.removeClass 'fa-toggle-down'
+      icon.addClass 'fa-toggle-up'
+    else
+      icon.removeClass 'fa-toggle-up'
+      icon.addClass 'fa-toggle-down'
+      
 export default NavbarToggleButton
 
 
