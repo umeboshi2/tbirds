@@ -26,7 +26,6 @@ class NavbarToggleButton extends View
   toggleIcon: ->
     icon = @ui.icon
     if icon.hasClass 'fa-toggle-down'
-      console.log "ICON", icon
       icon.removeClass 'fa-toggle-down'
       icon.addClass 'fa-toggle-up'
     else
