@@ -27,6 +27,12 @@ $panel-bg: lighten($background, 10%);
 $jumbotron-bg: lighten($background, 10%);
 $modal-content-bg: lighten($background, 10%);
 
+$dropdown-bg: $card-bg;
+$dropdown-link-color: lighten(salmon, 10%);
+
+$dropdown-link-hover-bg: lighten($card-bg, 30%);
+$dropdown-link-hover-color: $dropdown-link-color;
+
 
 $input-bg: $card-bg;
 $input-color: $body-color;
@@ -35,4 +41,8 @@ $input-focus-bg: lighten($card-bg, 5%);
 $input-focus-color: $body-color;
 
 $table-color: lighten($body-color, 10%);
+$custom-select-color:               $input-color;
+$custom-select-disabled-color:      $gray-600 !default;
+$custom-select-bg:                  $input-bg;
+$custom-select-disabled-bg:         $gray-200 !default;
 
