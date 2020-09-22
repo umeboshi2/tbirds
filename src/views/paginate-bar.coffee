@@ -8,7 +8,8 @@ MessageChannel = Backbone.Radio.channel 'messages'
 
 numberedPageItem = (p) ->
   tc.li '.page-item', ->
-  tc.a '.numbered-page.page-link.bg-body-d5.text-dark',
+  #tc.a '.numbered-page.page-link.bg-body-d5.text-dark',
+  tc.a '.numbered-page.page-link',
   href:'#', data: pageNumber: p, p
 
 # this needs to be contained in a 'nav' region
