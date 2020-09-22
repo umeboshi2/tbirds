@@ -8,7 +8,6 @@ MessageChannel = Backbone.Radio.channel 'messages'
 
 numberedPageItem = (p) ->
   tc.li '.page-item', ->
-  #tc.a '.numbered-page.page-link.bg-body-d5.text-dark',
   tc.a '.numbered-page.page-link',
   href:'#', data: pageNumber: p, p
 
@@ -38,7 +37,7 @@ export default class PaginationView extends View
       stopAt = model.barStopAt
       resumeAt = lastPage - model.barStopAt
     tc.li '.page-item', ->
-      tc.a '.prev.page-link.bg-body-d5', ->
+      tc.a '.prev.page-link', ->
         tc.i '.fa.fa-arrow-left'
     ellipsisDrawn = false
     for p in [firstPage..lastPage]
@@ -47,14 +46,14 @@ export default class PaginationView extends View
           if not ellipsisDrawn
             ellipsisDrawn = true
             tc.li '.page-item', ->
-              tc.a '.ellipsis-page.page-link.bg-body-d5.text-dark',
+              tc.a '.ellipsis-page.page-link',
               '...'
           continue
       tc.li '.page-item', ->
-        tc.a '.numbered-page.page-link.bg-body-d5.text-dark',
+        tc.a '.numbered-page.page-link',
         href:'#', data: pageNumber: p, p
     tc.li '.page-item', ->
-      tc.a '.next.page-link.bg-body-d5', ->
+      tc.a '.next.page-link', ->
         tc.i '.fa.fa-arrow-right'
   ui:
     numberedPage: '.numbered-page'
