@@ -89,13 +89,9 @@ export default class PaginationView extends View
       if nextItem.addClass 'disabled'
         nextItem.removeClass 'disabled'
     @ui.numberedPage.parent().removeClass 'active'
-    @ui.numberedPage.removeClass 'text-white'
-    @ui.numberedPage.addClass 'text-dark'
     cp = $("[data-pagenumber=\"#{state.currentPage}\"]")
     cpp = cp.parent()
     cpp.addClass 'active'
-    cp.removeClass 'text-dark'
-    cp.addClass 'text-white'
 
   getAnotherPage: (direction) ->
     state = @collection.state
