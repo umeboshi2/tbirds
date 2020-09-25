@@ -29,5 +29,7 @@ class CheckboxEntryView extends MnView
     @model.set 'selected', not checked
     @trigger "checked:#{not checked}"
     @trigger 'toggled'
+  isSelected: ->
+    return @model.get 'selected'
     
 export default CheckboxEntryView
