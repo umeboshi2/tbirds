@@ -7,9 +7,10 @@
 $primary: $color-cornsilk4;
 
 //$secondary-color: darken($color-RosyBrown, 20%);
-$secondary: lighten($color-salmon, 10%);
+$secondary: lighten(salmon, 10%);
 
 //$background: darken($primary, 30%);
+$primary: $secondary;
 $background: $color-black;
 $body-bg: $background;
 $body-color: $color-cornsilk;;
