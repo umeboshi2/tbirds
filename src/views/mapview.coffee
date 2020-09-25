@@ -1,4 +1,3 @@
-import Backbone from 'backbone'
 import { View } from 'backbone.marionette'
 import tc from 'teacup'
 import Leaflet from 'leaflet'
@@ -6,7 +5,7 @@ import Leaflet from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
 class MapView extends View
-  template: tc.renderable (model) ->
+  template: tc.renderable ->
     tc.div '.row', ->
       tc.h2 "Map View"
     tc.div '.row', ->
@@ -17,7 +16,7 @@ class MapView extends View
     statusMsg: '.status-message'
   onDomRefresh: ->
     @Map = Leaflet.map 'map-view'
-    zoom_level = 13
+    #zoom_level = 13
     layer = Leaflet.tileLayer 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
     layer.addTo @Map
     @Map.on 'moveend', @getCenter
@@ -28,10 +27,10 @@ class MapView extends View
       watch: false
       timeout: 1000
       
-  getCenter: (event) =>
+  getCenter: =>
     console.log @Map.getCenter()
 
-  onLocationError: (event) =>
+  onLocationError: =>
     @ui.statusMsg.text 'unable to get location'
     if __DEV__
       console.log "unable to get location"
@@ -40,7 +39,7 @@ class MapView extends View
     circle = Leaflet.circle location, 200
     circle.addTo @Map
       
-  onLocationFound: (event) =>
+  onLocationFound: =>
     @ui.statusMsg.text 'location found'
     if __DEV__
       console.log "location found", event

@@ -1,7 +1,8 @@
 import $ from 'jquery'
+import { Radio } from 'backbone'
 import { Region } from 'backbone.marionette'
 
-MainChannel = Backbone.Radio.channel 'global'
+MainChannel = Radio.channel 'global'
 
 class BootstrapModalRegion extends Region
   el: '#modal'

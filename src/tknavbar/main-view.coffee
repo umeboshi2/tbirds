@@ -1,14 +1,14 @@
 import $ from 'jquery'
-import Backbone from 'backbone'
+import { Model, Radio } from 'backbone'
 import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
 import NavbarHeaderView from './navbar-header'
 import NavbarEntriesView from './entries'
-import NavbarToggleButton from './toggle-button'
+#import NavbarToggleButton from './toggle-button'
 
-MainChannel = Backbone.Radio.channel 'global'
-NavbarChannel = Backbone.Radio.channel 'navbar'
+MainChannel = Radio.channel 'global'
+NavbarChannel = Radio.channel 'navbar'
     
 class BootstrapNavBarView extends View
   tagName: 'nav'
@@ -18,7 +18,7 @@ class BootstrapNavBarView extends View
     xmlns: 'http://www.w3.org/1999/xhtml'
     'xml:lang': 'en'
     role: 'navigation'
-  template: tc.renderable (model) ->
+  template: tc.renderable ->
     tc.div '.navbar-header'
     tc.div '#navbar-view-collapse.collapse.navbar-collapse', ->
       tc.div '.site-entries'
@@ -58,7 +58,7 @@ class BootstrapNavBarView extends View
       collection: NavbarChannel.request 'get-entries', 'view'
     @showChildView 'viewEntries', vview
     headerOpts =
-      model: new Backbone.Model @model.get 'brand'
+      model: new Model @model.get 'brand'
     if @model.get 'navbarBrandTemplate'
       headerOpts.template = @model.get 'navbarBrandTemplate'
     hview = new NavbarHeaderView headerOpts
@@ -76,7 +76,7 @@ class BootstrapNavBarView extends View
     
   # onChildviewClickBrand will not be called
   # without setting @childViewEvents
-  onChildviewClickBrand: (view, event) ->
+  onChildviewClickBrand: (view) ->
     eview = @getChildView 'siteEntries'
     eview.setAllInactive()
     url = view.model.get 'url'

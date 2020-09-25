@@ -1,7 +1,7 @@
 import { result } from 'underscore'
 import { Behavior } from 'backbone.marionette'
 
-export default class PointerOnHover extends Behavior
+class PointerOnHover extends Behavior
   options:
     uiProperty: ''
     isClickable: true
@@ -25,3 +25,5 @@ export default class PointerOnHover extends Behavior
       el.css
         cursor: @getOption('cursor')
     return
+
+export default PointerOnHover

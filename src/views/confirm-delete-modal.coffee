@@ -1,10 +1,11 @@
-import Marionette from 'backbone.marionette'
+import { Radio } from 'backbone'
+import { View as MnView } from 'backbone.marionette'
 import tc from 'teacup'
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
+MainChannel = Radio.channel 'global'
+MessageChannel = Radio.channel 'messages'
 
-class ConfirmDeleteModal extends Marionette.View
+class ConfirmDeleteModal extends MnView
   template: tc.renderable (model) ->
     name = model.name or "this model"
     tc.div '.modal-dialog', ->

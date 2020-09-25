@@ -1,11 +1,11 @@
-import Backbone from 'backbone'
+import { Model, Collection, Radio } from 'backbone'
 import jwtDecode from 'jwt-decode'
 
 #{BasicPageableCollection} = require './basic-pageable-collection'
 import BasicPageableCollection from './basic-pageable-collection'
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
+MainChannel = Radio.channel 'global'
+MessageChannel = Radio.channel 'messages'
 
 setupAuthModels = (appConfig) ->
   tokenKeyName = appConfig.authToken.tokenKeyName or 'auth_token'
@@ -17,8 +17,6 @@ setupAuthModels = (appConfig) ->
     return "#{appConfig.authToken.bearerName} #{token}"
   
   sendAuthHeader = (xhr) ->
-    rheader = appConfig.authToken.requestHeader
-    aheader = makeAuthHeader()
     xhr.setRequestHeader appConfig.authToken.requestHeader, makeAuthHeader()
     return
     
@@ -31,7 +29,7 @@ setupAuthModels = (appConfig) ->
     options.beforeSend = sendAuthHeader
     return options
 
-  class AuthModel extends Backbone.Model
+  class AuthModel extends Model
     sync: (method, model, options) ->
       options = auth_sync_options options
       super method, model, options
@@ -41,7 +39,7 @@ setupAuthModels = (appConfig) ->
       options = auth_sync_options options
       super method, model, options
 
-  class AuthUnPaginated extends Backbone.Collection
+  class AuthUnPaginated extends Collection
     sync: (method, model, options) ->
       options = auth_sync_options options
       super method, model, options
@@ -62,7 +60,7 @@ setupAuthModels = (appConfig) ->
   MainChannel.reply 'main:app:AuthRefresh', ->
     return AuthRefresh
 
-  currentUser = new Backbone.Model
+  currentUser = new Model
     isGuest: true
     name: 'Guest'
     fullname: 'Guest User'
@@ -109,7 +107,7 @@ setupAuthModels = (appConfig) ->
       return
     response.done ->
       token = refresh.get 'token'
-      decoded = jwtDecode token
+      #decoded = jwtDecode token
       localStorage.setItem tokenKeyName, token
       return
       
@@ -119,7 +117,7 @@ setupAuthModels = (appConfig) ->
     token = MainChannel.request 'main:app:decode-auth-token'
     unless token
       return null
-    return new Backbone.Model token
+    return new Model token
   
   MainChannel.reply 'main:app:destroy-auth-token', ->
     localStorage.removeItem tokenKeyName

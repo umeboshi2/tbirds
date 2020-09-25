@@ -1,6 +1,4 @@
-import Backbone from 'backbone'
 import { View } from 'backbone.marionette'
-import tc from 'teacup'
 import Leaflet from 'leaflet'
 
 import 'leaflet/dist/leaflet.css'
@@ -15,7 +13,7 @@ class MapView extends View
     return style: style
   onDomRefresh: ->
     @Map = Leaflet.map 'map-view'
-    zoom_level = 13
+    #zoom_level = 13
     layer = Leaflet.tileLayer 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
     layer.addTo @Map
 

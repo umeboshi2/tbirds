@@ -4,7 +4,7 @@ import { Model } from 'backbone'
 
 console.warn "Use a better model"
 
-export default class BaseLocalStorageModel extends Model
+class BaseLocalStorageModel extends Model
   initialize: ->
     @fetch()
     @on 'change', @save, @
@@ -15,9 +15,10 @@ export default class BaseLocalStorageModel extends Model
     return $.ajax
       success: options.success
       error: options.error
-  destroy: (options) ->
+  destroy:  ->
     return localStorage.removeItem @id
   isEmpty: () ->
     return _.size @attributes <= 1
 
+export default BaseLocalStorageModel
     

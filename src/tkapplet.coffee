@@ -1,8 +1,7 @@
-import Backbone from 'backbone'
+import { Radio } from 'backbone'
 import { App } from 'marionette.toolkit'
 
-MainChannel = Backbone.Radio.channel 'global'
-NavbarChannel = Backbone.Radio.channel 'navbar'
+NavbarChannel = Radio.channel 'navbar'
 
 class TkApplet extends App
   setupAppletEntries: ->
@@ -47,13 +46,12 @@ class TkApplet extends App
     @_extraRouters[name] = r
   initExtraRouters: ->
     extraRouters = @getOption 'extraRouters'
-    exRtrs = @getOption 'extraRouters'
     for rtr of extraRouters
       ropts = extraRouters[rtr]
-      console.log "rtr", rtr, ropts
       @setExtraRouter rtr, ropts['router'], ropts['controller']
       if __DEV__
         console.log "extra router #{rtr} created"
+        console.log "rtr", rtr, ropts
   getExtraRouter: (name) ->
     return @_extraRouters[name]
   getController: ->

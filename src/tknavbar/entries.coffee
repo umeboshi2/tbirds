@@ -1,12 +1,11 @@
 import $ from 'jquery'
-import Backbone from 'backbone'
+import { Radio } from 'backbone'
 import { View, CollectionView } from 'backbone.marionette'
 import tc from 'teacup'
 
 import NavbarEntry from './entry-model'
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
+MainChannel = Radio.channel 'global'
 
 class BaseEntryView extends View
   model: NavbarEntry
@@ -119,7 +118,7 @@ class NavbarEntriesView extends View
       collection: @collection
     @showChildView 'list', view
     return
-  template: tc.renderable (model) ->
+  template: tc.renderable ->
     tc.div '.navbar-entries.mr-auto'
   setAllInactive: ->
     view = @getChildView 'list'

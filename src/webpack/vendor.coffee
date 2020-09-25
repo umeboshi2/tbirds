@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   'backbone'
   'backbone-validation'
   'backbone.marionette'

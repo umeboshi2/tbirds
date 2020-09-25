@@ -1,4 +1,3 @@
-import Backbone from 'backbone'
 import { CollectionView } from 'backbone.marionette'
 
 class ListGroupView extends CollectionView

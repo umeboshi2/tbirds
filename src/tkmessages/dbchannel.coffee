@@ -1,13 +1,12 @@
-import Backbone from 'backbone'
+import { Model, Collection, Radio } from 'backbone'
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
+MessageChannel = Radio.channel 'messages'
 
-class BaseMessage extends Backbone.Model
+class BaseMessage extends Model
   defaults:
     level: 'info'
   
-class BaseMessageCollection extends Backbone.Collection
+class BaseMessageCollection extends Collection
   model: BaseMessage
 
 main_message_collection = new BaseMessageCollection

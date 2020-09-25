@@ -1,4 +1,4 @@
-import Backbone from 'backbone'
+import { Model } from 'backbone'
 
 create_model = (collection, options) ->
   model = collection.create()
@@ -16,15 +16,17 @@ get_model = (collection, id) ->
     model
 
 make_dbclasses = (objname, url) ->
-  modelClass = class DbModel extends Backbone.Model
+  modelClass = class DbModel extends Model
     urlRoot: url
-  collectionClass = class DbCollection extends Backbone.Model
+  collectionClass = class DbCollection extends Model
     model: modelClass
     url: url
-  return {
+  if __DEV__ and DEBUG
+    console.log "DbModel, DbCollection", DbModel, DbCollection
+  obj =
     modelClass: modelClass
-    collectionClass: collectionClass }
-    
+    collectionClass: collectionClass
+  return obj
 make_dbchannel = (channel, objname, modelClass, collectionClass) ->
   collection = new collectionClass
   channel.reply "#{objname}-collection", ->

@@ -61,7 +61,7 @@ make_field_select = (field, optlist) ->
           tc.option value:opt, opt
           
 make_login_form = (action='/login', method='POST') ->
-  tc.renderable (user) ->
+  tc.renderable ->
     tc.form
       role:'form'
       method: method
@@ -83,7 +83,7 @@ make_login_form = (action='/login', method='POST') ->
 
 login_form = make_login_form()
 
-name_content_form = tc.renderable (model) ->
+name_content_form = tc.renderable ->
   form_group_input_div
     input_id: 'input_name'
     label: 'Name'

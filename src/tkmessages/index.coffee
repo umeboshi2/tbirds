@@ -1,4 +1,4 @@
-import Backbone from 'backbone'
+import { Radio } from 'backbone'
 import { View, CollectionView } from 'backbone.marionette'
 import { App } from 'marionette.toolkit'
 import tc from 'teacup'
@@ -7,8 +7,7 @@ import message_box from './templates/message-box'
 if __useCssModules__
   require "../../sass/tkmessages.scss"
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
+MessageChannel = Radio.channel 'messages'
 
 import './dbchannel'
 
@@ -29,7 +28,7 @@ class MessagesView extends CollectionView
   childView: MessageView
 
 class MessagesApp extends App
-  initialize: (options) ->
+  initialize: ->
     @collection = MessageChannel.request 'messages'
     view = new MessagesView
       collection: @collection

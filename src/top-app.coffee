@@ -1,7 +1,6 @@
-import Backbone from 'backbone'
+import { Model, Radio } from 'backbone'
 import { Region } from 'backbone.marionette'
 import { App } from 'marionette.toolkit'
-import tc from 'teacup'
 
 import MessagesApp from './tkmessages'
 import NavbarApp from './tknavbar'
@@ -10,14 +9,13 @@ import MainPageLayout from './tklayout'
 if __useCssModules__
   require "../sass/tklayout.scss"
 
-MainChannel = Backbone.Radio.channel 'global'
+MainChannel = Radio.channel 'global'
 
-class TkAppState extends Backbone.Model
+class TkAppState extends Model
   defaults:
     startHistory: true
     appConfig: {}
     
-MainChannel = Backbone.Radio.channel 'global'
 TopApp = App.extend
   StateModel: TkAppState
   options:
@@ -36,7 +34,7 @@ TopApp = App.extend
     if cfg.useMessages? and cfg.useMessages is false
       useMessages = false
     if useMessages
-      messagesApp = @addChildApp 'messages',
+      @addChildApp 'messages',
         AppClass: MessagesApp
         startWithParent: true
         ,
@@ -46,7 +44,7 @@ TopApp = App.extend
     if cfg.useNavbar? and cfg.useNavbar is false
       useNavbar = false
     if useNavbar
-      navbarApp = @addChildApp 'navbar',
+      @addChildApp 'navbar',
         AppClass: NavbarApp
         startWithParent: true
         appConfig: cfg
@@ -56,7 +54,6 @@ TopApp = App.extend
   initPage: ->
     cfg = @options.appConfig
     AppLayout = cfg?.layout or MainPageLayout
-    layoutOpts = cfg.layoutOptions
     layout = new AppLayout cfg.layoutOptions
     # FIXME - test for region class
     @setRegion new Region el: cfg?.appRegion or 'body'

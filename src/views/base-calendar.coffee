@@ -3,7 +3,7 @@ import { View } from 'backbone.marionette'
 import { Calendar } from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
-import { DateTime } from 'luxon'
+#import { DateTime } from 'luxon'
 
 import '@fullcalendar/core/main.css'
 import '@fullcalendar/daygrid/main.css'
@@ -15,8 +15,8 @@ class BaseCalendarView extends View
   template: false
   onBeforeDestroy: ->
     cal = @fullCalendar.destroy()
-    if __DEV__
-      console.log 'calendar destroyed'
+    if __DEV__ and DEBUG
+      console.log 'calendar destroyed', cal
   onDomRefresh: ->
     calendarOptions = @getOption('calendarOptions') or {}
     if not calendarOptions?.plugins

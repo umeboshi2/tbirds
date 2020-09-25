@@ -1,4 +1,3 @@
-import Backbone from 'backbone'
 import { View } from 'backbone.marionette'
 
 import ListGroupView from './list-group-collection-view.coffee'

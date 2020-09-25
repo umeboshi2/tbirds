@@ -3,7 +3,7 @@ import _ from 'underscore'
 import { View } from 'backbone.marionette'
 import Validation from 'backbone.validation'
 
-export default class FormView extends View
+class FormView extends View
   constructor: ->
     super arguments...
 
@@ -43,7 +43,6 @@ export default class FormView extends View
   validateInput: (element) ->
     validation = element.attr('data-validation')
     value = element.val()
-    valid = @model.preValidate validation, value
     invalidMessage = @model.preValidate validation, value
     if invalidMessage
       formGroup = element.parent()
@@ -78,13 +77,13 @@ export default class FormView extends View
     @render()
     @onSuccess(model)
 
-  onSuccess: (model) -> null
+  onSuccess: -> null
 
   failure: (model) ->
     @hideActivityIndicator()
     @onFailure(model)
 
-  onFailure: (model) -> null
+  onFailure: -> null
 
   showActivityIndicator: ->
     @ui.activityIndicator.show()
@@ -95,19 +94,21 @@ export default class FormView extends View
     @ui.submit.show()
 
   setupValidation: ->
-    Backbone.Validation.unbind this
-    Backbone.Validation.bind this,
+    Validation.unbind this
+    Validation.bind this,
       valid: @valid
       invalid: @invalid
 
-  valid: (view, attr, selector) =>
+  valid: (view, attr) =>
     @$("[data-validation=#{attr}]")
       .removeClass('invalid')
       .addClass('valid')
 
-  invalid: (view, attr, error, selector) =>
+  #invalid: (view, attr, error, selector) =>
+  invalid: (view, attr) =>
     @failure(@model)
     @$("[data-validation=#{attr}]")
       .removeClass('valid')
       .addClass('invalid')
 
+export default FormView

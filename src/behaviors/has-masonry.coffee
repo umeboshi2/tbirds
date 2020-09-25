@@ -1,4 +1,3 @@
-import Backbone from 'backbone'
 import { Behavior } from 'backbone.marionette'
 import Masonry from 'masonry-layout'
 import imagesLoaded from 'imagesloaded'

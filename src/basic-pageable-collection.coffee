@@ -7,7 +7,7 @@ pageSize = MainChannel.request 'main:app:get-pagesize'
 if not pageSize
   pageSize = 10
   
-export default class BasicPageableCollection extends PageableCollection
+class BasicPageableCollection extends PageableCollection
   queryParams:
     sort: ->
       @state.sortColumn
@@ -32,3 +32,5 @@ export default class BasicPageableCollection extends PageableCollection
     # we start at page zero
     @state.lastPage = @state.totalPages - 1
     super response.items
+
+export default BasicPageableCollection

@@ -1,4 +1,3 @@
-import Backbone from 'backbone'
 import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
@@ -65,7 +64,7 @@ class SimpleFileInput extends View
     event.preventDefault()
     @ui.dropzone.css 'border', '2px dotted'
 
-  fileReaderOnLoad: (event) ->
+  fileReaderOnLoad: ->
     throw {msg:"Notimplementederror"}
     
       
@@ -92,4 +91,3 @@ class SimpleFileInput extends View
     @readFile @droppedFile
 
 export default SimpleFileInput
-

@@ -1,27 +1,20 @@
-import $ from 'jquery'
-import _ from 'underscore'
-import Backbone from 'backbone'
+import { Collection } from 'backbone'
 
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
-ResourceChannel = Backbone.Radio.channel 'resources'
-
-
-class BaseLocalStorageCollection extends Backbone.Collection
+class BaseLocalStorageCollection extends Collection
   local_storage_key: null
-  initialize: () ->
+  initialize: ->
     #console.log "initialize DocumentCollection"
     @fetch()
     @on 'change', @save, @
     
-  fetch: () ->
+  fetch: ->
     #console.log 'fetching documents'
     docs = JSON.parse(localStorage.getItem(@local_storage_key)) || []
     @set docs
 
   # FIXME!
-  save: (collection) ->
+  save: ->
     #console.log 'saving documents'
     localStorage.setItem(@local_storage_key, JSON.stringify(@toJSON()))
     

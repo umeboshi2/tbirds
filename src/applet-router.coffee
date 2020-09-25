@@ -1,8 +1,8 @@
+import { Radio, history as BBhistory } from 'backbone'
 import { MnObject } from 'backbone.marionette'
 import AppRouter from 'marionette.approuter'
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
+MainChannel = Radio.channel 'global'
 
 # FIXME
 # applets/appname/main needs to be resolvable
@@ -52,7 +52,7 @@ class RequireController extends MnObject
         channelName: appname
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
-      Backbone.history.start() unless Backbone.history.started
+      BBhistory.start() unless BBhistory.started
       return
     return
     
@@ -85,7 +85,7 @@ class RequireController extends MnObject
         channelName: appname
       MainChannel.request 'main:applet:register', appname, applet
       applet.start()
-      Backbone.history.loadUrl()
+      BBhistory.loadUrl()
       return
     .catch (err) ->
       if err.message.startsWith 'Cannot find module'

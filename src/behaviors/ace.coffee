@@ -1,12 +1,14 @@
-import Backbone from 'backbone'
 import { Behavior } from 'backbone.marionette'
-MainChannel = Backbone.Radio.channel 'global'
+
 
 import ace from 'brace'
 import html_mode from 'brace/mode/html'
 import twilight_theme from 'brace/theme/twilight'
 import markdown_mode from 'brace/mode/markdown'
 
+if __DEV__ and DEBUG
+  console.log html_mode, twilight_theme, markdown_mode
+  
 ACEDEFAULTS:
   editorTheme: 'ace/theme/twilight'
   editorMode: 'ace/mode/html'

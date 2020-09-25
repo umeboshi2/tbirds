@@ -1,4 +1,3 @@
-import Backbone from 'backbone'
 import { Behavior } from 'backbone.marionette'
 import Packery from 'packery'
 import imagesLoaded from 'imagesloaded'

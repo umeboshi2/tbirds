@@ -1,8 +1,5 @@
 import tc from 'teacup'
-import marked from 'marked'
 
-
-import { form_group_input_div } from './forms'
 import capitalize from '../util/capitalize'
 
 # Main Templates must use teacup.
@@ -24,7 +21,7 @@ base_item_template = (name, route_name) ->
         tc.button ".delete-item.#{item_btn}.btn-danger.fa.fa-close", 'delete'
 
 base_list_template = (name) ->
-  tc.renderable (model) ->
+  tc.renderable ->
     tc.div '.listview-header', ->
       tc.text capitalize name
     tc.hr()

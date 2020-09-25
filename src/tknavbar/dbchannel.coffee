@@ -1,12 +1,9 @@
-import Backbone from 'backbone'
-
+import { Collection, Radio } from 'backbone'
 import NavbarEntry from './entry-model'
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
-NavbarChannel = Backbone.Radio.channel 'navbar'
+NavbarChannel = Radio.channel 'navbar'
 
-class NavbarEntryCollection extends Backbone.Collection
+class NavbarEntryCollection extends Collection
   model: NavbarEntry
 
 
@@ -24,7 +21,6 @@ collections =
 NavbarChannel.reply 'get-entries', (collection) ->
   return collections[collection]
 
-  
 NavbarChannel.reply 'new-navbar-entry', ->
   new NavbarEntry
 

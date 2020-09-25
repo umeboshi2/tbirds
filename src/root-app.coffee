@@ -1,17 +1,14 @@
-import Backbone from 'backbone'
+import { Model, Radio } from 'backbone'
 import { App } from 'marionette.toolkit'
-import tc from 'teacup'
 
-import MessagesApp from './tkmessages'
-import NavbarApp from './tknavbar'
 import MainPageLayout from './tklayout'
 
 if __useCssModules__
   require "../sass/tklayout.scss"
 
-MainChannel = Backbone.Radio.channel 'global'
+MainChannel = Radio.channel 'global'
 
-export class TkAppState extends Backbone.Model
+export class TkAppState extends Model
   defaults:
     startHistory: true
     appConfig: {}
@@ -25,7 +22,7 @@ class RootApp extends App
     layout = new AppLayout cfg.layoutOptions
     @showView layout
 
-  onStart: (options) ->
+  onStart: ->
     c = MainChannel.request 'main-controller'
     c.loadFrontDoor()
 

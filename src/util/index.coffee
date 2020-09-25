@@ -1,5 +1,4 @@
 import $ from 'jquery'
-import Backbone from 'backbone'
 
 create_new_approuter = (channel, Router, Controller) ->
   controller = new Controller

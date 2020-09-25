@@ -1,12 +1,11 @@
-import Backbone from 'backbone'
+import { Model } from 'backbone'
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
-
-export default class NavbarEntry extends Backbone.Model
+class NavbarEntry extends Model
   defaults:
     label: 'App Label'
     url: '#app'
     single_applet: false
     applets: []
     urls: []
+    
+export default NavbarEntry

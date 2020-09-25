@@ -1,12 +1,11 @@
-import Backbone from 'backbone'
+import { Radio } from 'backbone'
 import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
 #{ modal_close_button } = require './templates/buttons'
 import modal_close_button from './templates/buttons'
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
+MessageChannel = Radio.channel 'messages'
 
 # FIXME, this depends on the model having a "name" attribute
 ConfirmDeleteTemplate = tc.renderable (model) ->
@@ -17,7 +16,6 @@ ConfirmDeleteTemplate = tc.renderable (model) ->
         tc.div '#selected-children'
       tc.div '.modal-footer', ->
         tc.ul '.list-inline', ->
-          btnclass = 'btn.btn-secondary.btn-sm'
           tc.li "#confirm-delete-button", ->
             modal_close_button 'OK', 'check'
           tc.li "#cancel-delete-button", ->

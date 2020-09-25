@@ -18,3 +18,4 @@ dropzone_template = tc.renderable (options) ->
       style:'display:none', ->
         tc.text options.parseMsg
         
+export default dropzone_template

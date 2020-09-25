@@ -1,10 +1,10 @@
 import $ from 'jquery'
-import Backbone from 'backbone'
+import { Radio } from 'backbone'
 import { Behavior } from 'backbone.marionette'
 
-MainChannel = Backbone.Radio.channel 'global'
+MainChannel = Radio.channel 'global'
 
-export default class IsEscapeModal extends Behavior
+class IsEscapeModal extends Behavior
   keydownHandler: (event_object) =>
     keyCode = event_object.keyCode
     # handle escape('esc') key
@@ -19,3 +19,5 @@ export default class IsEscapeModal extends Behavior
   emptyModal: ->
     region = MainChannel.request 'main:app:modal-region'
     region.empty()
+
+export default IsEscapeModal

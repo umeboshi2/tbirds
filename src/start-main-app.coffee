@@ -1,6 +1,5 @@
 import Backbone from 'backbone'
 import { Region } from 'backbone.marionette'
-import tc from 'teacup'
 
 import RootApp from './root-app'
 import MessagesApp from './tkmessages'
@@ -24,7 +23,7 @@ createMainApp = (cfg) ->
   if cfg.useMessages? and cfg.useMessages is false
     useMessages = false
   if useMessages
-    msgApp = mainApp.addChildApp 'messages', MessagesApp,
+    mainApp.addChildApp 'messages', MessagesApp,
       region: layout.getRegion 'messages'
       appConfig: cfg
       parentApp: mainApp
@@ -46,7 +45,7 @@ createMainApp = (cfg) ->
         appConfig: cfg
         parentApp: nbApp
         user: MainChannel.request "main:app:decode-auth-token"
-      userMenuApp = nbApp.addChildApp 'user-menu', cfg.userMenuApp, options
+      nbApp.addChildApp 'user-menu', cfg.userMenuApp, options
   return mainApp
 
 export default createMainApp

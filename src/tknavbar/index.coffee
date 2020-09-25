@@ -1,25 +1,23 @@
 import $ from 'jquery'
-import Backbone from 'backbone'
+import { Model, Radio } from 'backbone'
 import { App } from 'marionette.toolkit'
-import tc from 'teacup'
 
 import './dbchannel'
-import NavbarHeaderView from './navbar-header'
-import NavbarEntriesView from './entries'
+#import NavbarHeaderView from './navbar-header'
+#import NavbarEntriesView from './entries'
 import BootstrapNavBarView from './main-view'
 
 if __useCssModules__
   require "../../sass/tknavbar.scss"
 
-MainChannel = Backbone.Radio.channel 'global'
-NavbarChannel = Backbone.Radio.channel 'navbar'
-MessageChannel = Backbone.Radio.channel 'messages'
+MainChannel = Radio.channel 'global'
+NavbarChannel = Radio.channel 'navbar'
 
 class NavbarApp extends App
-  initialize: (options) ->
+  initialize: ->
     appConfig = @getOption 'appConfig'
     layout = new BootstrapNavBarView
-      model: new Backbone.Model appConfig
+      model: new Model appConfig
     @showView layout
     if __DEV__
       @_nbview = layout

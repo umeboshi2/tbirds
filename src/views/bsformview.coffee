@@ -1,7 +1,7 @@
 import FormView from './formview'
 
 class BootstrapFormView extends FormView
-  valid: (view, attr, selector) =>
+  valid: (view, attr) =>
     element = @$("[data-validation=#{attr}]")
     # parent is form-group div
     parent = element.parent()
@@ -12,7 +12,7 @@ class BootstrapFormView extends FormView
       .removeClass('is-invalid')
       .addClass('is-valid')
 
-  invalid: (view, attr, error, selector) =>
+  invalid: (view, attr) =>
     @failure(@model)
     element = @$("[data-validation=#{attr}]")
     # parent is form-group div

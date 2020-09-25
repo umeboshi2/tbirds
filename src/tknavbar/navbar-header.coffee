@@ -1,13 +1,8 @@
-import Backbone from 'backbone'
 import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
 import NavbarToggleButton from './toggle-button'
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
-
-  
 class NavbarHeaderView extends View
   template: tc.renderable (model) ->
     tc.a '.navbar-brand', href:model.url, model.label
@@ -22,10 +17,6 @@ class NavbarHeaderView extends View
   onRender: ->
     view = new NavbarToggleButton
     @showChildView 'toggleContainer', view
-    
-
-    
-
     
 export default NavbarHeaderView
 

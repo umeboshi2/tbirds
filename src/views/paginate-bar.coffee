@@ -1,18 +1,10 @@
 import $ from 'jquery'
-import Backbone from 'backbone'
+import { Collection } from 'backbone'
 import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
-MainChannel = Backbone.Radio.channel 'global'
-MessageChannel = Backbone.Radio.channel 'messages'
-
-numberedPageItem = (p) ->
-  tc.li '.page-item', ->
-  tc.a '.numbered-page.page-link',
-  href:'#', data: pageNumber: p, p
-
 # this needs to be contained in a 'nav' region
-export default class PaginationView extends View
+class PaginationView extends View
   options: ->
     setKeyHandler: false
     barLength: 15
@@ -24,11 +16,10 @@ export default class PaginationView extends View
     barLength: @getOption 'barLength'
     barStopAt: @getOption 'barStopAt'
   template: tc.renderable (model) ->
-    if model instanceof Backbone.Collection
+    if model instanceof Collection
       state = model.state
     else
       state = model.collection.state
-    totalPages = state.totalPages
     firstPage = state.firstPage
     lastPage = state.lastPage
     ellipsis = false
@@ -143,3 +134,4 @@ export default class PaginationView extends View
   onBeforeDestroyHandleKeys: ->
     $("html").unbind 'keydown', @keydownHandler
     
+export default PaginationView
