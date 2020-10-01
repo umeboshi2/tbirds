@@ -10,8 +10,8 @@ $primary: $color-cornsilk4;
 //$secondary: lighten(salmon, 10%) !default;
 
 
-$primary:       $blue !default;
-//$primary:       lighten(salmon, 10%);
+//$primary:       $blue !default;
+$primary:       lighten(salmon, 10%);
 $secondary:     $gray-600 !default;
 $success:       $green !default;
 $info:          $cyan !default;
