@@ -1,2 +1,3 @@
-export default (str) ->
-  str.charAt(0).toUpperCase() + str.slice(1)
+import { capitalize } from 'lodash'
+console.warn "DEPRECATED: use _.capitalize instead"
+export default capitalize

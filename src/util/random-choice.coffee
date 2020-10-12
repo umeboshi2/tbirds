@@ -1,4 +1,3 @@
-export default (myArray) ->
-  index = Math.floor(Math.random() * myArray.length)
-  myArray[index]
-
+import { sample } from 'lodash'
+console.warn "DEPRECATED: Use _.sample instead"
+export default sample

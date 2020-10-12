@@ -14,3 +14,7 @@ describe 'capitalize', ->
     it 'should return "Foobar"', ->
       assert.equal capitalize('Foobar'), 'Foobar'
       
+  describe 'capitalize("FOOBAR")', ->
+    it 'should return "Foobar"', ->
+      assert.equal capitalize('FOOBAR'), 'Foobar'
+      
