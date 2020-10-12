@@ -3,6 +3,7 @@ import { MnObject } from 'backbone.marionette'
 import AppRouter from 'marionette.approuter'
 
 MainChannel = Radio.channel 'global'
+MessageChannel = Radio.channel 'messages'
 
 # FIXME
 # applets/appname/main needs to be resolvable
