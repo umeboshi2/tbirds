@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import _ from 'underscore'
+import _ from 'lodash'
 import { View } from 'backbone.marionette'
 import Validation from 'backbone.validation'
 

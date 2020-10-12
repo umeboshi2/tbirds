@@ -1,4 +1,4 @@
-import { result } from 'underscore'
+import { result } from 'lodash'
 import { Behavior } from 'backbone.marionette'
 
 class PointerOnHover extends Behavior

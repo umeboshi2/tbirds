@@ -1,4 +1,4 @@
-import _ from 'underscore'
+import { size } from 'lodash'
 import $ from 'jquery'
 import { Model } from 'backbone'
 
@@ -18,7 +18,7 @@ class BaseLocalStorageModel extends Model
   destroy:  ->
     return localStorage.removeItem @id
   isEmpty: () ->
-    return _.size @attributes <= 1
+    return size @attributes <= 1
 
 export default BaseLocalStorageModel
     
