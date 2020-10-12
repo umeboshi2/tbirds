@@ -1,6 +1,12 @@
-// https://stackoverflow.com/a/32108184
-export default function(obj) {
-  return Object.keys(obj).length === 0 && obj.constructor === Object;
-};
+import {
+  isEmpty
+} from 'lodash';
 
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC9pcy1vYmplY3QtZW1wdHkuanMiLCJzb3VyY2VzIjpbInV0aWwvaXMtb2JqZWN0LWVtcHR5LmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUNBLE9BQUEsUUFBZSxRQUFBLENBQUMsR0FBRCxDQUFBO1NBQ1osTUFBTSxDQUFDLElBQVAsQ0FBWSxHQUFaLENBQWdCLENBQUMsTUFBakIsS0FBMkIsQ0FBM0IsSUFBZ0MsR0FBRyxDQUFDLFdBQUosS0FBbUI7QUFEdkMiLCJzb3VyY2VzQ29udGVudCI6WyIjIGh0dHBzOi8vc3RhY2tvdmVyZmxvdy5jb20vYS8zMjEwODE4NFxuZXhwb3J0IGRlZmF1bHQgKG9iaikgLT5cbiAgKE9iamVjdC5rZXlzKG9iaikubGVuZ3RoID09IDAgJiYgb2JqLmNvbnN0cnVjdG9yID09IE9iamVjdClcbiJdfQ==
+// https://stackoverflow.com/a/32108184
+//export default (obj) ->
+//  (Object.keys(obj).length == 0 && obj.constructor == Object)
+console.warn("DEPRECATED: Use _.isEmpty instead");
+
+export default isEmpty;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC9pcy1vYmplY3QtZW1wdHkuanMiLCJzb3VyY2VzIjpbInV0aWwvaXMtb2JqZWN0LWVtcHR5LmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFBO0VBQVMsT0FBVDtDQUFBLE1BQUEsU0FBQTs7Ozs7QUFJQSxPQUFPLENBQUMsSUFBUixDQUFhLG1DQUFiOztBQUNBLE9BQUEsUUFBZSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGlzRW1wdHkgfSBmcm9tICdsb2Rhc2gnXG4jIGh0dHBzOi8vc3RhY2tvdmVyZmxvdy5jb20vYS8zMjEwODE4NFxuI2V4cG9ydCBkZWZhdWx0IChvYmopIC0+XG4jICAoT2JqZWN0LmtleXMob2JqKS5sZW5ndGggPT0gMCAmJiBvYmouY29uc3RydWN0b3IgPT0gT2JqZWN0KVxuY29uc29sZS53YXJuIFwiREVQUkVDQVRFRDogVXNlIF8uaXNFbXB0eSBpbnN0ZWFkXCJcbmV4cG9ydCBkZWZhdWx0IGlzRW1wdHlcbiJdfQ==
