@@ -21,6 +21,7 @@ class CheckboxEntryView extends MnView
     input: 'input'
   events:
     click: 'toggleInput'
+    'click @ui.input': 'toggleInput'
   onRender: ->
     @ui.input.prop 'checked', @model.get('selected')
   toggleInput: ->
