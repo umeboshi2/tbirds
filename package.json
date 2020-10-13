@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/umeboshi2/tbirds#readme",
   "dependencies": {
+    "@popperjs/core": "^2.5.3",
     "backbone": "^1.4.0",
     "backbone.marionette": "^4.1.2",
     "backbone.paginator": "^2.0.8",
@@ -34,7 +35,6 @@
     "marionette.toolkit": "^6.2.0",
     "marked": "^1.2.0",
     "ms": "^2.1.2",
-    "popper.js": "^1.16.1",
     "teacup": "^2.0.0"
   },
   "devDependencies": {
