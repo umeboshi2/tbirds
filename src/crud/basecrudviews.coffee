@@ -42,7 +42,7 @@ class ConfirmDeleteModal extends View
     response.fail ->
       MessageChannel.request 'danger', "#{name} NOT deleted."
       
-class BaseItemView extends View
+export class BaseItemView extends View
   ui:
     edit_item: '.edit-item'
     delete_item: '.delete-item'
@@ -64,7 +64,7 @@ class BaseItemView extends View
       console.log 'modal view', view
     MainChannel.request 'main:app:show-modal', view, {backdrop:true}
     
-class BaseListView extends View
+export class BaseListView extends View
   regions: ->
     itemlist: "##{@item_type}-container"
   ui: ->
@@ -85,9 +85,3 @@ class BaseListView extends View
   make_new_item: ->
     # FIXME - fix url dont't add 's'
     navigate_to_url "##{@route_name}/#{@item_type}s/new"
-    
-export {
-  BaseItemView
-  BaseListView
-  }
-

@@ -1,6 +1,6 @@
+import { capitalize } from 'lodash'
 import tc from 'teacup'
 
-import capitalize from '../util/capitalize'
 
 # Main Templates must use teacup.
 # The template must be a teacup.renderable,
@@ -10,7 +10,7 @@ import capitalize from '../util/capitalize'
 # Templates
 ########################################
 
-base_item_template = (name, route_name) ->
+export base_item_template = (name, route_name) ->
   tc.renderable (model) ->
     item_btn = ".btn.btn-secondary.btn-sm"
     tc.li ".list-group-item.#{name}-item", ->
@@ -20,15 +20,9 @@ base_item_template = (name, route_name) ->
         tc.button ".edit-item.#{item_btn}.btn-info.fa.fa-edit", 'edit'
         tc.button ".delete-item.#{item_btn}.btn-danger.fa.fa-close", 'delete'
 
-base_list_template = (name) ->
+export base_list_template = (name) ->
   tc.renderable ->
     tc.div '.listview-header', ->
       tc.text capitalize name
     tc.hr()
     tc.ul "##{name}-container.list-group"
-
-export {
-  base_item_template
-  base_list_template
-  }
-  
