@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "mochapack mochapack test/node.coffee  test/unit/**/*",
+    "testwatch": "mochapack mochapack test/node.coffee  test/unit/**/* --watch",
     "build": "rm dist -fr && gulp coffee && git add dist",
     "postversion": "git push && git push --tags"
   },
