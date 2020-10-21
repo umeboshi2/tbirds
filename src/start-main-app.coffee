@@ -13,10 +13,11 @@ createMainApp = (cfg) ->
   mainApp = new RootApp
     appConfig: cfg
     region: rootRegion
+  mainApp.setState 'appConfig', cfg
   MainChannel.reply 'main:app:object', ->
     return mainApp
   MainChannel.reply 'main:app:config', ->
-    return cfg
+    return mainApp.getState 'appConfig'
   layout = mainApp.getView()
   # setup messages
   useMessages = true
