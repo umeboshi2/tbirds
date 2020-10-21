@@ -1,7 +1,6 @@
 import { Model, Collection, Radio } from 'backbone'
 import jwtDecode from 'jwt-decode'
 
-#{BasicPageableCollection} = require './basic-pageable-collection'
 import BasicPageableCollection from './basic-pageable-collection'
 
 MainChannel = Radio.channel 'global'

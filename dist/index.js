@@ -1,3 +1,0 @@
-console.log("tbirds index");
-
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VzIjpbImluZGV4LmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLENBQUMsR0FBUixDQUFZLGNBQVoiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zb2xlLmxvZyBcInRiaXJkcyBpbmRleFwiXG4iXX0=
