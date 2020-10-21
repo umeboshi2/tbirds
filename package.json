@@ -4,7 +4,7 @@
   "description": "JS and coffeescript modules for marionette apps",
   "main": "dist/index.js",
   "scripts": {
-    "test": "mochapack --webpack-config webpack.config-test.coffee \"test/**/*.{js,coffee}\"",
+    "test": "mochapack mochapack test/node.coffee  test/unit/**/*",
     "build": "rm dist -fr && gulp coffee && git add dist",
     "postversion": "git push && git push --tags"
   },
@@ -53,6 +53,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-util": "^3.0.8",
     "jsdom": "^9.12.0",
+    "mini-css-extract-plugin": "^1.1.1",
     "mocha": "^8.2.0",
     "mochapack": "^2.0.6",
     "sinon": "^9.2.0",
