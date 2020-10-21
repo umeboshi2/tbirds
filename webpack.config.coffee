@@ -1,4 +1,5 @@
 path = require 'path'
+webpack = require 'webpack'
 srcdir = path.join __dirname, 'src'
 testdir = path.join __dirname, 'test'
 buildCssLoader = require './webpack-config/sass-loader-chain'
@@ -26,6 +27,15 @@ loadCssRule =
 scssRule =
   test: /\.scss$/
   use: buildCssLoader.development
+
+DefinePluginOpts =
+  development:
+    __DEV__: 'true'
+    DEBUG: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
+    #__useCssModules__: 'true'
+    __useCssModules__: 'false'
+
+definePlugin = new webpack.DefinePlugin DefinePluginOpts.development
     
 module.exports =
   target: 'node'
@@ -41,4 +51,6 @@ module.exports =
     alias:
       tbirds: srcdir
       applets: path.join testdir, 'applets'
+  plugins: [ definePlugin ]
+  
       
