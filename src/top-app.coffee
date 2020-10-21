@@ -6,9 +6,6 @@ import MessagesApp from './tkmessages'
 import NavbarApp from './tknavbar'
 import MainPageLayout from './tklayout'
 
-if __useCssModules__
-  require "../sass/tklayout.scss"
-
 MainChannel = Radio.channel 'global'
 
 class TkAppState extends Model

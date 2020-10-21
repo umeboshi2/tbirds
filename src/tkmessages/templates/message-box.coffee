@@ -1,9 +1,5 @@
 import tc from 'teacup'
-
-if __useCssModules__
-  require '../../../sass/message-box.scss'
-  
-message_box = tc.renderable (msg) ->
+export default tc.renderable (msg) ->
   lvl = msg.level
   if lvl == 'error'
     lvl = 'danger'
@@ -18,7 +14,3 @@ message_box = tc.renderable (msg) ->
       tc.span iclass
       tc.raw '&nbsp;&nbsp'
     tc.text msg.content
-    
-export default message_box
-  
-

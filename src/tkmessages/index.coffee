@@ -4,9 +4,6 @@ import { App } from 'marionette.toolkit'
 import tc from 'teacup'
 import message_box from './templates/message-box'
 
-if __useCssModules__
-  require "../../sass/tkmessages.scss"
-
 MessageChannel = Radio.channel 'messages'
 
 import './dbchannel'

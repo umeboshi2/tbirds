@@ -2,8 +2,6 @@ import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
 import ModalRegion from './regions/bsmodal'
-if __useCssModules__
-  require "../sass/main-grid.scss"
 
 class MainPageLayout extends View
   template: tc.renderable () ->

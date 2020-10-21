@@ -3,9 +3,6 @@ import { App } from 'marionette.toolkit'
 
 import MainPageLayout from './tklayout'
 
-if __useCssModules__
-  require "../sass/tklayout.scss"
-
 MainChannel = Radio.channel 'global'
 
 export class TkAppState extends Model
