@@ -14,5 +14,3 @@ describe "isObjectEmpty", ->
   describe "isObjectEmpty(new Object)", ->
     it "should return true", ->
       assert.equal isObjectEmpty(new Object), true
-
-  

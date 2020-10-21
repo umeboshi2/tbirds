@@ -1,6 +1,6 @@
 import { Radio, history as BBhistory } from 'backbone'
 import { MnObject } from 'backbone.marionette'
-import AppRouter from 'marionette.approuter'
+import AppRouter from './routers/approuter'
 
 MainChannel = Radio.channel 'global'
 MessageChannel = Radio.channel 'messages'
@@ -62,7 +62,8 @@ class RequireController extends MnObject
       console.log "_handleRoute", appname, suffix
     if suffix and suffix.startsWith '/'
       while suffix.startsWith '/'
-        console.log "Suffix.Startswith", suffix
+        if __DEV__ and DEBUG
+          console.log "Suffix.Startswith", suffix
         suffix = suffix.slice 1
     config = MainChannel.request 'main:app:config'
     if not appname
