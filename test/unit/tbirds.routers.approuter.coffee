@@ -1,13 +1,12 @@
 import { expect } from 'chai'
-import AppRouter from '../../src/routers/approuter'
-global.location = {}
-window = global
+import '../../src/routers/filtered-router'
+import AppRouter from '../../src/routers/approuter.coffee'
 describe 'app router', ->
   'use strict'
   afterEach ->
     window.location.hash = ''
     return
-  describe 'when a route is configured with a method that does not exist on the controller', ->
+  describe 'when a route is configured with a method that does not exist on the controller', -> # noqa
     beforeEach ->
       suite = this
       @controller = {}
@@ -19,10 +18,10 @@ describe 'app router', ->
 
       return
     it 'should throw an error saying the method does not exist', ->
-      expect(@run).to.throw 'Method doesNotExist was not found on the controller'
+      expect(@run).to.throw 'Method doesNotExist was not found on the controller'# noqa
       return
     return
-  describe 'when a controller is passed through the constructor and a route fires', ->
+  describe 'when a controller is passed through the constructor and a route fires', -> # noqa
     beforeEach ->
       @controller = foo: @sinon.stub()
       @Router = AppRouter.extend(appRoutes: 'foo-route': 'foo')
@@ -30,14 +29,14 @@ describe 'app router', ->
       Backbone.history.start()
       @router.navigate 'foo-route', true
       return
-    it 'should call the configured method on the controller passed in the constructor', ->
+    it 'should call the configured method on the controller passed in the constructor', -> # noqa
       expect(@controller.foo).to.have.been.calledOnce
       return
-    it 'should execute the controller method with the context of the controller', ->
+    it 'should execute the controller method with the context of the controller', -> # noqa
       expect(@controller.foo).to.have.been.calledOnce.and.calledOn @controller
       return
     return
-  describe 'when a controller is provided in the router definition and a route fires', ->
+  describe 'when a controller is provided in the router definition and a route fires', -> # noqa
     beforeEach ->
       @controller = foo: @sinon.stub()
       @Router = AppRouter.extend(
@@ -47,7 +46,7 @@ describe 'app router', ->
       Backbone.history.start()
       @router.navigate 'foo-route', true
       return
-    it 'should execute the controller method with the context of the controller', ->
+    it 'should execute the controller method with the context of the controller', -> # noqa
       expect(@controller.foo).to.have.been.calledOnce.and.calledOn @controller
       return
     return
@@ -64,7 +63,7 @@ describe 'app router', ->
       @router.navigate 'foo-route', true
       @router.navigate 'bar-route', true
       return
-    it 'should execute the controller method with the context of the controller', ->
+    it 'should execute the controller method with the context of the controller', -> # noqa
       expect(@controller.bar).to.have.been.calledOnce.and.calledOn @controller
       return
     return
@@ -82,9 +81,10 @@ describe 'app router', ->
     it 'should call the configured method with parameters', ->
       expect(@controller.foo).to.have.always.been.calledWith @fooParam
       return
-    it 'should call the onShow method for the route, passing the name of the route, the matched route, and the params', ->
+    it 'should call the onShow method for the route, passing the name of the route, the matched route, and the params', -> # noqa
       expect(@router.onRoute).to.have.been.calledOnce
-      # Needs to be written this way as Backbone > 1.0 will pass an additional null param
+      # Needs to be written this way as Backbone > 1.0 will pass an
+      # additional null param # noqa
       expect(@router.onRoute.lastCall.args[0]).to.equal 'foo'
       expect(@router.onRoute.lastCall.args[1]).to.equal 'foo-route/:id'
       expect(@router.onRoute.lastCall.args[2][0]).to.equal @fooParam
@@ -169,7 +169,7 @@ describe 'app router', ->
       expect(@controller.bar).to.have.been.calledOnce
       return
     return
-  describe 'when a route fires with parameters and app routes are provided exclusively in the constructor', ->
+  describe 'when a route fires with parameters and app routes are provided exclusively in the constructor', -> # noqa
     beforeEach ->
       @fooParam = 'bar'
       @controller = foo: @sinon.stub()
@@ -183,9 +183,10 @@ describe 'app router', ->
     it 'should call the configured method with parameters', ->
       expect(@controller.foo).to.have.always.been.calledWith @fooParam
       return
-    it 'should call the onRoute method for the route, passing the name of the route, the matched route, and the params', ->
+    it 'should call the onRoute method for the route, passing the name of the route, the matched route, and the params', -> # noqa
       expect(@appRouter.onRoute).to.have.been.calledOnce
-      # Needs to be written this way as Backbone > 1.0 will pass an additional null param
+      # Needs to be written this way as Backbone > 1.0 will pass an
+      # additional null param
       expect(@appRouter.onRoute.lastCall.args[0]).to.equal 'foo'
       expect(@appRouter.onRoute.lastCall.args[1]).to.equal 'foo-route/:id'
       expect(@appRouter.onRoute.lastCall.args[2][0]).to.equal @fooParam

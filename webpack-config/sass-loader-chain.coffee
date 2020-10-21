@@ -1,10 +1,11 @@
 MiniCssExtractPlugin = require 'mini-css-extract-plugin'
 
 sassOptions =
-  includePaths: [
-    'node_modules/compass-mixins/lib'
-    'node_modules/bootstrap/scss'
-  ]
+  sassOptions:
+    includePaths: [
+      'node_modules/compass-mixins/lib'
+      'node_modules/bootstrap/scss'
+    ]
     
 devCssLoader = [
   {
