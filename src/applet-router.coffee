@@ -1,121 +1,11 @@
 import { Radio, history as BBhistory } from 'backbone'
 import { MnObject } from 'backbone.marionette'
 import AppRouter from './routers/approuter'
+import RequireController from './require-controller'
 
 MainChannel = Radio.channel 'global'
 MessageChannel = Radio.channel 'messages'
 
-# FIXME
-# applets/appname/main needs to be resolvable
-# by using webpack resolve alias
-
-# Object to contain registered applets
-# Using this prevents a loop when a approute
-# is requested but not matched in an AppRouter
-# Unless the AppRouter has a match for the requested
-# approute, the main router will try to load the
-# AppRouter again, causing a loop.
-registered_apps = {}
-
-# FIXME
-# This isn't being used currently.  This is here
-# when the code develops to the point of being
-# able to remove unused child apps to save memory.
-MainChannel.reply 'main:applet:unregister', (appname) ->
-  delete registered_apps[appname]
-  return
-  
-MainChannel.reply 'main:applet:register', (appname, applet) ->
-  registered_apps[appname] = applet
-  return
-  
-MainChannel.reply 'main:applet:get-applet', (appname) ->
-  return registered_apps[appname]
-
-# FIXME: Using backticks for import() statements. Inner
-# js backticks are escaped for dynamic expressions.
-# https://github.com/jashkenas/coffeescript/issues/4834#issuecomment-354375627
-
-class RequireController extends MnObject
-  loadFrontDoor: ->
-    config = MainChannel.request 'main:app:config'
-    appname = config?.frontdoorApplet or 'frontdoor'
-    #handler = System.import "applets/#{appname}/main"
-    handler = `import(\`applets/${appname}/main\`)` # noqa
-    if __DEV__ and DEBUG
-      console.log "Frontdoor system.import", appname
-    handler.then (Applet) ->
-      # FIXME fix applet structure to provide appropriate export
-      applet = new Applet.default
-        appConfig: config
-        appName: appname
-        isFrontdoorApplet: true
-        channelName: appname
-      MainChannel.request 'main:applet:register', appname, applet
-      applet.start()
-      BBhistory.start() unless BBhistory.started
-      return
-    return
-    
-  _handleRoute: (appname, suffix) ->
-    if __DEV__ and DEBUG
-      console.log "_handleRoute", appname, suffix
-    if suffix and suffix.startsWith '/'
-      while suffix.startsWith '/'
-        if __DEV__ and DEBUG
-          console.log "Suffix.Startswith", suffix
-        suffix = suffix.slice 1
-    config = MainChannel.request 'main:app:config'
-    if not appname
-      console.warn "No applet recognized", appname
-      appname = 'frontdoor'
-    if appname in Object.keys config.appletRoutes
-      appname = config.appletRoutes[appname]
-      if __DEV__
-        console.log "Using defined appletRoute", appname
-    if appname in Object.keys registered_apps
-      throw new Error "Unhandled applet path ##{appname}/#{suffix}"
-    #handler = System.import "applets/#{appname}/main"
-    handler = `import(\`applets/${appname}/main\`)` # noqa
-    if __DEV__ and DEBUG
-      console.log "system.import", appname
-    handler.then (Applet) ->
-      # FIXME fix applet structure to provide appropriate export
-      applet = new Applet.default
-        appConfig: config
-        appName: appname
-        channelName: appname
-      MainChannel.request 'main:applet:register', appname, applet
-      applet.start()
-      BBhistory.loadUrl()
-      return
-    .catch (err) ->
-      if err.message.startsWith 'Cannot find module'
-        MessageChannel.request 'warning', "Bad route #{appname}, #{suffix}!!"
-        return
-      # catch this here for initial page load with invalid
-      # subpath
-      else if err.message.startsWith 'Unhandled applet'
-        MessageChannel.request 'warning', err.message
-        return
-      else
-        throw err
-    return
-      
-  routeApplet: (applet, href) ->
-    try
-      @_handleRoute applet, href
-    catch err
-      if err.message.startsWith 'Unhandled applet'
-        MessageChannel.request 'warning', err.message
-        return
-    return
-    
-  directLink: (remainder) ->
-    if __DEV__
-      console.warn "directLink", remainder
-    return
-    
 class AppletRouter extends AppRouter
   appRoutes:
     'http*remainder': 'directLink'
@@ -143,10 +33,6 @@ MainChannel.reply 'main:app:create-main-router', ->
     return router
   return
 
-
-MainChannel.reply 'main:app:route', ->
-  console.warn "Use 'main:app:create-main-router' instead."
-  MainChannel.request 'main:app:create-main-router'
 export {
   RequireController
   AppletRouter

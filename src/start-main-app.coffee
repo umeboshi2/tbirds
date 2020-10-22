@@ -17,7 +17,7 @@ createMainApp = (cfg) ->
   MainChannel.reply 'main:app:object', ->
     return mainApp
   MainChannel.reply 'main:app:config', ->
-    return mainApp.getState 'appConfig'
+    return mainApp.getOption 'appConfig'
   layout = mainApp.getView()
   # setup messages
   useMessages = true
