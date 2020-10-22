@@ -1,9 +1,8 @@
 import { expect } from 'chai'
 import '../../src/routers/filtered-router'
-import TopApp from '../../src/top-app'
 import createMainApp from '../../src/start-main-app'
 import appConfig from '../../src/app-config'
-describe 'Top App', ->
+describe 'Create Main App', ->
   'use strict'
   afterEach ->
     window.location.hash = ''
@@ -58,7 +57,5 @@ describe 'Top App', ->
       app = channel.request('main:app:object')
       expect(app).to.equal(@app)
       cfg = channel.request("main:app:config")
-      console.log "cfg", cfg
-      console.log "appConfig", appConfig
       expect(cfg).to.eql(appConfig)
             

@@ -28,6 +28,9 @@ describe 'TK Applet', ->
           }
         ]
       @applet = new Applet
+      @appletSpies =
+        setupAppletEntries: @sinon.spy(@applet, 'setupAppletEntries')
+        onBeforeStart: @sinon.spy(@applet, 'onBeforeStart')
       @applet.start()
       return
     it 'has options property', ->
@@ -43,6 +46,10 @@ describe 'TK Applet', ->
       channel = Backbone.Radio.channel 'navbar'
       entries = channel.request 'get-entries', 'applet'
       expect(entries).to.have.lengthOf.above(0)
+    it 'should have called setup entries method', ->
+      expect(@appletSpies.setupAppletEntries).to.have.been.calledOnce
+    it 'should have called onBeforeStart method', ->
+      expect(@appletSpies.onBeforeStart).to.have.been.calledOnce
     it 'should have only one test entry', ->
       channel = Backbone.Radio.channel 'navbar'
       entries = channel.request 'get-entries', 'applet'

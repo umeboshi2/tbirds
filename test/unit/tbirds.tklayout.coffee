@@ -2,17 +2,11 @@ import { expect } from 'chai'
 import assert from 'assert'
 import Layout from '../../src/tklayout'
 
-describe 'app router', ->
+describe 'TK Layout', ->
   'use strict'
   afterEach ->
     window.location.hash = ''
     return
-  describe 'when a view is created', -> # noqa
-    beforeEach ->
-      suite = this
-      @View = Layout
-    it "whould be coo;", ->
-      return
   describe "layout has proper regions", ->
     regions = [ 'messages', 'navbar', 'modal', 'applet']
     describe "check regions", ->
