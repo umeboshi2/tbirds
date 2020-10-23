@@ -11,7 +11,7 @@ to help manage the app components.  These modules are meant to be
 used with [webpack](https://webpack.js.org/).  In theory, many of 
 these modules can be also used with [browserify](http://browserify.org/), 
 however the (optional) 
-[main-router](https://github.com/umeboshi2/tbirds/blob/master/src/main-router.coffee) 
+[main routing controller](https://github.com/umeboshi2/tbirds/blob/master/src/require-controller.coffee) 
 depends on webpack's dynamic import, to help with code splitting.
 
 ### Presumptions
@@ -50,9 +50,9 @@ uses a simple page layout with a navbar and content, along with presets for
 using modal dialogs, and notifications using bootstrap's '.alert' classes.  
 The layout can be easily replaced with a custom layout.  
 
-The main application object is the [TopApp](https://github.com/umeboshi2/tbirds/blob/master/src/top-app.coffee), which is the main container for 
+The main application object is the [RootApp](https://github.com/umeboshi2/tbirds/blob/master/src/root-app.coffee), which is the main container for 
 all the child apps and applets.  Currently, the "TopApp" contains two 
-optional child apps, "messages", and "navbar".
+optional child apps, "messages," "navbar," and "router."
 
 
 
@@ -94,73 +94,61 @@ The 'global' channel is used to help manage the app.
 - requests (The first must be requested by the 
   developer in the entry file before calling ```app.start()```)
 
-	- ```'main:app:route'``` -> registers the "main-router".  *This must be 
-	  requested by the developer in the entry file after creating 
-	  the app.* (This should be renamed.)
-	  
 	- ```'main:app:object'``` -> returns the "TopApp" object.
 
 	- ```'main:app:config'``` -> returns the "AppConfig" object.
 	
-	- ```'main-router'``` -> returns the main dispatch router.
+	These requests are on the "navbar" channel.
 	
-	- ```'main-controller'``` -> returns the RequireController used by the 
-	  "main-router".
-	  
+	- **Navbar Requests**
+	
+		- ```'get-entries'``` (name) -> returns navbar entry collection
+		
+		- ```'add-entry'``` (entry, name) -> adds a new entry
+
+		- ```'add-entries'``` (entries, name) -> adds new entries
+		
+		- ```'clear-entries'``` () -> returns navbar color
+	
+	Theses requests are on the "applets" channel.
+
 	- **Applet Requests**
 	
-		- ```'main:applet:get-applet'``` (appname) -> this returns the
+		- ```'get'``` (appname) -> this returns the
 		applet object.
+
+		- ```'getAll'``` () -> this returns all loaded
+		applet objects.
 	
-		- ```'main:applet:register'``` (appname, applet) -> registers the 
+		- ```'register'``` (appname, applet) -> registers the 
 		applet with the application.  This tells the dispatcher that the 
 		routes for the AppRouter have already been registered, so it will 
 		refrain from attempting to load the applet.  This is called upon the 
 		loading of the applet by the **RequireController**.
 	
-		- ```'main:applet:unregister'``` (appname) -> this is a placeholder 
+		- ```'unregister'``` (appname) -> this is a placeholder 
 		to remove an applet from the application.  This is not being 
 		used currently, but is reserved in anticipation of the 
 		potential to unload an applet to conserve memory in a large 
 		application.
 	
-	- **Navbar Requests**
-	
-		- ```'navbar-entries'``` () -> returns navbar entry collection
-		
-		- ```'new-navbar-entry'``` () -> returns a new entry model
-
-		- ```'add-navbar-entry'``` (atts) -> adds a new entry
-
-		- ```'add-navbar-entries'``` (array) -> adds new entries
-		
-		- ```'get-navbar-color'``` () -> returns navbar color
-
-		- ```'get-navbar-bg-color'``` () -> returns navbar background color
-		
-
-		
-	
 		
 ### Example
 
 ```coffee
-Backbone = require 'backbone'
-require 'bootstrap'
+import Backbone from 'backbone'
+import 'bootstrap'
 
-require 'tbirds/applet-router'
-TopApp = require 'tbirds/top-app'
+import createMainApp from 'tbirds/start-main-app'
+import config from 'tbirds/app-config'
+
 config = require 'tbirds/app-config'
 config.brand.label = 'Example'
 
 MainChannel = Backbone.Radio.channel 'global'
 
-app = new TopApp
-  appConfig: config
+app = createMainApp config
   
-# register the main router
-MainChannel.request 'main:app:route'
-
 # start the app
 app.start()
 ```
@@ -199,7 +187,8 @@ applet.
 ### Example AppRouter
 
 ```coffee
-class Router extends Marionette.AppRouter
+import AppRouter from 'tbirds/routers/approuter'
+class Router extends AppRouter
   appRoutes:
     'docapp': 'listPages'
     'docapp/documents': 'listPages'
