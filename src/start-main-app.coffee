@@ -4,6 +4,7 @@ import { Region } from 'backbone.marionette'
 import RootApp from './root-app'
 import MessagesApp from './tkmessages'
 import NavbarApp from './tknavbar'
+import RouterApp from './tkrouter'
 
 MainChannel = Backbone.Radio.channel 'global'
 
@@ -47,6 +48,10 @@ createMainApp = (cfg) ->
         parentApp: nbApp
         user: MainChannel.request "main:app:decode-auth-token"
       nbApp.addChildApp 'user-menu', cfg.userMenuApp, options
+  mainApp.addChildApp 'router', RouterApp,
+    startWithParent: true
+    appConfig: cfg
+    parentApp: mainApp
   return mainApp
 
 export default createMainApp
