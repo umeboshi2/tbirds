@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { Radio } from 'backbone'
+import { Radio, history as BBhistory } from 'backbone'
 import { View, CollectionView } from 'backbone.marionette'
 import tc from 'teacup'
 
@@ -102,8 +102,7 @@ class NavbarEntryCollectionView extends CollectionView
     if href.split('/')[0] == ''
       window.location = href
     else
-      router = MainChannel.request 'main-router'
-      router.navigate href, trigger: true
+      BBhistory.navigate href, trigger: true
     return
     
 class NavbarEntriesView extends View

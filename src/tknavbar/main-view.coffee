@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { Model, Radio } from 'backbone'
+import { Model, Radio, history as BBhistory } from 'backbone'
 import { View } from 'backbone.marionette'
 import tc from 'teacup'
 
@@ -67,8 +67,7 @@ class BootstrapNavBarView extends View
   _routeToURl: (href) ->
     if href.startsWith '/'
       window.open href
-    router = MainChannel.request 'main-router'
-    router.navigate href, trigger: true
+    BBhistory.navigate href, trigger: true
     return
 
   childViewEvents:
