@@ -16,9 +16,6 @@ describe 'Create Main App', ->
       return
     it 'has options property', ->
       expect(@app).to.have.property('options')
-    it 'is set to start history', ->
-      state = @app.getState('startHistory')
-      expect(state).to.equal(true)
     it 'has appConfig', ->
       cfg = @app.getState('appConfig')
       expect(cfg).to.be.an('object')
@@ -36,13 +33,10 @@ describe 'Create Main App', ->
       expect(cfg).not.have.property('foobar')
       @app.setState('startHistory', false)
       expect(@app.getState('startHistory')).to.equal(false)
-    it 'should have start history state true ', ->
-      startHistory = @app.getState 'startHistory'
-      expect(@app.getState('startHistory')).to.equal(true)
     it 'should have some child apps', ->
       app = @app
-      describe "two included child apps", ->
-        childApps = ['messages', 'navbar']
+      describe "three included child apps", ->
+        childApps = ['messages', 'navbar', 'router']
         childApps.forEach (name) ->
           it "should be named #{name}", ->
             child = app.getChildApp name
