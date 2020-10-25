@@ -48,10 +48,14 @@ createMainApp = (cfg) ->
         parentApp: nbApp
         user: MainChannel.request "main:app:decode-auth-token"
       nbApp.addChildApp 'user-menu', cfg.userMenuApp, options
-  mainApp.addChildApp 'router', RouterApp,
-    startWithParent: true
-    appConfig: cfg
-    parentApp: mainApp
+  useRouter = true
+  if cfg.useRouter? and cfg.useRouter is false
+    useRouter = false
+  if useRouter
+    mainApp.addChildApp 'router', RouterApp,
+      startWithParent: true
+      appConfig: cfg
+      parentApp: mainApp
   return mainApp
 
 export default createMainApp

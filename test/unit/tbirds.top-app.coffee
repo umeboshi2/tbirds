@@ -23,7 +23,7 @@ describe 'Create Main App', ->
         allKeys = ['appRegion', 'layout', 'layoutOptions', 'useMessages',
           'useNavbar', 'brand', 'frontdoorApplet', 'hasUser', 'userMenuApp',
           'needLogin', 'loginUrl', 'guestUserName', 'navbarEntries',
-          'appletRoutes', 'authToken']
+          'appletRoutes', 'authToken', 'useRouter']
         allKeys.forEach (key) ->
           it "should have #{key} property", ->
             expect(cfg).to.have.property(key)

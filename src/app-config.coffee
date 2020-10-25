@@ -15,6 +15,8 @@ appConfig =
   # set useNavbar to false to skip
   # using a navbar in the app
   useNavbar: true
+  # set this to false if you don't need a router
+  useRouter: true
   # this is the brand entry for the navbar
   brand:
     label: 'TBirds'
