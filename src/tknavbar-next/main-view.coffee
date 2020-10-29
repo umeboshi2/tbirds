@@ -78,13 +78,10 @@ class BootstrapNavBarView extends View
   onChildviewClickBrand: (view) ->
     eview = @getChildView 'siteEntries'
     eview.setAllInactive()
-    url = view.model.get 'url'
     router = MainChannel.request 'main:app:router'
-    url = "application"
-    router.transitionTo(url)
-    #@_routeToURl url
+    router.transitionTo "application"
     return
-    
+
 export default BootstrapNavBarView
 
 

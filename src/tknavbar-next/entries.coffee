@@ -88,40 +88,11 @@ class NavbarEntryCollectionView extends CollectionView
   onChildviewClickEntry: (cview, event) ->
     @setAllInactive()
     cview.set_active()
-    console.warn "onChildviewClickEntry", cview, event
-    @navigateOnClickEntry cview, event
-    href = $(event.target).attr('href')
-    console.log "href", href
     route = $(event.target).attr('data-route')
-    console.log "route", route
     router = MainChannel.request 'main:app:router'
-    console.log "router", router
     router.transitionTo(route)
     return
-    
-  navigateOnClickEntry: (cview, event) ->
-    # FIXME triggering click:entry
-    # seems to leave dropdown open
-    # this closes the navbar menu
-    event.stopPropagation()
-    if cview.$el.hasClass "show"
-      #cview.$el.dropdown('toggle')
-      cview.ui.toggleButton.click()
-    target = event.target
-    # check if icon is clicked
-    if target.tagName is "I"
-      #console.warn "clicked icon"
-      anchor = $(target).parent()
-    else
-      anchor = $(target)
-    # look at href and go there maybe?
-    href = anchor.attr 'href'
-    if href.split('/')[0] == ''
-      window.location = href
-    else
-      BBhistory.navigate href, trigger: true
-    return
-    
+
 class NavbarEntriesView extends View
   ui:
     list: '.navbar-entries'
