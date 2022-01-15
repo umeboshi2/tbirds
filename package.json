@@ -32,7 +32,7 @@
     "lodash": "^4.17.20",
     "marionette.routing": "^1.1.2",
     "marionette.toolkit": "^6.2.0",
-    "marked": "^1.2.0",
+    "marked": "^4.0.10",
     "ms": "^2.1.2",
     "popper.js": "^1.16.1",
     "teacup": "^2.0.0"
